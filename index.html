@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#7c3aed">
-<title>Science &amp; Math Adventure! V2.2.4 · Ages 6–10</title>
+<title>Science &amp; Math Adventure! V2.2.5 · Ages 6–10</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
@@ -53,7 +53,7 @@ button.help-btn{background:#f59e0b}button.help-btn:disabled{background:#9ca3af}
 #hint-area{margin-top:10px;padding:8px;background:#fffbeb;border:1px dashed #fcd34d;border-radius:6px;font-style:italic;color:#713f12;min-height:18px;font-size:.95em}
 #feedback{font-size:1.15em;font-weight:700;margin-top:10px;min-height:25px;text-align:center}
 .correct{color:#16a34a}.incorrect{color:#dc2626}
-footer{margin-top:10px;font-size:1em;color:#4b5563;text-align:center}.app-credit{margin:-6px 0 12px;padding:0;font-size:.75em;font-weight:600;color:#8b7aa8;letter-spacing:.02em;line-height:1.35}
+footer{margin-top:10px;font-size:1em;color:#4b5563;text-align:center}.app-credit{margin:-6px 0 12px;padding:0;font-size:.75em;font-weight:600;color:#8b7aa8;letter-spacing:.02em;line-height:1.35}.visit-count{display:none;margin:-8px 0 12px;padding:0;font-size:11px;font-weight:500;color:#c4bdd3;letter-spacing:.02em;line-height:1.3;text-align:center}.visit-count.is-on{display:block}
 #score-value,#best-score-value,#streak-value,#best-streak-value{font-weight:800;color:#5b21b6}
 .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px}
 #next-problem{background:#f97316;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
@@ -176,8 +176,9 @@ footer{margin-top:10px;font-size:1em;color:#4b5563;text-align:center}.app-credit
 <div class="container">
   <header>
     <h1>Science &amp; Math Adventure! 🚀 <button id="challenge-fireworks-btn" title="Unlock Fireworks with a Challenge!" aria-label="Fireworks challenge">🎆</button></h1>
-    <p class="subtitle">V2.2.4 · Ages 6–10 · Learn, play, and collect stickers!</p>
+    <p class="subtitle">V2.2.5 · Ages 6–10 · Learn, play, and collect stickers!</p>
     <p class="app-credit">Made by Val, VA3FOD</p>
+    <p id="visit-count" class="visit-count" hidden></p>
   </header>
   <div id="player-hi"><span id="player-hi-text"></span><button id="change-name-btn" type="button">Change name</button></div>
   <div class="top-actions">
@@ -1220,7 +1221,7 @@ function syncMedals() { ALL_TOPIC_IDS.forEach(id => { if ((state.progress[id] ||
 
 /* ================= STATE + STORAGE (durable; schema v2; never resets by date, reload or fireworks) ================= */
 const KEY = 'sciMathAdventureV2';
-const APP_VERSION = '2.2.4';
+const APP_VERSION = '2.2.5';
 const SCHEMA_V = 2;
 const toInt = x => { const n = Math.floor(Number(x)); return Number.isFinite(n) && n > 0 ? n : 0; };
 let storageOK = true;
@@ -1648,6 +1649,44 @@ function initializeApp() {
   renderPlayer();
   if (!state.playerName) openNameModal();
 }
+
+/* ================= ANONYMOUS VISIT COUNTER ================= */
+function startVisitCounter() {
+  try {
+    var el = document.getElementById('visit-count');
+    if (!el) return;
+    var proto = '', host = '';
+    try {
+      proto = (window.location && window.location.protocol) || '';
+      host = (window.location && window.location.hostname) || '';
+    } catch (e) { return; }
+    if (proto !== 'http:' && proto !== 'https:') return;
+    if (!host || host === 'localhost' || host === '127.0.0.1') return;
+    if (typeof fetch !== 'function') return;
+    var counted = false;
+    try { counted = !!(sessionStorage && sessionStorage.getItem('va3fod-sma-visit')); } catch (e) {}
+    var url = 'https://abacus.jasoncameron.dev/' + (counted ? 'get' : 'hit') + '/va3fod-science-math-adventure/visits';
+    var ctrl = (typeof AbortController === 'function') ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { try { ctrl.abort(); } catch (e) {} }, 4000) : null;
+    var opts = { method: 'GET', mode: 'cors', cache: 'no-store', credentials: 'omit' };
+    if (ctrl) opts.signal = ctrl.signal;
+    fetch(url, opts).then(function (res) {
+      if (timer) clearTimeout(timer);
+      if (!res || !res.ok) return null;
+      return res.json();
+    }).then(function (data) {
+      if (!data || typeof data.value !== 'number') return;
+      if (!counted) {
+        try { sessionStorage.setItem('va3fod-sma-visit', '1'); } catch (e) {}
+      }
+      el.textContent = '👁 ' + String(data.value).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      el.removeAttribute('hidden');
+      if (el.classList && el.classList.add) el.classList.add('is-on');
+    }).catch(function () { if (timer) clearTimeout(timer); });
+  } catch (e) {}
+}
+startVisitCounter();
+
 document.addEventListener('DOMContentLoaded', initializeApp);
 </script>
 </body>
