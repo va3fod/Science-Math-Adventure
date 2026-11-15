@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7c3aed">
+<title>Science &amp; Math Adventure! V2.2.3 · Ages 6–10</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Nunito',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;
+ background:linear-gradient(135deg,#e0c3fc 0%,#8ec5fc 100%);margin:0;min-height:100vh;color:#333;overflow-x:hidden;
+ padding:calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left))}
+button{font-family:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:44px}
+.container{background:rgba(255,255,255,.97);padding:16px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.2);width:100%;max-width:760px;text-align:center;z-index:1;margin:10px 0}
+header h1{color:#5b21b6;margin:4px 0 4px;font-size:1.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
+.subtitle{color:#6b7280;font-weight:600;margin:0 0 12px;font-size:.95em}
+#challenge-fireworks-btn{background:#f59e0b;color:#fff;border:none;padding:6px 12px;font-size:1.2em;border-radius:10px;cursor:pointer;min-width:48px}
+#challenge-fireworks-btn:hover{background:#d97706}
+.top-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:12px}
+.top-actions button{border:none;color:#fff;padding:10px 16px;border-radius:25px;font-weight:700;font-size:1em;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+#smart-mix-btn{background:linear-gradient(90deg,#ec4899,#8b5cf6)}
+#rewards-btn{background:#0ea5e9}
+.nav-group{margin-bottom:10px;background:#faf5ff;border-radius:14px;padding:6px 6px 8px}
+.nav-group h4{margin:2px 0 6px;color:#6d28d9;font-size:.95em;text-align:left;padding-left:6px}
+.nav-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+nav button{background:#7c3aed;color:#fff;border:none;padding:8px 13px;border-radius:25px;cursor:pointer;font-size:.9em;font-weight:600;transition:all .2s;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+nav button:hover{background:#6d28d9;transform:translateY(-2px)}
+nav button.active{background:#16a34a}
+nav button .done{font-size:.8em;margin-left:3px}
+#app-content{min-height:250px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;margin:10px 0 15px;text-align:left}
+.learn-section{padding:12px;background:#eef2ff;border-radius:10px;margin-bottom:12px}
+.learn-section h3{color:#4f46e5;margin-top:0;font-size:1.3em}
+.learn-section p,.learn-section li{font-size:1.05em;line-height:1.55}
+.example{background:#fff;padding:8px 10px;border-radius:6px;border-left:4px solid #7c3aed;margin:8px 0;font-style:italic}
+.practice-button{display:block;margin:15px auto 0;background:#22c55e;color:#fff;border:none;padding:12px 22px;border-radius:22px;font-size:1.1em;font-weight:700;cursor:pointer}
+.practice-button:hover{background:#16a34a}
+.problem-area{text-align:center}
+.topic-tag{display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:12px;padding:2px 10px;font-size:.85em;font-weight:700;margin-bottom:6px}
+.problem-area p.q{font-size:1.3em;margin:6px 0 12px;color:#1e293b;font-weight:600}
+.problem-area input{padding:10px;font-size:18px;border-radius:10px;border:2px solid #cbd5e1;margin:5px;width:110px;text-align:center;font-family:inherit}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:520px;margin:8px auto}
+.choices button{background:#fff;border:2px solid #a78bfa;color:#3b0764;border-radius:12px;padding:10px;font-size:1.05em;font-weight:700;cursor:pointer}
+.choices button.picked{background:#ede9fe;border-color:#7c3aed}
+.choices button.right{background:#dcfce7;border-color:#16a34a}
+.choices button.wrong{background:#fee2e2;border-color:#dc2626}
+@media(max-width:380px){.choices{grid-template-columns:1fr}}
+.action-buttons{margin-top:10px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.action-buttons button{color:#fff;border:none;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:1.05em;font-weight:700}
+button.check-btn{background:#3b82f6}button.check-btn:hover{background:#2563eb}
+button.help-btn{background:#f59e0b}button.help-btn:disabled{background:#9ca3af}
+#hint-area{margin-top:10px;padding:8px;background:#fffbeb;border:1px dashed #fcd34d;border-radius:6px;font-style:italic;color:#713f12;min-height:18px;font-size:.95em}
+#feedback{font-size:1.15em;font-weight:700;margin-top:10px;min-height:25px;text-align:center}
+.correct{color:#16a34a}.incorrect{color:#dc2626}
+footer{margin-top:10px;font-size:1em;color:#4b5563;text-align:center}
+#score-value,#best-score-value,#streak-value,#best-streak-value{font-weight:800;color:#5b21b6}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px}
+#next-problem{background:#f97316;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+#badge-shelf{margin-top:8px;font-size:1.5em;min-height:30px;letter-spacing:4px}
+.visual{margin:8px auto;text-align:center}
+.visual svg{max-width:220px;width:100%;height:auto}
+.emoji-row{font-size:1.8em;letter-spacing:3px;line-height:1.4;word-break:break-word}
+.fraction{display:inline-block;text-align:center;margin:0 8px;font-size:1.4em;vertical-align:middle}
+.numerator{border-bottom:2px solid #000;padding:0 4px 2px}
+.demo-box{background:#fff;border:2px solid #c4b5fd;border-radius:14px;padding:8px;margin:10px auto;max-width:420px;text-align:center}
+.demo-box canvas{width:100%;max-width:400px;height:auto;touch-action:none;display:block;margin:0 auto;border-radius:10px;background:#f0f9ff}
+.demo-box .info{font-weight:700;color:#4c1d95;margin-top:6px;min-height:22px}
+.lvl-chip{display:inline-block;background:#fef3c7;color:#92400e;border:2px solid #f59e0b;border-radius:999px;padding:2px 10px;font-weight:800;font-size:.9em;margin-left:6px}
+.demo-box input[type=range]{width:90%;height:36px}
+#cat-icon{position:fixed;font-size:2.8em;display:none;z-index:1000;left:-60px;bottom:30px;transition:left 3s ease-in-out}
+#fireworks-canvas{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);display:none;z-index:1999}
+#fx-layer{position:fixed;inset:0;pointer-events:none;z-index:1500;overflow:hidden}
+.fx{position:absolute;font-size:28px;will-change:transform,opacity;animation:fly 1.4s ease-out forwards}
+@keyframes fly{0%{transform:translate(0,0) scale(.6);opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(1.2);opacity:0}}
+#toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top));transform:translateX(-50%);background:#4c1d95;color:#fff;padding:10px 18px;border-radius:20px;font-weight:800;z-index:2500;display:none;box-shadow:0 6px 14px rgba(0,0,0,.3);max-width:90vw;text-align:center}
+#fireworks-message-overlay{position:fixed;inset:0;display:none;justify-content:center;align-items:center;z-index:2000;flex-direction:column;text-align:center;padding:16px}
+#fireworks-message-overlay p{color:#fff;font-size:1.8em;font-weight:800;text-shadow:2px 2px 4px #000;padding:15px;background:rgba(0,0,0,.5);border-radius:15px}
+#fireworks-message-overlay button{padding:12px 22px;font-size:1.15em;margin-top:20px;background:#f97316;color:#fff;border:none;border-radius:12px;cursor:pointer;font-weight:700}
+#progress-bar-container{width:95%;max-width:600px;height:24px;background:#e0e0e0;border-radius:15px;margin:12px auto;overflow:hidden;border:2px solid #7c3aed}
+#progress-bar-fill{width:0;height:100%;background:#22c55e;transition:width .5s;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.85em;white-space:nowrap}
+.modal{display:none;position:fixed;z-index:3000;inset:0;overflow:auto;background:rgba(0,0,0,.6);padding:16px}
+.modal-content{background:#fefefe;margin:8vh auto;padding:22px;width:100%;max-width:520px;border-radius:16px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.3)}
+#name-modal .modal-content input{width:80%;max-width:280px;text-align:left}
+#player-hi{font-weight:800;color:#5b21b6;margin:4px 0 8px;text-align:center}
+#player-hi button{background:none;border:none;color:#7c3aed;text-decoration:underline;cursor:pointer;font-size:.85em;margin-left:6px}
+#name-error{color:#dc2626;min-height:1.2em;font-size:.9em}
+.modal-content h3{color:#5b21b6;margin-top:0}
+.modal-content input{margin:10px 0;padding:10px;font-size:18px;width:110px;text-align:center;border-radius:8px;border:2px solid #ccc}
+.modal-content button{padding:10px 20px;font-size:1em;border-radius:10px;cursor:pointer;margin:8px 5px;color:#fff;border:none;font-weight:700}
+.submit-challenge{background:#28a745}.close-challenge{background:#dc3545}
+#challenge-feedback{font-weight:800;margin-top:10px;min-height:20px}
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;text-align:center;margin:10px 0}
+.badge{border-radius:12px;padding:8px;background:#f1f5f9;opacity:.45;filter:grayscale(1)}
+.badge.got{opacity:1;filter:none;background:#fef9c3;border:2px solid #facc15}
+.badge .e{font-size:2em}.badge .n{font-weight:800;font-size:.9em}.badge .d{font-size:.78em;color:#475569}
+@media(min-width:600px){.container{padding:24px}header h1{font-size:2.4em}nav button{padding:10px 16px;font-size:1em}
+ #app-content{padding:20px}.problem-area p.q{font-size:1.45em}#fireworks-message-overlay p{font-size:2.5em}}
+@media(orientation:landscape) and (max-height:500px){.modal-content{margin:2vh auto}}
+
+#browser-tip{background:#fff7ed;border:2px solid #fb923c;border-radius:14px;padding:12px 14px;margin:10px 0;max-width:760px;width:100%;text-align:left;color:#9a3412;font-weight:600;font-size:1em;line-height:1.45;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+#browser-tip strong{font-weight:800;display:block;margin-bottom:4px;font-size:1.05em}
+#browser-tip ol{margin:8px 0 0;padding-left:1.3em}
+#browser-tip.hidden{display:none!important}
+#browser-tip .tip-note{margin-top:8px;font-size:.9em;opacity:.95}
+</style>
+</head>
+<body>
+<div id="cat-icon">🐱</div>
+<div id="fx-layer"></div>
+<div id="toast"></div>
+<canvas id="fireworks-canvas"></canvas>
+<div id="fireworks-message-overlay">
+  <p>🎉 You're a Science &amp; Math Superstar! 🌟🔬🚀</p>
+  <button id="claim-btn">Awesome! Keep Playing! 🚀</button>
+</div>
+
+<div id="challenge-modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <h3>✨ Fireworks Challenge! ✨</h3>
+    <p id="challenge-question-text" style="font-size:1.25em;font-weight:700"></p>
+    <input type="text" inputmode="numeric" pattern="[0-9]*" id="challenge-answer-input" autocomplete="off">
+    <br>
+    <button class="submit-challenge" id="challenge-submit">Submit Answer</button>
+    <button class="close-challenge" id="challenge-close">Close</button>
+    <div id="challenge-feedback"></div>
+  </div>
+</div>
+
+<div id="name-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="name-title">
+  <div class="modal-content">
+    <h3 id="name-title">Who’s playing the Science &amp; Math Adventure? 🧑‍🚀</h3>
+    <input id="name-input" type="text" maxlength="20" placeholder="Your name" autocomplete="off" aria-label="Your name">
+    <div id="name-error"></div>
+    <button id="name-start" style="background:#22c55e">Start! 🚀</button>
+  </div>
+</div>
+<div id="rewards-modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <h3>🏆 My Sticker Collection</h3>
+    <div id="badge-grid" class="badge-grid"></div>
+    <button class="close-challenge" id="rewards-close">Close</button>
+  </div>
+</div>
+
+
+<!-- Shown only in WhatsApp / in-app / preview (JS decides). Visible by default if JS never runs. -->
+<div id="browser-tip" role="note">
+  <strong>📱 Open in your browser</strong>
+  <span id="browser-tip-body">WhatsApp, Drive, and some apps open a preview that may not run the game or save stickers. Open this page in your real browser (Safari or Chrome).</span>
+  <ol id="browser-tip-steps">
+    <li><b>iPhone / iPad:</b> tap Share (□↑) → <b>Open in Safari</b>.</li>
+    <li><b>Android:</b> tap ⋮ → <b>Open in Chrome</b> (or Open in browser).</li>
+  </ol>
+  <p class="tip-note">Already in Safari or Chrome? You’re set — this tip should hide by itself.</p>
+</div>
+<script>
+(function () {
+  /* Hide ASAP in a real browser so the tip never flashes annoyingly. Keep it in WhatsApp / in-app / iframes. */
+  function needsTip() {
+    try {
+      var ua = navigator.userAgent || '';
+      if (/WhatsApp|FBAN|FBAV|Facebook|Instagram|Line\/|Twitter|LinkedInApp|Snapchat|Pinterest|TikTok|ByteLocale|BytedanceWebview|Messenger/i.test(ua)) return true;
+      if (/; wv\)|wv/i.test(ua)) return true;
+      try { if (window.top !== window.self) return true; } catch (e) { return true; }
+      var apple = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (apple && /AppleWebKit/i.test(ua) && !/Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS/i.test(ua)) return true;
+      return false;
+    } catch (e) { return true; }
+  }
+  var el = document.getElementById('browser-tip');
+  if (el && !needsTip()) el.classList.add('hidden');
+})();
+</script>
+
+<div class="container">
+  <header>
+    <h1>Science &amp; Math Adventure! 🚀 <button id="challenge-fireworks-btn" title="Unlock Fireworks with a Challenge!" aria-label="Fireworks challenge">🎆</button></h1>
+    <p class="subtitle">V2.2.3 · Ages 6–10 · Learn, play, and collect stickers!</p>
+  </header>
+  <div id="player-hi"><span id="player-hi-text"></span><button id="change-name-btn" type="button">Change name</button></div>
+  <div class="top-actions">
+    <button id="smart-mix-btn">🎲 Smart Mix Quiz</button>
+    <button id="rewards-btn">🏆 My Stickers</button>
+    <button id="sound-btn" aria-label="Sound on/off" style="background:#64748b">🔊</button>
+  </div>
+
+  <nav id="topic-nav"></nav>
+  <div id="progress-bar-container"><div id="progress-bar-fill">0%</div></div>
+  <main id="app-content"></main>
+  <footer>
+    <div class="stats">
+      <span>Score: <span id="score-value">0</span></span>
+      <span>Best: <span id="best-score-value">0</span></span>
+      <span>🔥 Streak: <span id="streak-value">0</span></span>
+      <span>Best Streak: <span id="best-streak-value">0</span></span>
+    </div>
+    <button id="next-problem" style="display:none">Next Quest ➡️</button>
+    <div id="badge-shelf" title="Your stickers"></div>
+  </footer>
+</div>
+<script>
+'use strict';
+/* ================= HELPERS ================= */
+const $ = id => document.getElementById(id);
+const rnd = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function mcOptions(correct, pool, n = 4) {
+  const others = shuffle([...new Set(pool.filter(x => String(x) !== String(correct)))]).slice(0, n - 1);
+  return shuffle([correct, ...others]);
+}
+const EMOJI = ['🍎','⭐','🐟','🌸','🚗','🍪','🐞','🎈','🦆','🍓'];
+
+/* ============ VERIFIED FACT BANKS (kid-safe, well-known true facts) ============ */
+const PLANETS = ['Mercury','Venus','Earth','Mars','Jupiter','Saturn','Uranus','Neptune']; // order from Sun (IAU)
+const ORD = ['1st','2nd','3rd','4th','5th','6th','7th','8th'];
+const PLANET_FACTS = [
+  ['Which planet is the biggest in our Solar System?','Jupiter'],
+  ['Which planet is closest to the Sun?','Mercury'],
+  ['Which planet do we live on?','Earth'],
+  ['Which planet is famous for its big, bright rings?','Saturn'],
+  ['Which planet is called the "Red Planet"?','Mars'],
+  ['Which planet is farthest from the Sun?','Neptune'],
+  ['Which planet is the hottest (thick clouds trap heat)?','Venus'],
+  ['Which planet is the smallest planet?','Mercury'],
+  ['Which planet is 3rd from the Sun and has lots of liquid water?','Earth'],
+  ['Which planet has a giant storm called the Great Red Spot?','Jupiter'],
+  ['Which planet spins tipped over on its side?','Uranus'],
+  ['Which planet has one moon that we can see from our home at night?','Earth'],
+  ['Which planet is 2nd from the Sun and the brightest planet in our night sky?','Venus'],
+  ['Which planet has two tiny moons named Phobos and Deimos?','Mars'],
+  ['Which planet is the second biggest in our Solar System?','Saturn'],
+  ['Which planet is blue and 8th from the Sun?','Neptune'],
+  ['Which planet has rovers (robot cars) driving on it today, sent from Earth?','Mars'],
+];
+const SKY_FACTS = [ // [statement, isTrue, explanation]
+  ['The Sun is a star.', true, 'Yes! The Sun is a star — the closest star to Earth.'],
+  ['The Moon makes its own light.', false, 'The Moon shines because it reflects light from the Sun.'],
+  ['The Moon goes around (orbits) the Earth.', true, 'Yes, the Moon orbits Earth about once a month.'],
+  ['The Earth goes around the Sun.', true, 'Yes! One trip around the Sun takes about a year.'],
+  ['The Sun goes around the Earth.', false, 'It is the other way: Earth goes around the Sun.'],
+  ['Stars come out only at night.', false, 'Stars are always there — the bright Sun hides them in the day.'],
+  ['Earth spinning makes day and night.', true, 'Yes! Earth spins once about every 24 hours.'],
+  ['One full spin of the Earth takes about 1 day.', true, 'Yes, about 24 hours.'],
+  ['The Moon looks like it changes shape during the month.', true, 'Yes — those are the Moon\u2019s phases.'],
+  ['The Sun is a planet.', false, 'The Sun is a star, not a planet.'],
+  ['Stars look tiny because they are very, very far away.', true, 'Yes! Many stars are bigger than our Sun but super far away.'],
+  ['When it is day on one side of Earth, it is night on the other side.', true, 'Yes! The side facing the Sun has day.'],
+  ['The Moon has no air for us to breathe.', true, 'Right! Astronauts on the Moon wore space suits with air.'],
+  ['People have walked on the Moon.', true, 'Yes! Astronauts first walked on the Moon in 1969.'],
+  ['Earth is a planet.', true, 'Yes! Earth is the 3rd planet from the Sun.'],
+  ['The Moon is a star.', false, 'The Moon is not a star. It is a rocky ball that orbits Earth.'],
+  ['You should never look straight at the Sun.', true, 'Right! The Sun is so bright it can hurt your eyes.'],
+  ['The Sun gives Earth light and heat.', true, 'Yes! Without the Sun, Earth would be dark and frozen.'],
+  ['Jupiter is smaller than Earth.', false, 'Jupiter is MUCH bigger than Earth — the biggest planet!'],
+  ['There are 8 planets in our Solar System.', true, 'Yes! Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.'],
+  ['The Sun is much bigger than the Earth.', true, 'Yes! About a million Earths could fit inside the Sun.'],
+  ['A group of stars that makes a picture in the sky is called a constellation.', true, 'Yes! The Big Dipper is a famous star pattern.'],
+  ['Astronauts float inside the space station.', true, 'Yes! They are falling around Earth together with the station, so they float.'],
+  ['The Moon is bigger than the Earth.', false, 'The Moon is smaller than Earth — about a quarter as wide.'],
+  ['A full Moon looks like a whole bright circle.', true, 'Yes! At full Moon we see the whole sunlit side.'],
+  ['Stars are giant balls of hot glowing gas.', true, 'Yes! Our Sun is one of them.'],
+  ['Saturn is the only planet with rings.', false, 'Jupiter, Uranus and Neptune have rings too — Saturn’s are just the biggest and brightest.'],
+  ['Mars looks reddish.', true, 'Yes! Rusty dust makes Mars look red.'],
+  ['The Sun is in the middle of our Solar System.', true, 'Yes! All the planets go around the Sun.'],
+  ['Telescopes help us see faraway things in space.', true, 'Yes! They make faraway things look bigger and clearer.'],
+];
+const SKY_MC = [
+  ['What is the Sun?', 'A star', ['A planet','A moon','A cloud']],
+  ['Why does the Moon shine at night?', 'It reflects sunlight', ['It is on fire','It has light bulbs','It is a star']],
+  ['What goes around the Earth?', 'The Moon', ['The Sun','Jupiter','Mars']],
+  ['What does the Earth go around?', 'The Sun', ['The Moon','Mars','A comet']],
+  ['What causes day and night?', 'Earth spinning', ['The Sun turning off','Clouds','The Moon blocking the Sun']],
+  ['About how long does Earth take to spin once?', '1 day (24 hours)', ['1 hour','1 week','1 year']],
+  ['About how long does Earth take to go around the Sun once?', '1 year', ['1 day','1 week','1 hour']],
+  ['Which side of Earth has daytime?', 'The side facing the Sun', ['The side facing away','The top only','The bottom only']],
+  ['Why can\u2019t we see stars in the daytime?', 'The Sun is too bright', ['Stars go to sleep','Stars move away','Stars turn off']],
+  ['Where does the Sun seem to rise?', 'In the east', ['In the west','In the north','In the south']],
+  ['What do we call the shapes the Moon seems to make each month?', 'Phases', ['Seasons','Orbits','Clouds']],
+  ['What tool helps us see faraway stars and planets better?', 'A telescope', ['A microscope','A thermometer','A ruler']],
+  ['What is the closest star to Earth?', 'The Sun', ['The Moon','The North Star','Mars']],
+  ['What do astronauts wear outside their spacecraft?', 'A space suit', ['A swimsuit','Pajamas','A raincoat']],
+  ['What is a picture made by a group of stars called?', 'A constellation', ['A planet','A comet','A cloud']],
+  ['What is the name of our galaxy?', 'The Milky Way', ['The Candy Way','The Sun Road','The Moon Path']],
+  ['What is the big round thing that goes around Earth and we can see at night?', 'The Moon', ['The Sun','Venus','A comet']],
+  ['How many planets are in our Solar System?', '8', ['5','10','100']],
+  ['What gives Earth light and warmth?', 'The Sun', ['The Moon','The stars at night','Clouds']],
+  ['When the whole lit-up face of the Moon shows, it is a…', 'Full Moon', ['New Moon','Half Sun','Star Moon']],
+  ['People who travel into space are called…', 'Astronauts', ['Plumbers','Pilots of boats','Farmers']],
+  ['Which is the biggest?', 'The Sun', ['The Earth','The Moon','Mars']],
+  ['What is the Moon made of?', 'Rock', ['Cheese','Water','Glowing gas']],
+  ['Which planet do astronauts in the space station go around?', 'Earth', ['Mars','Jupiter','The Moon']],
+];
+const LIVING = [
+  ['What do plants need to make their food?', 'Sunlight', ['Darkness','Candy','Sand only']],
+  ['What do all animals need to stay alive?', 'Food, water and air', ['Only toys','Only sunlight','Nothing']],
+  ['Which part of a plant takes in water from the soil?', 'The roots', ['The flower','The fruit','The petals']],
+  ['Which of these is a living thing?', 'A tree', ['A rock','A spoon','A car']],
+  ['Which of these is a living thing?', 'A dog', ['A chair','A cloud','A pencil']],
+  ['Which of these is NOT living?', 'A rock', ['A frog','A flower','A bird']],
+  ['What do fish use to breathe under water?', 'Gills', ['Lungs','Fins','Scales']],
+  ['A caterpillar grows up to become a…', 'Butterfly', ['Spider','Bee','Bird']],
+  ['A tadpole grows up to become a…', 'Frog', ['Fish','Snake','Duck']],
+  ['What do living things do that rocks don\u2019t?', 'Grow', ['Stay the same forever','Melt in sunlight','Nothing']],
+  ['What do plants give off that animals breathe?', 'Oxygen', ['Smoke','Sand','Salt']],
+  ['Many new plants grow from…', 'Seeds', ['Rocks','Feathers','Shells']],
+  ['A baby dog is called a…', 'Puppy', ['Kitten','Calf','Chick']],
+  ['A baby cat is called a…', 'Kitten', ['Puppy','Foal','Duckling']],
+  ['A baby cow is called a…', 'Calf', ['Kid','Cub','Lamb']],
+  ['A baby sheep is called a…', 'Lamb', ['Calf','Puppy','Tadpole']],
+  ['Which animal hatches from an egg?', 'A chicken', ['A dog','A cow','A horse']],
+  ['Which animal has feathers?', 'A bird', ['A fish','A cat','A frog']],
+  ['Which animal has six legs?', 'An insect like an ant', ['A spider','A dog','A snake']],
+  ['How many legs does a spider have?', '8', ['6','4','10']],
+  ['Which part of a plant is often colorful and helps make seeds?', 'The flower', ['The roots','The stem','The soil']],
+  ['Which part of a plant holds it up and carries water up?', 'The stem', ['The petal','The seed','The flower']],
+  ['Which part of the plant usually catches sunlight to make food?', 'The leaves', ['The roots','The seeds','The soil']],
+  ['Which animal lives in water and has fins?', 'A fish', ['A cat','A horse','A parrot']],
+  ['What do we call an animal that eats only plants?', 'Herbivore', ['Carnivore','Robot','Volcano']],
+  ['What do we call an animal that eats meat?', 'Carnivore', ['Herbivore','Vegetable','Plant']],
+  ['Bees help flowers by carrying…', 'Pollen', ['Rocks','Snow','Plastic']],
+  ['Where does a bird usually lay its eggs?', 'In a nest', ['In a cave of ice','In the ocean','In a car']],
+  ['Which of these is NOT living?', 'A toy robot', ['A mushroom','A cat','A tree']],
+  ['Which body part do we use to breathe air?', 'Lungs', ['Gills','Toes','Ears']],
+  ['What pumps blood around your body?', 'The heart', ['The nose','The knee','The hair']],
+  ['Which sense do we use our ears for?', 'Hearing', ['Seeing','Tasting','Smelling']],
+  ['Which sense do we use our eyes for?', 'Seeing', ['Hearing','Smelling','Tasting']],
+  ['Bears, dogs and people are all…', 'Mammals', ['Insects','Fish','Plants']],
+  ['A young frog with a tail that lives in water is a…', 'Tadpole', ['Caterpillar','Puppy','Chick']],
+  ['Before it becomes a butterfly, a caterpillar makes a…', 'Chrysalis', ['Nest','Web','Shell of a snail']],
+  ['Which animal can change into a butterfly?', 'A caterpillar', ['A worm','An ant','A snail']],
+  ['Which of these is a plant?', 'Grass', ['A rabbit','A stone','A spoon']],
+  ['A baby horse is called a…', 'Foal', ['Calf','Kitten','Chick']],
+  ['A baby duck is called a…', 'Duckling', ['Puppy','Lamb','Cub']],
+  ['A baby bear is called a…', 'Cub', ['Foal','Duckling','Kid']],
+  ['Which animal has a long trunk?', 'An elephant', ['A lion','A zebra','A rabbit']],
+];
+const MATTER_ITEMS = [
+  ['an ice cube','Solid'],['a rock','Solid'],['a wooden block','Solid'],['a spoon','Solid'],['a book','Solid'],['a toy car','Solid'],
+  ['milk','Liquid'],['juice','Liquid'],['water from a tap','Liquid'],['honey','Liquid'],['rain drops','Liquid'],['soup','Liquid'],
+  ['the air in a balloon','Gas'],['steam from a kettle','Gas'],['the bubbles in soda','Gas'],['the air we breathe','Gas'],
+  ['a pencil','Solid'],['a marble','Solid'],['a brick','Solid'],['a coin','Solid'],['a frozen popsicle','Solid'],['a teddy bear','Solid'],
+  ['orange juice in a cup','Liquid'],['shampoo','Liquid'],['melted chocolate','Liquid'],['ocean water','Liquid'],['maple syrup','Liquid'],['lemonade','Liquid'],
+  ['the air inside a bike tire','Gas'],['the helium in a party balloon','Gas'],['wind','Gas'],['water vapor in the air','Gas'],
+];
+const MATTER_MC = [
+  ['When ice warms up, it…', 'Melts into water', ['Turns into rock','Gets bigger and harder','Turns into sand']],
+  ['When water gets very cold, it…', 'Freezes into ice', ['Turns into steam','Disappears','Turns into juice']],
+  ['When water boils, it turns into…', 'Steam (a gas)', ['Ice','Sand','Milk']],
+  ['Which keeps its own shape?', 'A solid', ['A liquid','A gas','None of them']],
+  ['Which takes the shape of its cup?', 'A liquid', ['A solid','A rock','A brick']],
+  ['Which spreads out to fill the whole room?', 'A gas', ['A solid','A liquid','An ice cube']],
+  ['What is ice?', 'Frozen water (a solid)', ['A gas','Melted sand','A kind of milk']],
+  ['When chocolate gets hot in the sun, it…', 'Melts', ['Freezes','Turns into gas right away','Gets harder']],
+  ['What do we call water that has turned into a gas?', 'Water vapor', ['Ice','Sand','Juice']],
+  ['A puddle of water left in a freezer will become…', 'Ice', ['Steam','Juice','Air']],
+  ['Which is a liquid?', 'Milk', ['A rock','A spoon','Air']],
+  ['Which is a solid?', 'A block of wood', ['Water','Steam','Air']],
+  ['Which is a gas?', 'The air in a balloon', ['An ice cube','Juice','A coin']],
+  ['Can you pour a liquid?', 'Yes', ['No','Only on Mondays','Only if it is a rock']],
+  ['Turning from a solid into a liquid is called…', 'Melting', ['Freezing','Boiling','Sleeping']],
+  ['Turning from a liquid into a solid is called…', 'Freezing', ['Melting','Boiling','Evaporating']],
+  ['What do we call everything that takes up space?', 'Matter', ['Nothing','Color','Music']],
+  ['What makes ice melt faster?', 'Heat', ['Cold','Darkness','Quiet']],
+  ['A snowman on a warm sunny day will…', 'Melt', ['Grow taller','Freeze harder','Turn to rock']],
+  ['The three common states of matter are…', 'Solid, liquid and gas', ['Red, blue and green','Hot, cold and warm','Big, medium and small']],
+];
+const MAGNET_MC = [
+  ['A magnet will pull (attract) which of these?', 'A steel paperclip', ['A wooden pencil','A plastic cup','A paper towel']],
+  ['A magnet will pull (attract) which of these?', 'An iron nail', ['A rubber band','A glass marble','A cotton ball']],
+  ['Which will a magnet NOT pick up?', 'A plastic button', ['An iron nail','A steel pin','A steel paperclip']],
+  ['North pole near South pole — what happens?', 'They attract (pull together)', ['They repel (push apart)','Nothing ever','They melt']],
+  ['North pole near North pole — what happens?', 'They repel (push apart)', ['They attract (pull together)','They glue together','They glow']],
+  ['South pole near South pole — what happens?', 'They repel (push apart)', ['They attract (pull together)','They get hot','They turn into gold']],
+  ['What are the two ends of a magnet called?', 'North and South poles', ['Up and Down','Hot and Cold','Left and Right']],
+  ['What tool uses a magnet to help people find north?', 'A compass', ['A ruler','A clock','A spoon']],
+  ['A magnet will pull (attract) which of these?', 'A steel spoon', ['A wooden spoon','A plastic spoon','A paper cup']],
+  ['Which will a magnet NOT pick up?', 'A wooden block', ['An iron nail','A steel paperclip','A steel pin']],
+  ['Which will a magnet NOT pick up?', 'A glass marble', ['A steel paperclip','An iron nail','A steel screw']],
+  ['Which will a magnet NOT pick up?', 'A rubber eraser', ['An iron nail','A steel pin','A steel washer']],
+  ['Which will a magnet NOT pick up?', 'A piece of paper', ['An iron nail','A steel paperclip','A steel screw']],
+  ['What is the invisible area around a magnet where it can pull or push called?', 'A magnetic field', ['A soccer field','A cloud','A shadow']],
+  ['Where is the pull of a bar magnet strongest?', 'At its ends (the poles)', ['Exactly in the middle','Nowhere','On its paint']],
+  ['A compass needle is a tiny…', 'Magnet', ['Battery','Light bulb','Spring']],
+  ['A compass needle points toward the…', 'North', ['Moon','Floor','Sun only']],
+  ['Can a magnet pull a paperclip through a thin piece of paper?', 'Yes', ['No, never','Only at night','Only if wet']],
+  ['Magnets can hold notes on a…', 'Steel fridge door', ['Wooden door','Glass window','Brick wall']],
+  ['Attract means…', 'Pull together', ['Push apart','Melt','Spin around']],
+  ['Repel means…', 'Push apart', ['Pull together','Stick forever','Fall down']],
+  ['Earth itself acts like a giant…', 'Magnet', ['Ice cube','Balloon','Pillow']],
+  ['If you cut a bar magnet in half, each piece has…', 'A North and a South pole', ['No poles','Only a North pole','Only a South pole']],
+  ['Which of these is made of steel and will stick to a magnet?', 'A steel key ring', ['A wooden ruler','A plastic comb','A cloth sock']],
+  ['Two magnets snap together. Their ends must be…', 'Opposite poles (North and South)', ['Both North','Both South','Made of wood']],
+  ['Two magnets push away from each other. Their ends must be…', 'The same pole', ['Opposite poles','Made of plastic','Wet']],
+  ['A magnet pulls an iron nail. This is called…', 'Attraction', ['Repulsion','Melting','Evaporation']],
+  ['Magnets pushing apart is called…', 'Repulsion (repel)', ['Attraction','Freezing','Gravity']],
+  ['Does a magnet stick to a plastic toy?', 'No', ['Yes, always','Only red ones','Only big ones']],
+  ['Does a magnet stick to a steel fridge?', 'Yes', ['No','Only at night','Only if it is wet']],
+  ['A U-shaped magnet is called a…', 'Horseshoe magnet', ['Banana magnet','Rainbow magnet','Cloud magnet']],
+  ['A straight, rectangle-shaped magnet is called a…', 'Bar magnet', ['Ring magnet','Ball magnet','Star magnet']],
+  ['Most coins and aluminum cans are NOT pulled by a magnet because they are not made of…', 'Iron or steel', ['Metal at all','Paper','Glass']],
+  ['Which is the best way to find out if something is magnetic?', 'Bring a magnet near it and see', ['Smell it','Paint it','Listen to it']],
+  ['Can a magnet pull through water?', 'Yes', ['No, never','Only hot water','Only salt water']],
+  ['The ends of a compass needle are its…', 'North and South poles', ['Teeth','Wheels','Roots']],
+  ['Hikers use a compass to…', 'Find directions', ['Tell the time','Make fire','Measure rain']],
+  ['A magnet is strongest when it is…', 'Very close to the object', ['Far away','In a different room','Painted']],
+  ['Which of these is NOT magnetic?', 'A wooden spoon', ['An iron nail','A steel paperclip','A steel bolt']],
+  ['Which of these IS magnetic?', 'A steel safety pin', ['A plastic straw','A rubber duck','A paper clip made of plastic']],
+];
+const WATER_MC = [
+  ['Sun heats water and it rises into the air as vapor. This is…', 'Evaporation', ['Condensation','Precipitation','Freezing']],
+  ['Water vapor cools high up and makes clouds. This is…', 'Condensation', ['Evaporation','Precipitation','Melting']],
+  ['Rain, snow or hail falling from clouds is called…', 'Precipitation', ['Evaporation','Condensation','Collection']],
+  ['Water gathers in oceans, lakes and rivers. This is…', 'Collection', ['Condensation','Evaporation','Precipitation']],
+  ['What gives the water cycle the energy to evaporate water?', 'The Sun', ['The Moon','Stars','Rocks']],
+  ['Drops on the outside of a cold glass of lemonade are an example of…', 'Condensation', ['Evaporation','Precipitation','Melting']],
+  ['A puddle drying up on a sunny day is…', 'Evaporation', ['Condensation','Precipitation','Freezing']],
+  ['Clouds are made of…', 'Tiny water drops or ice', ['Cotton','Smoke','Marshmallows']],
+  ['Snow falling from a cloud is a kind of…', 'Precipitation', ['Evaporation','Condensation','Collection']],
+  ['Hail falling from the sky is a kind of…', 'Precipitation', ['Evaporation','Condensation','Melting']],
+  ['Wet clothes on a line drying in the sun is…', 'Evaporation', ['Condensation','Precipitation','Freezing']],
+  ['Fog on a cold bathroom mirror after a hot shower is…', 'Condensation', ['Evaporation','Precipitation','Collection']],
+  ['Where does most of Earth’s water collect?', 'The oceans', ['Clouds','Puddles','Bathtubs']],
+  ['Does the water cycle ever stop?', 'No, it keeps going around and around', ['Yes, every night','Yes, in winter only','Yes, on weekends']],
+  ['Rain that soaks into the ground becomes…', 'Groundwater', ['Steam','Clouds','Sand']],
+  ['Water vapor is…', 'Water as an invisible gas', ['Ice cubes','Colored water','Sand']],
+  ['When clouds get too heavy with water drops, the water…', 'Falls as rain or snow', ['Turns into rock','Disappears forever','Floats to space']],
+  ['Rivers usually flow…', 'Downhill to lakes or the sea', ['Uphill to mountain tops','Up into the sky','In a circle forever']],
+  ['Morning dew on the grass is an example of…', 'Condensation', ['Evaporation','Precipitation','Melting']],
+  ['The water you drink today has been through the water cycle…', 'Many, many times', ['Never','Only once','Only today']],
+  ['What happens to water vapor when it cools down?', 'It turns into tiny drops', ['It gets hotter','It turns into sand','Nothing']],
+  ['What happens to water when the Sun heats it?', 'Some evaporates into the air', ['It turns into ice','It turns into milk','It gets heavier']],
+  ['Water in a pot boiling on the stove turns into…', 'Steam (water vapor)', ['Ice','Sand','Rocks']],
+  ['A frozen lake in winter is water as a…', 'Solid', ['Gas','Liquid','Cloud']],
+  ['Melting snow in spring flows into…', 'Rivers and lakes', ['The Moon','Clouds right away','Rocks']],
+  ['Plants give off water vapor from their…', 'Leaves', ['Roots only','Flowers only','Seeds']],
+  ['Is most of Earth’s water salty or fresh?', 'Salty (in the oceans)', ['Fresh','Sugary','Fizzy']],
+  ['Which part of the water cycle makes rainbows possible after a storm?', 'Rain (precipitation) in sunlight', ['Evaporation at night','Ice in a freezer','Sand']],
+  ['Dark grey clouds often mean…', 'Rain may be coming', ['It will snow candy','The Sun is gone forever','Nothing ever']],
+  ['Ice cubes in a warm drink will…', 'Melt', ['Grow','Turn to steam right away','Get colder']],
+  ['Steam from a kettle hitting a cold window makes…', 'Water drops (condensation)', ['Sand','Ice cream','Smoke']],
+  ['What is the name for water falling as frozen white flakes?', 'Snow', ['Hail stones only','Fog','Steam']],
+  ['Big lumps of ice that fall in some storms are called…', 'Hail', ['Snowflakes','Dew','Steam']],
+  ['A cloud that touches the ground is called…', 'Fog', ['Hail','Snow','Lake']],
+  ['Why do puddles dry faster on hot days?', 'Heat makes water evaporate faster', ['Cold makes it evaporate','Puddles get thirsty','The ground drinks only on hot days']],
+  ['A lake slowly getting lower on a hot summer is because of…', 'Evaporation', ['Condensation','Precipitation','Freezing']],
+  ['Which comes right after evaporation in the water cycle?', 'Condensation', ['Precipitation','Collection','Melting']],
+  ['Which comes right after condensation in the water cycle?', 'Precipitation', ['Evaporation','Collection','Freezing']],
+  ['Which comes right after precipitation in the water cycle?', 'Collection', ['Condensation','Evaporation','Boiling']],
+  ['Which comes right after collection in the water cycle?', 'Evaporation', ['Precipitation','Condensation','Freezing']],
+];
+const GRAVITY_MC = [
+  ['If you drop a ball, which way does it go?', 'Down toward the ground', ['Up to the sky','Sideways forever','It floats still']],
+  ['What pulls things down toward the Earth?', 'Gravity', ['Magnets in shoes','Wind','Light']],
+  ['What keeps the Moon going around the Earth?', 'Gravity', ['Strings','Wind','Magnets']],
+  ['Why do we not float off the Earth?', 'Gravity pulls us down', ['Our shoes are sticky','The air pushes up','Glue']],
+  ['Water on a slide flows…', 'Downhill', ['Uphill','Nowhere','In circles only']],
+  ['On the Moon, gravity is…', 'Weaker than on Earth', ['Stronger than on Earth','The same','Zero, nothing']],
+  ['A ball thrown up in the air will…', 'Come back down', ['Keep going up forever','Stop and stay in the air','Turn into a bird']],
+  ['An apple falls from a tree because of…', 'Gravity', ['Magnets','Wind only','Friction']],
+  ['What keeps Earth going around the Sun?', 'The Sun’s gravity', ['A giant rope','Wind','Magnets']],
+  ['When you jump up, you come back down because of…', 'Gravity', ['Friction','Sound','Light']],
+  ['Rain falls down to the ground because of…', 'Gravity', ['Magnets','Light','Sound']],
+  ['Which way does gravity on Earth pull things?', 'Down, toward the middle of the Earth', ['Up to the sky','Toward the Moon only','Sideways']],
+  ['A sled slides down a snowy hill because of…', 'Gravity', ['Magnets','Light','Music']],
+  ['Astronauts could jump higher on the Moon because…', 'The Moon’s gravity is weaker', ['They had springy shoes','The Moon is made of trampolines','There is more air']],
+  ['Does gravity pull on everything, big or small?', 'Yes', ['No, only big things','No, only on Tuesdays','No, only on rocks']],
+  ['Water from a tap pours…', 'Down into the sink', ['Up to the ceiling','Sideways forever','Nowhere']],
+  ['What do we call how hard gravity pulls on you?', 'Your weight', ['Your height','Your age','Your color']],
+  ['A leaf falling from a tree goes…', 'Down to the ground', ['Up to space','Into the Sun','Nowhere']],
+  ['Which planet’s gravity keeps you on the ground right now?', 'Earth’s', ['Mars’','Jupiter’s','Neptune’s']],
+  ['Why does a ball roll down a hill?', 'Gravity pulls it down', ['The hill pushes it up','Magnets in the ball','Wind only']],
+  ['Who wondered about gravity after watching apples fall, so the story goes?', 'Isaac Newton', ['A pirate','A dragon','A robot']],
+  ['If you let go of a book, it will…', 'Fall to the floor', ['Float to the ceiling','Hang in the air','Fly away']],
+  ['A heavier backpack feels heavy because gravity…', 'Pulls on it more', ['Pulls on it less','Turns off','Pushes it up']],
+  ['A playground swing comes back down because of…', 'Gravity', ['Magnets','Light','Sound']],
+  ['On a bigger planet like Jupiter, gravity is…', 'Stronger than on Earth', ['Weaker than on Earth','Zero','Made of jelly']],
+  ['A waterfall flows down because of…', 'Gravity', ['Wind pushing up','Magnets','Clouds']],
+  ['What helps a parachute fall slowly?', 'Air pushing up on it', ['Extra gravity','Magnets','Rockets']],
+  ['A feather falls slower than a rock in air because…', 'Air slows the feather more', ['Gravity skips feathers','The rock is magnetic','Feathers are alive']],
+  ['A rocket needs lots of power to go to space because it must beat…', 'Earth’s gravity', ['Friction of the Moon','Rain','Sunlight']],
+  ['Gravity is a…', 'Pull', ['Push','Color','Sound']],
+  ['The Sun’s gravity keeps all the planets…', 'Going around the Sun', ['Standing still','Flying away','Inside the Sun']],
+  ['Ocean tides go up and down mostly because of the…', 'Moon’s gravity', ['Fish swimming','Wind only','Boats']],
+  ['When you pour sand, it falls down because of…', 'Gravity', ['Magnetism','Light','Friction']],
+  ['Can you see gravity?', 'No, it is invisible', ['Yes, it is green','Yes, it is a rope','Yes, at night']],
+  ['A bouncing ball bounces lower each time and finally stops on the ground because of gravity and…', 'Friction and air', ['Magnets','Moonlight','Music']],
+  ['Jumping off a diving board, you go…', 'Down into the water', ['Up to the clouds','Sideways forever','Nowhere']],
+  ['Things that go up must…', 'Come down (on Earth)', ['Stay up forever','Turn into birds','Disappear']],
+  ['Does gravity work at night too?', 'Yes, all the time', ['No, only in the day','Only on weekends','Only in summer']],
+  ['If you spill juice, it drips…', 'Down', ['Up','Sideways only','Nowhere']],
+  ['A kid sliding down a slide is pulled by…', 'Gravity', ['Magnets','Sound','Light']],
+];
+const FORCE_ITEMS = [
+  ['opening a drawer toward you','Pull'],['kicking a soccer ball','Push'],['pulling a wagon','Pull'],['pressing a doorbell','Push'],
+  ['closing a door away from you','Push'],['tugging a rope','Pull'],['pushing a swing','Push'],['pulling a weed out of the ground','Pull'],
+  ['pushing a shopping cart','Push'],['opening a door by its handle toward you','Pull'],['throwing a ball','Push'],['pulling up your socks','Pull'],
+  ['pushing a door shut','Push'],['pulling a kite string','Pull'],['pushing a toy car away','Push'],['pulling open a curtain','Pull'],
+  ['pressing a button on a remote','Push'],['pulling a sled up a hill','Pull'],['pushing a stroller','Push'],['pulling a carrot out of the soil','Pull'],
+  ['hitting a ball with a bat','Push'],['pulling a zipper up','Pull'],['pushing down on a pedal','Push'],['pulling a fish out of water with a line','Pull'],
+];
+const FORCE_MC = [
+  ['A push or a pull is called a…', 'Force', ['Shape','Color','Sound']],
+  ['To make a ball roll faster, you should…', 'Push it harder', ['Push it softer','Paint it','Look at it']],
+  ['Rubbing that slows a sliding thing down is called…', 'Friction', ['Gravity','Magnetism','Evaporation']],
+  ['Which surface makes a toy car slow down the most?', 'A carpet', ['Smooth ice','A shiny floor','A glass table']],
+  ['A bigger kick makes a ball go…', 'Farther and faster', ['Slower','Not at all','Backwards']],
+  ['What can a force do to a ball?', 'Make it start, stop or change direction', ['Change its color','Make it sing','Make it disappear']],
+  ['To stop a rolling ball, you need a…', 'Force', ['Song','Picture','Smell']],
+  ['Which is easier to slide a heavy box on?', 'A smooth floor', ['A thick carpet','Grass','Sand']],
+  ['Why do shoes have bumpy bottoms?', 'More friction so we do not slip', ['To make noise','To look silly','To go faster on ice']],
+  ['Rubbing your hands together makes them warm because of…', 'Friction', ['Gravity','Magnets','Water']],
+  ['A soccer ball changes direction when a player…', 'Kicks it', ['Looks at it','Sings to it','Thinks about it']],
+  ['Which needs a bigger push to move?', 'A heavy box', ['A light feather','A tiny pebble','A paper cup']],
+  ['When you pull a wagon, it moves…', 'Toward you', ['Away from you','Up to the sky','Nowhere']],
+  ['When you push a swing, it moves…', 'Away from you', ['Toward you','Down into the ground','Nowhere']],
+  ['Ice is slippery because it has…', 'Very little friction', ['Lots of friction','Magnets','Glue']],
+  ['Brakes on a bike use friction to…', 'Slow it down', ['Speed it up','Make it fly','Change its color']],
+  ['A gentle push makes a toy car go…', 'A short way', ['Very far','Backwards','Up the wall']],
+  ['Gravity is a force that…', 'Pulls things down', ['Pushes things up','Makes things blue','Makes sound']],
+];
+const MACHINE_MC = [
+  ['A see-saw is which simple machine?', 'Lever', ['Pulley','Wheel and axle','Screw']],
+  ['A flagpole rope that you pull down to raise the flag uses a…', 'Pulley', ['Lever','Wedge','Screw']],
+  ['A ramp is also called an…', 'Inclined plane', ['Pulley','Lever','Gear']],
+  ['Which simple machine helps split wood (like an axe head)?', 'Wedge', ['Pulley','Wheel and axle','Lever']],
+  ['A jar lid that twists on uses a…', 'Screw', ['Pulley','Wedge','Ramp']],
+  ['A wagon wheel turning on its rod is a…', 'Wheel and axle', ['Wedge','Pulley','Screw']],
+  ['Toothed wheels that turn each other are called…', 'Gears', ['Wedges','Ramps','Screws']],
+  ['Why do we use simple machines?', 'To make work easier', ['To make work harder','To make noise','To make light']],
+  ['A slide at the playground is a kind of…', 'Inclined plane', ['Pulley','Screw','Gear']],
+  ['A doorknob turning is an example of a…', 'Wheel and axle', ['Wedge','Ramp','Pulley']],
+  ['A knife that cuts is an example of a…', 'Wedge', ['Pulley','Wheel and axle','Screw']],
+  ['A light bulb that twists into place uses a…', 'Screw', ['Pulley','Lever','Wedge']],
+  ['A crane lifting heavy things uses a…', 'Pulley', ['Wedge','Screw','Ramp']],
+  ['A wheelchair ramp is an…', 'Inclined plane', ['Pulley','Gear','Wedge']],
+  ['Scissors are made of two…', 'Levers', ['Pulleys','Screws','Ramps']],
+  ['A bottle opener lifting a cap is a…', 'Lever', ['Pulley','Screw','Ramp']],
+  ['A bike has gears and a…', 'Wheel and axle', ['Wedge','Ramp','Flagpole']],
+  ['A zipper uses little…', 'Wedges', ['Pulleys','Screws','Levers only']],
+  ['How many types of simple machines are there?', '6', ['2','10','100']],
+  ['A shovel lifting dirt works as a…', 'Lever', ['Pulley','Screw','Wedge']],
+  ['A nail has a pointy tip that works like a…', 'Wedge', ['Pulley','Wheel and axle','Gear']],
+  ['A spiral slide wraps an inclined plane around a pole, like a…', 'Screw', ['Pulley','Wedge','Lever']],
+  ['A well bucket raised by a rope over a wheel uses a…', 'Pulley', ['Wedge','Screw','Lever']],
+  ['A rolling pin is a kind of…', 'Wheel and axle', ['Wedge','Pulley','Screw']],
+  ['A ramp makes it easier to move a heavy box…', 'Up to a higher place', ['Underwater','Into space','Into the past']],
+  ['A car steering wheel is a…', 'Wheel and axle', ['Wedge','Pulley','Screw']],
+  ['A seesaw has a bar and a fulcrum. It is a…', 'Lever', ['Screw','Wedge','Pulley']],
+  ['An axe head splitting a log is a…', 'Wedge', ['Lever','Pulley','Screw']],
+  ['A water faucet handle that you turn is a…', 'Wheel and axle', ['Wedge','Ramp','Pulley']],
+  ['A screw is like an inclined plane wrapped around a…', 'Rod (post)', ['Ball','Rope','Cloud']],
+  ['A doorstop pushed under a door is a…', 'Wedge', ['Pulley','Screw','Gear']],
+  ['Teeth that bite food work like…', 'Wedges', ['Pulleys','Screws','Wheels']],
+  ['A pizza cutter has a sharp…', 'Wheel', ['Pulley','Screw','Ramp']],
+  ['A loading ramp onto a truck is an…', 'Inclined plane', ['Pulley','Gear','Screw']],
+  ['Which simple machine has a fulcrum?', 'Lever', ['Wedge','Screw','Pulley']],
+  ['Which simple machine has a rope over a wheel?', 'Pulley', ['Wedge','Lever','Ramp']],
+  ['Which simple machine is a sloping flat surface?', 'Inclined plane', ['Pulley','Screw','Wheel and axle']],
+  ['Which simple machine is thick at one end and thin and sharp at the other?', 'Wedge', ['Pulley','Wheel and axle','Lever']],
+  ['A machine made of two or more simple machines is a…', 'Compound machine', ['Single machine','Magic machine','Cloud machine']],
+  ['A bicycle is a compound machine because it uses…', 'Several simple machines', ['No machines','Only magnets','Only a wedge']],
+  ['A pencil sharpener blade is a kind of…', 'Wedge', ['Pulley','Lever only','Ramp']],
+];
+const GEAR_MC = [
+  ['Gear A turns clockwise. The gear touching it turns…', 'Counter-clockwise (the other way)', ['Clockwise (same way)','It does not move','Up and down']],
+  ['A big gear and a small gear are meshed. Which one spins faster?', 'The small gear', ['The big gear','Both the same','Neither moves']],
+  ['The bumps around the edge of a gear are called…', 'Teeth', ['Toes','Feathers','Fingers']],
+  ['Three gears in a row: the 1st turns clockwise. The 3rd turns…', 'Clockwise', ['Counter-clockwise','Not at all','Up and down']],
+  ['Gear A turns counter-clockwise. The gear touching it turns…', 'Clockwise (the other way)', ['Counter-clockwise (same way)','It does not move','Up and down']],
+  ['Two gears touch. Which way do they turn?', 'Opposite ways', ['The same way','They do not turn','One goes up, one goes down']],
+  ['Where can you find gears?', 'In bikes and clocks', ['In apples','In clouds','In puddles']],
+  ['Gears are wheels with…', 'Teeth', ['Feathers','Wings','Leaves']],
+  ['Four gears in a row: the 1st turns clockwise. The 4th turns…', 'Counter-clockwise', ['Clockwise','Not at all','Up and down']],
+  ['Three gears in a row: the 1st turns counter-clockwise. The 2nd turns…', 'Clockwise', ['Counter-clockwise','Not at all','Up and down']],
+  ['A big gear has 20 teeth and a small one has 10. Each big turn makes the small gear turn…', '2 times', ['1 time','10 times','Half a time']],
+  ['If the teeth of two gears do not touch, turning one gear makes the other…', 'Stay still', ['Turn fast','Turn the same way','Fly away']],
+  ['On a bike, the chain connects the pedal gear to the…', 'Back wheel gear', ['Handlebars','Seat','Bell']],
+  ['Gears in a clock help move the…', 'Hands', ['Numbers','Glass','Batteries only']],
+  ['Two gears with the SAME number of teeth spin at…', 'The same speed', ['Different speeds','No speed','Backwards speed']],
+];
+const PULLEY_MC = [
+  ['With one fixed pulley, you pull the rope DOWN. The load goes…', 'Up', ['Down','Sideways','Nowhere']],
+  ['A pulley is a wheel with a…', 'Rope in a groove', ['Battery','Magnet','Light']],
+  ['What does a single fixed pulley do?', 'Changes the direction of your pull', ['Makes the load disappear','Makes the load weigh nothing','Makes light']],
+  ['Where can we see pulleys?', 'Flagpoles and cranes', ['Pillows and blankets','Puddles','Sandwiches']],
+  ['With one fixed pulley, you pull the rope UP. The load goes…', 'Down', ['Up','Sideways','Nowhere']],
+  ['To raise a flag up a flagpole, you pull the rope…', 'Down', ['Up','Sideways','Not at all']],
+  ['Using more pulleys together can make lifting…', 'Easier', ['Harder','Impossible','Louder']],
+  ['The part of a pulley wheel where the rope sits is called the…', 'Groove', ['Fulcrum','Tooth','Axle cap']],
+  ['A pulley is one of the six…', 'Simple machines', ['Planets','Colors','Senses']],
+  ['A tall crane lifting steel beams uses…', 'Pulleys', ['Wedges','Magnets only','Screws only']],
+  ['Old wells raise buckets of water with a rope and a…', 'Pulley', ['Wedge','Gear','Screw']],
+  ['A pulley that moves up and down with the load is called a…', 'Movable pulley', ['Fixed pulley','Lazy pulley','Flag pulley']],
+  ['A pulley that stays in one place is called a…', 'Fixed pulley', ['Movable pulley','Lever','Ramp']],
+  ['Window blinds go up when you pull the cord down. They use…', 'Pulleys', ['Wedges','Magnets','Ramps']],
+  ['A single fixed pulley mostly helps you…', 'Pull down to lift up', ['Make things lighter','Make things disappear','Push sideways only']],
+  ['Pulling DOWN with your body weight is easier than lifting UP. Which machine lets you do that?', 'A fixed pulley', ['A wedge','A screw','A ramp']],
+  ['The wheel of a pulley spins on an…', 'Axle', ['Egg','Antenna','Arm']],
+  ['A pulley uses a wheel and a…', 'Rope or cable', ['Battery','Spoon','Magnet']],
+  ['To lift a bucket with a pulley, you pull the rope…', 'Down', ['Up','Sideways','Not at all']],
+  ['Sailboats use pulleys to raise their…', 'Sails', ['Anchors only','Fish','Waves']],
+  ['Elevators use strong cables and…', 'Pulleys', ['Wedges','Screws','Seesaws']],
+  ['Gym weight machines often use cables and…', 'Pulleys', ['Ramps','Wedges','Magnets only']],
+  ['Theater curtains are often opened with ropes and…', 'Pulleys', ['Screws','Wedges','Ramps']],
+  ['Pulling a pulley rope 1 meter with a fixed pulley lifts the load about…', '1 meter', ['10 meters','0 meters','100 meters']],
+  ['A movable pulley helps lift a load with…', 'Less pulling force', ['More pulling force','No rope','No wheel']],
+  ['Using pulleys together in a system is called a…', 'Block and tackle', ['Sand castle','Rope jump','Gear box only']],
+  ['If the pulley rope breaks, the load will…', 'Fall down', ['Float up','Stay in the air','Spin forever']],
+  ['A clothesline that moves between two wheels uses…', 'Pulleys', ['Wedges','Screws','Levers only']],
+  ['A tow truck lifting a car uses a winch, cable and…', 'Pulley', ['Wedge','Screw','Ramp']],
+  ['Builders long ago may have used pulleys to lift…', 'Heavy stones', ['Clouds','Sunlight','Shadows']],
+  ['Pulleys and levers are both…', 'Simple machines', ['Planets','Animals','Plants']],
+  ['A pulley changes the direction of a…', 'Force (pull)', ['Color','Smell','Sound']],
+  ['A toy bucket on a pulley in a treehouse goes up when you…', 'Pull the rope down', ['Let go of the rope','Push the bucket down','Shout at it']],
+  ['Which is a pulley?', 'A wheel with a rope going over it', ['A ramp','A pointy wedge','A twisty screw']],
+  ['Window washers on tall buildings ride platforms lifted by…', 'Pulleys and cables', ['Balloons','Magnets','Ramps']],
+  ['A flagpole pulley is at the…', 'Top of the pole', ['Bottom only','Inside the flag','In the ground']],
+  ['Which needs a pulley: lifting a flag up a tall pole or cutting bread?', 'Lifting a flag', ['Cutting bread','Both need wedges','Neither']],
+  ['The rope in a pulley sits in a groove so it…', 'Does not slip off', ['Changes color','Gets longer','Turns into a chain']],
+  ['When you pull a pulley rope, the wheel…', 'Turns', ['Melts','Stays perfectly still','Falls off']],
+  ['Two pulleys working together can make a heavy load feel…', 'Lighter to lift', ['Heavier to lift','Hot','Noisy']],
+];
+const LEVER_MC = [
+  ['The point a lever turns on is called the…', 'Fulcrum', ['Gear','Pulley','Handle']],
+  ['On a see-saw, if one side goes down, the other side goes…', 'Up', ['Down too','Sideways','Nowhere']],
+  ['To lift a heavy rock more easily with a lever, put the fulcrum…', 'Close to the rock', ['Far from the rock','On top of you','It does not matter']],
+  ['A bigger kid and a smaller kid on a see-saw: to balance, the bigger kid sits…', 'Closer to the middle', ['Farther from the middle','On the ground','Standing up']],
+  ['A see-saw is an example of a…', 'Lever', ['Pulley','Screw','Wedge']],
+  ['A lever is a bar that turns on a…', 'Fulcrum', ['Gear','Rope','Wheel']],
+  ['Two kids who weigh the same sit the same distance from the middle of a see-saw. The see-saw…', 'Balances', ['Tips to the left','Tips to the right','Breaks']],
+  ['A longer handle on a lever makes lifting…', 'Easier', ['Harder','Impossible','Hotter']],
+  ['A crowbar lifting a heavy box is a…', 'Lever', ['Pulley','Screw','Gear']],
+  ['When you push down on one end of a see-saw, the other end goes…', 'Up', ['Down','Sideways','Nowhere']],
+  ['A wheelbarrow is a kind of…', 'Lever', ['Pulley','Screw','Gear']],
+  ['Which is a lever?', 'A bottle opener', ['A ramp','A screw','A rope']],
+  ['A heavy kid and a light kid on a see-saw: the light kid should sit…', 'Farther from the middle', ['Closer to the middle','On the ground','On the same spot']],
+  ['Your arm bending at the elbow works like a…', 'Lever', ['Pulley','Screw','Wedge']],
+];
+/* ================= SVG VISUALS ================= */
+function angleSVG(deg) {
+  const r = 70, cx = 20, cy = 90, rad = deg * Math.PI / 180;
+  const x2 = cx + r * Math.cos(rad), y2 = cy - r * Math.sin(rad);
+  const ar = 22, ax = cx + ar * Math.cos(rad), ay = cy - ar * Math.sin(rad);
+  return `<svg viewBox="0 0 120 100" width="180"><line x1="${cx}" y1="${cy}" x2="${cx+r+10}" y2="${cy}" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+  <line x1="${cx}" y1="${cy}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+  ${deg===90?`<rect x="${cx}" y="${cy-14}" width="14" height="14" fill="none" stroke="#ef4444" stroke-width="2"/>`:`<path d="M ${cx+ar} ${cy} A ${ar} ${ar} 0 0 0 ${ax.toFixed(1)} ${ay.toFixed(1)}" fill="none" stroke="#ef4444" stroke-width="2"/>`}</svg>`;
+}
+function shapeSVG(name) {
+  const f = 'fill="#c4b5fd" stroke="#5b21b6" stroke-width="3"';
+  const s = {
+    circle:`<circle cx="50" cy="50" r="38" ${f}/>`,
+    square:`<rect x="15" y="15" width="70" height="70" ${f}/>`,
+    rectangle:`<rect x="5" y="28" width="90" height="45" ${f}/>`,
+    triangle:`<polygon points="50,12 90,85 10,85" ${f}/>`,
+    pentagon:`<polygon points="50,10 90,40 75,88 25,88 10,40" ${f}/>`,
+    hexagon:`<polygon points="28,12 72,12 94,50 72,88 28,88 6,50" ${f}/>`,
+  }[name];
+  return `<svg viewBox="0 0 100 100" width="130">${s}</svg>`;
+}
+function rectSVG(w, h) {
+  const sc = Math.min(140 / w, 80 / h), W = w * sc, H = h * sc, x0 = (200-W)/2, y0 = (115-H)/2;
+  return `<svg viewBox="0 0 200 130" width="220"><rect x="${x0}" y="${y0}" width="${W}" height="${H}" fill="#bbf7d0" stroke="#15803d" stroke-width="3"/>
+  <text x="100" y="${y0+H+14}" text-anchor="middle" font-size="13" font-weight="700">${w} cm</text>
+  <text x="${x0-4}" y="${y0+H/2+4}" text-anchor="end" font-size="13" font-weight="700">${h} cm</text></svg>`;
+}
+function triSVG(b, h) {
+  return `<svg viewBox="0 0 200 130" width="220"><polygon points="30,105 170,105 70,20" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+  <line x1="70" y1="20" x2="70" y2="105" stroke="#ef4444" stroke-dasharray="4 3" stroke-width="2"/>
+  <text x="100" y="122" text-anchor="middle" font-size="13" font-weight="700">base ${b} cm</text>
+  <text x="76" y="70" font-size="13" font-weight="700" fill="#b91c1c">height ${h} cm</text></svg>`;
+}
+function fracBar(n, d, color = '#a78bfa') {
+  let s = `<svg viewBox="0 0 ${d*30+4} 34" width="${Math.min(260, d*30+4)}">`;
+  for (let i = 0; i < d; i++) s += `<rect x="${2+i*30}" y="2" width="30" height="30" fill="${i<n?color:'#fff'}" stroke="#4c1d95" stroke-width="2"/>`;
+  return s + '</svg>';
+}
+const frac = (n, d) => `<span class="fraction"><div class="numerator">${n}</div><div>${d}</div></span>`;
+function dotGroups(groups, per, em) {
+  let h = '';
+  for (let g = 0; g < groups; g++) h += `<span style="display:inline-block;border:2px dashed #a78bfa;border-radius:10px;padding:2px 4px;margin:3px">${em.repeat(per)}</span>`;
+  return `<div class="emoji-row" style="font-size:1.3em">${h}</div>`;
+}
+
+/* ================= PROBLEM GENERATORS =================
+   Each returns {type:'num'|'mc', q, a, options?, hints[], visual?, explain?}
+   Math answers are ALWAYS computed from the random numbers. */
+/* ===== ADAPTIVE DIFFICULTY: GEN_LEVEL (1–3) is set by generateUnique from state.difficulty[topic] ===== */
+let GEN_LEVEL = 1;
+const LV = (a, b, c) => GEN_LEVEL >= 3 ? c : GEN_LEVEL === 2 ? b : a;
+function genAddition() {
+  const lvl = GEN_LEVEL; let a, b;
+  if (lvl === 1) { a = rnd(1, 10); b = rnd(1, 10); }
+  else if (lvl === 2) { a = rnd(10, 50); b = rnd(1, 40); }
+  else { a = rnd(20, 99); b = rnd(10, 99); }
+  const ans = a + b, em = pick(EMOJI);
+  const visual = ans <= 15 ? `<div class="emoji-row">${em.repeat(a)} <b>+</b> ${em.repeat(b)}</div>` : '';
+  return { type:'num', q:`${a} + ${b} = ?`, a:ans, visual,
+    hints:[`Start at ${a} and count up ${b} more.`, b >= 10 ? `Add the tens first: ${a} + ${Math.floor(b/10)*10} = ${a+Math.floor(b/10)*10}. Then add ${b%10}.` : 'Try using your fingers or the pictures!'] };
+}
+function genSubtraction() {
+  const lvl = GEN_LEVEL; let a, b;
+  if (lvl === 1) { a = rnd(2, 12); b = rnd(1, a); }
+  else if (lvl === 2) { a = rnd(15, 50); b = rnd(1, a - 1); }
+  else { a = rnd(40, 100); b = rnd(10, a - 1); }
+  const ans = a - b, em = pick(EMOJI);
+  const visual = a <= 12 ? `<div class="emoji-row">${em.repeat(ans)}<span style="opacity:.25">${em.repeat(b)}</span></div><small>(the faded ones are taken away)</small>` : '';
+  return { type:'num', q:`${a} − ${b} = ?`, a:ans, visual,
+    hints:[`Start at ${b} and count up to ${a}. How many steps?`, `Check: your answer + ${b} should make ${a}.`] };
+}
+function genCounting() {
+  const t = pick(['count','after','before','skip','evenodd']);
+  if (t === 'count') { const n = rnd(3, 15), em = pick(EMOJI);
+    return { type:'num', q:`How many ${em} are there?`, a:n, visual:`<div class="emoji-row">${em.repeat(n)}</div>`, hints:['Touch each one as you count.', 'Count in groups of 5 to go faster.'] }; }
+  if (t === 'after') { const n = rnd(5, 98); return { type:'num', q:`What number comes right AFTER ${n}?`, a:n+1, hints:['After means one more.', `${n} + 1`] }; }
+  if (t === 'before') { const n = rnd(2, 99); return { type:'num', q:`What number comes right BEFORE ${n}?`, a:n-1, hints:['Before means one less.', `${n} − 1`] }; }
+  if (t === 'skip') { const step = pick([2,5,10]), start = step * rnd(0, 5), seq = [0,1,2,3].map(i => start + i*step);
+    return { type:'num', q:`Skip count by ${step}s: ${seq.join(', ')}, ?`, a:start + 4*step, hints:[`Each number is ${step} more than the one before.`, `${seq[3]} + ${step}`] }; }
+  const n = rnd(1, 50);
+  return { type:'mc', q:`Is ${n} even or odd?`, a:n % 2 === 0 ? 'Even' : 'Odd', options:['Even','Odd'], hints:['Even numbers can be split into 2 equal groups.', 'Even numbers end in 0, 2, 4, 6 or 8.'] };
+}
+function genCompare() {
+  const [lo, hi] = LV([0, 20], [0, 100], [100, 999]);
+  const a = rnd(lo, hi), b = Math.random() < 0.2 ? a : (GEN_LEVEL === 3 && Math.random() < 0.5 ? Math.min(hi, Math.max(lo, a + rnd(-20, 20))) : rnd(lo, hi));
+  const ans = a > b ? '>' : a < b ? '<' : '=';
+  return { type:'mc', q:`${a} &nbsp;?&nbsp; ${b}`, a:ans, options:['>','<','='],
+    hints:['🐊 The alligator mouth eats the BIGGER number!', 'If they are the same, use = .'] };
+}
+function genPlaceValue() {
+  const t = pick(LV(['tens','ones','build'], ['tens','ones','hundreds','build'], ['tens','hundreds','thousands','build']));
+  if (t === 'build') {
+    const H = GEN_LEVEL === 1 ? 0 : rnd(0, 9), T = rnd(0, 9), O = rnd(0, 9), parts = [];
+    if (H) parts.push(`${H} hundreds`); parts.push(`${T} tens`); parts.push(`${O} ones`);
+    return { type:'num', q:`What number is ${parts.join(' + ')}?`, a:H*100+T*10+O, hints:['Each ten is worth 10. Each hundred is worth 100.', `${H*100} + ${T*10} + ${O}`] };
+  }
+  const n = t === 'thousands' ? rnd(1000, 9999) : GEN_LEVEL === 3 ? rnd(100, 9999) : t === 'hundreds' ? rnd(100, 999) : GEN_LEVEL === 1 ? rnd(10, 99) : rnd(10, 999);
+  const digits = { ones:n % 10, tens:Math.floor(n / 10) % 10, hundreds:Math.floor(n / 100) % 10, thousands:Math.floor(n / 1000) % 10 };
+  return { type:'num', q:`In the number <b>${n}</b>, what digit is in the <b>${t}</b> place?`, a:digits[t],
+    hints:['Read from the right: ones, tens, hundreds, thousands.', `The ones digit of ${n} is ${n % 10}. Move left for tens.`] };
+}
+function genMultiplication() {
+  const m = LV(5, 10, 12), a = rnd(GEN_LEVEL === 3 ? 2 : 1, m), b = rnd(GEN_LEVEL === 3 ? 3 : 1, m), em = pick(EMOJI);
+  return { type:'num', q:`${a} × ${b} = ?`, a:a*b, visual: a <= 5 && b <= 6 ? dotGroups(a, b, em) : '',
+    hints:[`${a} × ${b} means ${a} groups of ${b}.`, `Skip count by ${b}, ${a} times.`] };
+}
+function genDivision() {
+  const m = LV(5, 10, 12), b = rnd(GEN_LEVEL === 3 ? 2 : 1, m), ans = rnd(1, m), a = b * ans, em = pick(EMOJI);
+  const visual = a <= 24 ? `<div class="emoji-row" style="font-size:1.3em">${em.repeat(a)}</div><small>Share these into ${b} equal group${b>1?'s':''}.</small>` : '';
+  return { type:'num', q:`${a} ÷ ${b} = ?`, a:ans, visual, hints:[`Think: ${b} × ? = ${a}`, `Share ${a} things into ${b} equal groups.`] };
+}
+function genFactors() {
+  const t = pick(['multiple','isfactor','nextmult']);
+  if (t === 'multiple') {
+    const n = rnd(2, 10), right = n * rnd(1, 10), wrong = new Set(); let g = 0;
+    while (wrong.size < 3 && g++ < 500) { const w = rnd(2, n*10+5); if (w % n !== 0) wrong.add(w); }
+    return { type:'mc', q:`Which number is a multiple of ${n}? (It is in the ${n} times table.)`, a:right, options:shuffle([right, ...wrong]),
+      hints:[`Count by ${n}s: ${n}, ${n*2}, ${n*3}…`, 'A multiple can be split into equal groups of that number.'] };
+  }
+  if (t === 'isfactor') {
+    const n = pick([6,8,10,12,15,16,18,20,24]), f = rnd(2, 9);
+    return { type:'mc', q:`Can ${n} be shared into equal groups of ${f} with nothing left over? (Is ${f} a factor of ${n}?)`, a:n % f === 0 ? 'Yes' : 'No', options:['Yes','No'],
+      hints:[`Count by ${f}s. Do you land exactly on ${n}?`, `Try ${n} ÷ ${f}.`] };
+  }
+  const n = rnd(2, 10), k = rnd(2, 8);
+  return { type:'num', q:`Count by ${n}s: ${n*(k-1)}, ${n*k}, … what is next?`, a:n*(k+1), hints:[`Add ${n}.`, `${n*k} + ${n}`] };
+}
+function genShapes() {
+  const shapes = [['circle',0],['triangle',3],['square',4],['rectangle',4],['pentagon',5],['hexagon',6]];
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+  const t = pick(['name','sides','corners']);
+  const [name, sides] = pick(t === 'name' ? shapes : shapes.slice(1));
+  if (t === 'name') return { type:'mc', q:'What shape is this?', a:cap(name), options:mcOptions(cap(name), shapes.map(s => cap(s[0]))), visual:shapeSVG(name),
+      hints:['Count the sides!', 'A square has 4 equal sides; a rectangle has 2 long and 2 short.'] };
+  return { type:'num', q:`How many ${t} does a <b>${name}</b> have?`, a:sides, visual:shapeSVG(name),
+    hints:[`Touch each ${t === 'sides' ? 'side' : 'corner'} and count.`, 'Shapes with straight sides have the same number of sides and corners.'] };
+}
+function genWordProblem() {
+  const n = pick(['Mia','Leo','Ava','Sam','Zoe','Max','Lily','Noah']), t = pick(['add','sub','mul','div']);
+  const S = LV(1, 2, 4);
+  if (t === 'add') { const a = rnd(2, 20 * S), b = rnd(2, 20 * S), it = pick(['apples 🍎','stickers ⭐','shells 🐚','marbles 🔵']);
+    return { type:'num', q:`${n} has ${a} ${it}. A friend gives ${n} ${b} more. How many now?`, a:a+b, hints:['"More" means add.', `${a} + ${b}`] }; }
+  if (t === 'sub') { const a = rnd(8, 30 * S), b = rnd(1, a - 1), it = pick(['cookies 🍪','balloons 🎈','crayons 🖍️']);
+    return { type:'num', q:`${n} had ${a} ${it}. ${n} gave away ${b}. How many are left?`, a:a-b, hints:['"Gave away" means take away (subtract).', `${a} − ${b}`] }; }
+  if (t === 'mul') { const g = rnd(2, LV(5, 6, 9)), p = rnd(2, LV(5, 8, 12));
+    return { type:'num', q:`There are ${g} bags. Each bag has ${p} oranges 🍊. How many oranges in all?`, a:g*p, hints:['Equal groups → multiply.', `${g} × ${p}`] }; }
+  const k = rnd(2, LV(4, 5, 9)), each = rnd(2, LV(5, 8, 12)), tot = k * each;
+  return { type:'num', q:`${n} shares ${tot} grapes 🍇 equally onto ${k} plates. How many on each plate?`, a:each, hints:['Share equally → divide.', `${tot} ÷ ${k}`] };
+}
+function genEqFractions() {
+  const [n, d] = pick(LV([[1,2],[1,3],[1,4]], [[1,2],[1,3],[2,3],[1,4],[3,4],[1,5],[2,5]], [[2,3],[3,4],[2,5],[3,5],[4,5],[1,6],[5,6],[3,8]])), m = rnd(2, LV(3, 4, 6));
+  return { type:'num', q:`Fill in the missing number: ${frac(n,d)} = ${frac('?', d*m)}`, a:n*m,
+    visual:`<div>${fracBar(n,d)}</div><div>${fracBar(n*m,d*m,'#86efac')}</div>`,
+    hints:[`The bottom changed from ${d} to ${d*m}. That is × ${m}.`, `Do the same to the top: ${n} × ${m}.`] };
+}
+function genAddFractions() {
+  const d = rnd(LV(3, 4, 6), LV(6, 10, 12)), a = rnd(1, d - 2), b = rnd(1, d - 1 - a);
+  return { type:'num', q:`${frac(a,d)} + ${frac(b,d)} = ${frac('?', d)}`, a:a+b,
+    visual:`<div>${fracBar(a,d)}</div><div>${fracBar(b,d,'#86efac')}</div>`,
+    hints:['When the bottoms are the same, keep the bottom!', `Just add the tops: ${a} + ${b}.`] };
+}
+function genAngles() {
+  const kind = pick(['Acute','Right','Obtuse']);
+  const deg = kind === 'Right' ? 90 : kind === 'Acute' ? rnd(2, 8) * 10 : rnd(10, 17) * 10;
+  return { type:'mc', q:`This angle is ${deg}°. What kind of angle is it?`, a:kind, options:['Acute','Right','Obtuse'], visual:angleSVG(deg),
+    hints:['A right angle is a perfect square corner (90°).', 'Smaller than a corner = acute. Bigger (but less than a straight line) = obtuse.'] };
+}
+function genPerimeter() {
+  const w = rnd(2, LV(8, 12, 25)), h = rnd(1, LV(6, 9, 20));
+  return { type:'num', q:'What is the perimeter of this rectangle? (cm)', a:2*(w+h), visual:rectSVG(w,h),
+    hints:['Perimeter = walk all the way around and add every side.', `${w} + ${h} + ${w} + ${h}`] };
+}
+function genTriangleArea() {
+  const b = rnd(1, LV(4, 6, 10)) * 2, h = rnd(2, LV(6, 10, 15)); // even base keeps the answer a whole number
+  return { type:'num', q:'Area of the triangle? (square cm)', a:b*h/2, visual:triSVG(b,h),
+    hints:['A triangle is half of a rectangle.', `(${b} × ${h}) ÷ 2`] };
+}
+/* --- Science / Astronomy / Physics: answers come ONLY from the fact banks --- */
+function fromMC(bank, hints) { const [q, a, wrong] = pick(bank); return { type:'mc', q:esc(q), a, options:shuffle([a, ...wrong]), hints }; }
+function genLiving() { return fromMC(LIVING, ['Think: does it grow, eat or breathe?', 'Living things need food, water and air (plants need sunlight too).']); }
+function genMatter() {
+  if (Math.random() < 0.6) { const [it, st] = pick(MATTER_ITEMS);
+    return { type:'mc', q:`Is ${esc(it)} a solid, liquid or gas?`, a:st, options:['Solid','Liquid','Gas'],
+      hints:['Solid = keeps its shape. Liquid = pours. Gas = spreads out and is often invisible.', 'Can you hold it, pour it, or does it float around?'] }; }
+  return fromMC(MATTER_MC, ['Heat makes things melt or turn to gas.', 'Cold makes things freeze into solids.']);
+}
+function genMagnets() { return fromMC(MAGNET_MC, ['Magnets pull things made of iron or steel.', 'Same poles push apart; different poles pull together.']); }
+function genWaterCycle() { return fromMC(WATER_MC, ['EVAPORATION = up. CONDENSATION = clouds. PRECIPITATION = falls down.', 'Where is the water: rising, making clouds, or falling?']); }
+function genPlanets() {
+  const t = pick(['nth','which','after','fact']);
+  if (t === 'nth') { const i = rnd(0, 7); return { type:'mc', q:`Which planet is ${ORD[i]} from the Sun?`, a:PLANETS[i], options:mcOptions(PLANETS[i], PLANETS),
+      hints:['Remember: "My Very Educated Mother Just Served Us Noodles."', `M-V-E-M-J-S-U-N. Count to ${i+1}.`] }; }
+  if (t === 'which') { const i = rnd(0, 7); return { type:'num', q:`${PLANETS[i]} is which number planet from the Sun? (1–8)`, a:i+1,
+      hints:['My Very Educated Mother Just Served Us Noodles.', 'Earth is number 3.'] }; }
+  if (t === 'after') { const i = rnd(0, 6); return { type:'mc', q:`Going out from the Sun, which planet comes right after ${PLANETS[i]}?`, a:PLANETS[i+1], options:mcOptions(PLANETS[i+1], PLANETS),
+      hints:['Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.', 'Use the "My Very Educated Mother…" trick.'] }; }
+  const [q, a] = pick(PLANET_FACTS);
+  return { type:'mc', q:esc(q), a, options:mcOptions(a, PLANETS), hints:['Jupiter is the giant! Saturn has big rings. Mars is red.', 'Mercury is closest; Neptune is farthest.'] };
+}
+function genSky() {
+  if (Math.random() < 0.5) { const [s, t, ex] = pick(SKY_FACTS);
+    return { type:'mc', q:`True or false? “${esc(s)}”`, a:t ? 'True' : 'False', options:['True','False'], explain:ex,
+      hints:['Remember: the Sun is a star, and the Moon borrows sunlight.', 'Earth spins (day/night) and travels around the Sun (year).'] }; }
+  return fromMC(SKY_MC, ['The Sun is a star. The Moon reflects sunlight.', 'Earth spins → day & night.']);
+}
+function genDayNight() {
+  const bank = [SKY_MC[4], SKY_MC[5], SKY_MC[7], SKY_MC[8], SKY_MC[9],
+    ['If it is daytime for you, the people on the opposite side of Earth have…', 'Nighttime', ['Daytime too','Lunchtime on the Moon','No time at all']],
+    ['Earth spins around an invisible line called its…', 'Axis', ['Orbit','Ring','Tail']],
+    ['At sunset, the Sun looks like it goes down in the…', 'West', ['East','North','South']],
+    ['At sunrise, the Sun looks like it comes up in the…', 'East', ['West','North','South']],
+    ['About how many hours are in one whole day?', '24', ['12','7','100']],
+    ['When your side of Earth turns away from the Sun, it becomes…', 'Night', ['Day','Lunch','Summer']],
+    ['When your side of Earth turns toward the Sun, it becomes…', 'Morning (day)', ['Night','Midnight','Winter']],
+    ['Does the Sun really move across our sky?', 'No, Earth is turning', ['Yes, it runs around','Yes, it hops','Yes, the Moon pushes it']],
+    ['Why do shadows get long late in the day?', 'The Sun is low in the sky', ['The Sun is right overhead','The Moon makes them','Clouds stretch them']],
+    ['At noon, when the Sun is high, shadows are…', 'Short', ['Very long','Gone forever','Blue']],
+    ['Which do you often see in the night sky?', 'The Moon and stars', ['A rainbow','The Sun','Sunrise']],
+    ['Many animals that are awake at night, like owls, are called…', 'Nocturnal', ['Sleepy','Daytime','Solar']],
+    ['Which way does Earth spin?', 'From west to east', ['From east to west','Up and down','It does not spin']],
+    ['What do we call the time when the Sun goes down?', 'Sunset', ['Sunrise','Noon','Midnight']],
+    ['What do we call the time when the Sun comes up?', 'Sunrise', ['Sunset','Midnight','Bedtime']],
+    ['How many times does Earth spin in about one week?', '7', ['1','24','365']],
+    ['A day on Earth comes from one full…', 'Spin of Earth', ['Trip around the Sun','Moon phase','Year']],
+    ['About how many days are in one year?', '365', ['7','30','100']],
+    ['When it is noon in your town, the Sun is…', 'High in the sky', ['Under your feet','Just rising','Gone for the night']],
+    ['At midnight, your side of Earth is facing…', 'Away from the Sun', ['Toward the Sun','The Moon only','Jupiter']],
+    ['Why is it dark at night?', 'Our side of Earth faces away from the Sun', ['The Sun turns off','The Moon covers the Sun','Clouds hide the Sun every night']],
+    ['The line between day and night on Earth moves because…', 'Earth spins', ['The Sun hops','The Moon pulls it','Clouds push it']],
+    ['A shadow points away from the…', 'Light (the Sun)', ['Ground','Trees','Moon only']],
+    ['In the morning, the Sun is low in the…', 'East', ['West','North','South']],
+    ['In the evening, the Sun is low in the…', 'West', ['East','North','South']],
+    ['Which animal is usually awake at night?', 'An owl', ['A butterfly','A rooster','A bee']],
+    ['If you stood on the Moon, would you still see the Sun rise and set?', 'Yes, the Moon turns too', ['No, never','Only on Earth birthdays','Only in winter']],
+    ['A globe and a flashlight can show how Earth gets…', 'Day and night', ['Rain','Earthquakes','Rainbows']],
+    ['How many sunrises are there in about one week?', '7', ['1','2','30']],
+    ['Halfway between sunrise and sunset is about…', 'Noon', ['Midnight','Bedtime','Breakfast before sunrise']],
+    ['Is the Sun still there at night?', 'Yes, shining on the other side of Earth', ['No, it is gone','It turns into the Moon','It goes to sleep']],
+    ['Earth’s spin is like a…', 'Spinning top', ['Bouncing ball','Rolling dice','Sliding sled']],
+    ['The part of the day after sunset when it is getting dark is…', 'Dusk', ['Dawn','Noon','Lunch']],
+    ['The part of the morning when the sky first gets light is…', 'Dawn', ['Dusk','Midnight','Supper']],
+    ['When it is night in your home, the Moon may be lit by…', 'The Sun', ['Street lights','Its own fire','Stars only']],
+    ['The Earth takes about one year to…', 'Go around the Sun once', ['Spin once','Make one Moon phase','Make one cloud']]];
+  return fromMC(bank, ['Earth is like a spinning ball next to a lamp (the Sun).', 'The side facing the Sun has day.']);
+}
+function genGravity() { return fromMC(GRAVITY_MC, ['Gravity is an invisible pull toward the Earth.', 'What goes up…']); }
+function genForces() {
+  if (Math.random() < 0.6) { const [act, f] = pick(FORCE_ITEMS);
+    return { type:'mc', q:`Is ${esc(act)} a push or a pull?`, a:f, options:['Push','Pull'], hints:['Push = away from you.', 'Pull = toward you.'] }; }
+  return fromMC(FORCE_MC, ['A force is a push or a pull.', 'Bumpy surfaces cause more friction.']);
+}
+function genMachines() { return fromMC(MACHINE_MC, ['Six simple machines: lever, pulley, wheel & axle, inclined plane, wedge, screw.', 'Think about how the thing moves.']); }
+function genGears() {
+  if (Math.random() < 0.5) {
+    const small = pick([6,8,10,12]), mult = rnd(2, LV(3, 3, 4)), big = small * mult, turns = rnd(1, LV(3, 3, 5));
+    return { type:'num', q:`A big gear has ${big} teeth. A small gear has ${small} teeth. When the big gear turns ${turns} time${turns>1?'s':''}, how many times does the small gear turn?`,
+      a:turns*mult, hints:[`One turn of the big gear pushes ${big} teeth past.`, `${big} ÷ ${small} = ${mult} small turns for each big turn. Now times ${turns}.`] };
+  }
+  return fromMC(GEAR_MC, ['Touching gears always turn opposite ways.', 'Small gears spin faster than big gears.']);
+}
+function genPulleys() { return fromMC(PULLEY_MC, ['Try the pulley lab! Pull the rope down…', 'A fixed pulley flips the direction of your pull.']); }
+function genLevers() {
+  if (Math.random() < 0.4) {
+    // Balance rule: weight × distance equal on both sides. Left: W2 at d1, right: ? at d2 = d1*m, answer w1 = W2/m
+    const d1 = rnd(1, LV(3, 3, 4)), w1 = rnd(1, LV(6, 6, 10)), m = pick(LV([2,3], [2,3], [2,3,4])), d2 = d1 * m, w2 = w1 * m;
+    return { type:'num', q:`See-saw balance! On the left, a ${w2} kg box sits ${d1} step${d1>1?'s':''} from the middle. On the right, a box sits ${d2} steps from the middle. How many kg must it be to balance?`,
+      a:w1, hints:['Balance rule: weight × steps on the left = weight × steps on the right.', `Left side: ${w2} × ${d1} = ${w2*d1}. What times ${d2} makes ${w2*d1}?`] };
+  }
+  return fromMC(LEVER_MC, ['The fulcrum is the turning point.', 'Closer to the middle = less turning push.']);
+}
+
+/* --- Moon phases (northern-hemisphere view; facts verified against NASA moon-phase basics) --- */
+const MOON_PHASES = ['New Moon','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon','Waning Gibbous','Last Quarter','Waning Crescent'];
+const MOON_MC = [
+  ['Does the Moon make its own light?', 'No, it reflects sunlight', ['Yes, it glows by itself','Yes, it has a fire inside','Only on Fridays']],
+  ['Where does moonlight really come from?', 'The Sun', ['The Moon’s own fire','Street lights','The stars']],
+  ['In which phase is the whole face we see lit up?', 'Full Moon', ['New Moon','First Quarter','Waxing Crescent']],
+  ['In which phase can we NOT see the Moon’s lit side?', 'New Moon', ['Full Moon','Waxing Gibbous','Last Quarter']],
+  ['About how long does it take to go from one New Moon to the next?', 'About a month (29½ days)', ['One day','One week','One year']],
+  ['Why does the Moon seem to change shape?', 'As it goes around Earth we see different amounts of its sunlit half', ['It really grows and shrinks','Clouds cover parts of it','Earth’s shadow covers it every night']],
+  ['What does the Moon travel around?', 'Earth', ['Mars','The Moon does not move','Jupiter']],
+  ['What does “waxing” mean?', 'The lit part we see is growing', ['The lit part is shrinking','The Moon is melting','The Moon is hiding']],
+  ['What does “waning” mean?', 'The lit part we see is shrinking', ['The lit part is growing','The Moon is getting closer','The Moon is spinning faster']],
+  ['A thin, curved sliver of Moon is called a…', 'Crescent', ['Gibbous','Full Moon','Quarter']],
+  ['When MORE than half of the Moon’s face looks lit, but not all of it, the phase is…', 'Gibbous', ['Crescent','New','Quarter']],
+  ['After the New Moon, when the Moon looks half lit, the phase is…', 'First Quarter', ['Last Quarter','Full Moon','Waning Crescent']],
+  ['After the Full Moon, when the Moon looks half lit again, the phase is…', 'Last Quarter', ['First Quarter','New Moon','Waxing Gibbous']],
+  ['During a Full Moon, the Moon is on the…', 'Opposite side of Earth from the Sun', ['Same side of Earth as the Sun','Inside Earth’s shadow every time','Far side of the Sun']],
+  ['During a New Moon, the Moon is roughly…', 'Between Earth and the Sun', ['Behind Earth, away from the Sun','On the other side of the Sun','Next to Mars']],
+  ['After a Full Moon, the lit part we see gets…', 'Smaller each night', ['Bigger each night','Exactly the same','Brighter and bigger']],
+  ['After a New Moon, the lit part we see gets…', 'Bigger each night', ['Smaller each night','Exactly the same','Gone for a year']],
+  ['How many main Moon phases do we usually name?', '8', ['2','4','12']],
+  ['Does the Moon really change its shape?', 'No, only the lit part we can see changes', ['Yes, it gets squished','Yes, pieces fall off','Yes, it inflates like a balloon']],
+  ['Does the same side of the Moon always face Earth?', 'Yes', ['No, it shows every side each night','Only during a Full Moon','Only in winter']],
+  ['Can you sometimes see the Moon in the daytime sky?', 'Yes', ['No, never','Only at midnight','Only from the Moon']],
+  ['A Full Moon usually rises around…', 'Sunset', ['Noon','Sunrise','Lunchtime']],
+  ['A lunar eclipse (Earth’s shadow on the Moon) can only happen at…', 'Full Moon', ['New Moon','First Quarter','Waxing Crescent']],
+  ['A solar eclipse (the Moon blocks the Sun) can only happen at…', 'New Moon', ['Full Moon','Last Quarter','Waning Gibbous']],
+  ['Moon phases are caused by…', 'The Moon’s trip around Earth', ['Earth’s shadow','Clouds','The Moon turning its light on and off']],
+  ['How much of the Moon does the Sun light up at one time?', 'About half of it (the side facing the Sun)', ['None of it','All of it at once','Only the middle']],
+  ['The word “lunar” means something about the…', 'Moon', ['Sun','Ocean','Wind']],
+  ['A Full Moon is so bright because…', 'We see its whole sunlit side', ['It is on fire','It is closer to the Sun than Earth always','It makes extra light']],
+];
+function genMoonPhases() {
+  const r = Math.random(), hints = ['The Sun always lights half of the Moon.', 'New → Crescent → First Quarter → Gibbous → Full → Gibbous → Last Quarter → Crescent → New'];
+  if (r < 0.2) { const i = rnd(0, 7), nx = MOON_PHASES[(i + 1) % 8];
+    return { type:'mc', q:`In the Moon’s cycle, which phase comes right after ${MOON_PHASES[i]}?`, a:nx, options:mcOptions(nx, MOON_PHASES), hints }; }
+  if (r < 0.32) { const i = rnd(0, 7), pv = MOON_PHASES[(i + 7) % 8];
+    return { type:'mc', q:`In the Moon’s cycle, which phase comes right before ${MOON_PHASES[i]}?`, a:pv, options:mcOptions(pv, MOON_PHASES), hints }; }
+  return fromMC(MOON_MC, hints);
+}
+// e = elongation in degrees (0 = New, 180 = Full); waxing for 0<e<180
+function moonPhaseName(e) { e = ((e % 360) + 360) % 360; return MOON_PHASES[Math.floor(((e + 22.5) % 360) / 45)]; }
+function moonLitFraction(e) { return (1 - Math.cos(e * Math.PI / 180)) / 2; }
+function moonDemo(host) {
+  const W = 400, H = 250;
+  host.innerHTML = `<div class="demo-box"><b>🌙 Moon Phase Lab</b> — drag the Moon around Earth (or use the slider)<canvas></canvas>
+    <input type="range" id="mp-range" min="0" max="359" value="45" aria-label="Moon position"><div class="info" id="mp-info"></div>
+    <small style="color:#6b7280">Small picture = how the Moon looks from Earth (northern half). Not to scale!</small></div>`;
+  const cv = host.querySelector('canvas'), ctx = setupCanvas(cv, W, H), rg = host.querySelector('#mp-range');
+  const cx = 150, cy = 125, OR = 85, MR = 14;
+  let e = 45; // elongation; Sun is to the LEFT, moon position angle phi = 180 + e (counter-clockwise)
+  function view(x, y, r) { // Moon as seen from Earth
+    const k = Math.cos(e * Math.PI / 180), waxing = e % 360 < 180, f = moonLitFraction(e);
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fillStyle = '#334155'; ctx.fill();
+    if (f > 0.005) {
+      ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.clip();
+      ctx.fillStyle = '#fde68a'; ctx.beginPath();
+      // lit half on the right when waxing, on the left when waning
+      ctx.arc(x, y, r, -Math.PI / 2, Math.PI / 2, !waxing); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(x, y, Math.abs(k) * r + 0.01, r, 0, 0, Math.PI * 2);
+      ctx.fillStyle = k > 0 ? '#334155' : '#fde68a'; ctx.fill(); ctx.restore();
+    }
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.stroke();
+  }
+  function draw() {
+    ctx.fillStyle = '#0f172a'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#fbbf24'; ctx.font = 'bold 12px Nunito, sans-serif'; ctx.textAlign = 'left'; ctx.fillText('☀️ Sunlight', 6, 16);
+    ctx.strokeStyle = 'rgba(251,191,36,.55)'; ctx.lineWidth = 2;
+    for (let y = 35; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(4, y); ctx.lineTo(30, y); ctx.lineTo(24, y - 4); ctx.moveTo(30, y); ctx.lineTo(24, y + 4); ctx.stroke(); }
+    ctx.beginPath(); ctx.arc(cx, cy, OR, 0, Math.PI * 2); ctx.setLineDash([4, 5]); ctx.strokeStyle = '#64748b'; ctx.stroke(); ctx.setLineDash([]);
+    // Earth: lit on Sun side (left)
+    ctx.beginPath(); ctx.arc(cx, cy, 22, 0, Math.PI * 2); ctx.fillStyle = '#1e3a8a'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, 22, Math.PI / 2, Math.PI * 1.5); ctx.fillStyle = '#3b82f6'; ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.fillText('Earth', cx, cy + 38);
+    const phi = (180 + e) * Math.PI / 180, mx = cx + OR * Math.cos(phi), my = cy - OR * Math.sin(phi);
+    // Moon in orbit: the half facing the Sun (left) is always lit
+    ctx.beginPath(); ctx.arc(mx, my, MR, 0, Math.PI * 2); ctx.fillStyle = '#334155'; ctx.fill();
+    ctx.beginPath(); ctx.arc(mx, my, MR, Math.PI / 2, Math.PI * 1.5); ctx.fillStyle = '#fde68a'; ctx.fill();
+    ctx.beginPath(); ctx.arc(mx, my, MR, 0, Math.PI * 2); ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.fillStyle = '#e2e8f0'; ctx.fillText('Moon', mx, my - MR - 5);
+    view(330, 105, 50);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 13px Nunito, sans-serif'; ctx.fillText('From Earth:', 330, 40);
+    ctx.fillText(moonPhaseName(e), 330, 180); ctx.font = '12px Nunito, sans-serif';
+    ctx.fillText(Math.round(moonLitFraction(e) * 100) + '% of face lit', 330, 198);
+    const info = $('mp-info'), n = moonPhaseName(e);
+    if (info) info.textContent = `🌙 ${n}: ` + (n === 'New Moon' ? 'the lit side faces away from us.' : n === 'Full Moon' ? 'we see the whole sunlit side!' : (e % 360 < 180 ? 'waxing — the lit part is growing.' : 'waning — the lit part is shrinking.'));
+  }
+  function setFromPoint(p) { const phi = Math.atan2(cy - p.y, p.x - cx) * 180 / Math.PI; e = Math.round(((phi - 180) % 360 + 360) % 360); rg.value = e; draw(); }
+  rg.addEventListener('input', () => { e = +rg.value; draw(); });
+  const stop = bindDrag(cv, W, H, p => { if (p.x < 260) setFromPoint(p); }, p => { if (p.x < 260) setFromPoint(p); });
+  draw(); return stop;
+}
+
+/* ================= INTERACTIVE DEMOS (canvas, mouse + touch, DPR-sharp) ================= */
+let demoCleanup = null;
+function setupCanvas(cv, w, h) {
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = w * dpr; cv.height = h * dpr; cv.style.aspectRatio = `${w} / ${h}`;
+  const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+}
+function pointerPos(cv, e, W, H) {
+  const r = cv.getBoundingClientRect();
+  const p = e.touches && e.touches.length ? e.touches[0] : (e.changedTouches && e.changedTouches.length ? e.changedTouches[0] : e);
+  return { x:(p.clientX - r.left) * W / r.width, y:(p.clientY - r.top) * H / r.height };
+}
+// Mouse + touch drag binding. Returns cleanup fn.
+function bindDrag(cv, W, H, onStart, onMove, onEnd) {
+  let down = false;
+  const s = e => { down = true; e.preventDefault(); onStart && onStart(pointerPos(cv, e, W, H)); };
+  const m = e => { if (!down) return; e.preventDefault(); onMove && onMove(pointerPos(cv, e, W, H)); };
+  const u = () => { if (!down) return; down = false; onEnd && onEnd(); };
+  cv.addEventListener('mousedown', s); window.addEventListener('mousemove', m); window.addEventListener('mouseup', u);
+  cv.addEventListener('touchstart', s, {passive:false}); cv.addEventListener('touchmove', m, {passive:false});
+  cv.addEventListener('touchend', u); cv.addEventListener('touchcancel', u);
+  return () => { window.removeEventListener('mousemove', m); window.removeEventListener('mouseup', u); };
+}
+function drawGear(ctx, x, y, r, teeth, ang, color, label) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.beginPath();
+  for (let i = 0; i < teeth * 2; i++) {
+    const a0 = i * Math.PI / teeth, a1 = (i + 1) * Math.PI / teeth, R = i % 2 === 0 ? r + 8 : r;
+    ctx.lineTo(R * Math.cos(a0 + 0.06), R * Math.sin(a0 + 0.06)); ctx.lineTo(R * Math.cos(a1 - 0.06), R * Math.sin(a1 - 0.06));
+  }
+  ctx.closePath(); ctx.fillStyle = color; ctx.fill(); ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(r - 6, 0); ctx.strokeStyle = '#fff'; ctx.lineWidth = 5; ctx.stroke(); // spoke shows turning
+  ctx.beginPath(); ctx.arc(0, 0, 7, 0, Math.PI * 2); ctx.fillStyle = '#1e293b'; ctx.fill(); ctx.restore();
+  ctx.fillStyle = '#1e293b'; ctx.font = 'bold 13px Nunito, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(label, x, y + r + 24);
+}
+function gearDemo(host) {
+  const W = 400, H = 250;
+  host.innerHTML = `<div class="demo-box"><b>⚙️ Gear Lab</b> — drag the BIG yellow gear to spin it!<canvas></canvas>
+   <div class="info" id="gear-info"></div>
+   <button class="practice-button" style="margin-top:6px;background:#6366f1" id="gear-auto">▶ Auto-spin</button></div>`;
+  const cv = host.querySelector('canvas'), ctx = setupCanvas(cv, W, H);
+  const T1 = 24, T2 = 12, T3 = 16, k = 2.5, r1 = T1 * k, r2 = T2 * k, r3 = T3 * k; // radius ∝ teeth so they mesh
+  const g1 = {x:80, y:110}, g2 = {x:g1.x + r1 + r2 + 4, y:110}, g3 = {x:g2.x + r2 + r3 + 4, y:110};
+  let a1 = 0, auto = false, last = 0, raf;
+  function draw() {
+    const a2 = -a1 * T1 / T2 + Math.PI / T2, a3 = a1 * T1 / T3; // opposite direction; speed = teeth ratio
+    ctx.clearRect(0, 0, W, H);
+    drawGear(ctx, g1.x, g1.y, r1, T1, a1, '#fbbf24', `${T1} teeth`);
+    drawGear(ctx, g2.x, g2.y, r2, T2, a2, '#60a5fa', `${T2} teeth`);
+    drawGear(ctx, g3.x, g3.y, r3, T3, a3, '#f472b6', `${T3} teeth`);
+    ctx.font = 'bold 13px Nunito, sans-serif'; ctx.fillStyle = '#4c1d95'; ctx.textAlign = 'center';
+    ctx.fillText('Touching gears turn opposite ways!', W/2, 18);
+    const t = Math.abs(a1 / (2*Math.PI)), info = $('gear-info');
+    if (info) info.textContent = `🟡 Big: ${t.toFixed(1)} turns · 🔵 Small: ${(t*T1/T2).toFixed(1)} turns (2× faster!) · 🩷 ${(t*T1/T3).toFixed(1)} turns`;
+  }
+  const stop = bindDrag(cv, W, H, p => { last = Math.atan2(p.y - g1.y, p.x - g1.x); auto = false; },
+    p => { const a = Math.atan2(p.y - g1.y, p.x - g1.x); let d = a - last; if (d > Math.PI) d -= 2*Math.PI; if (d < -Math.PI) d += 2*Math.PI; a1 += d; last = a; draw(); });
+  host.querySelector('#gear-auto').onclick = () => { auto = !auto; };
+  (function loop() { if (auto) { a1 += 0.03; draw(); } raf = requestAnimationFrame(loop); })();
+  draw();
+  return () => { cancelAnimationFrame(raf); stop(); };
+}
+function pulleyDemo(host) {
+  const W = 400, H = 300;
+  host.innerHTML = `<div class="demo-box"><b>🪢 Pulley Lab</b> — drag the ✋ handle DOWN (or use the slider)<canvas></canvas>
+   <input type="range" min="0" max="140" value="0" id="pul-range" aria-label="Pull the rope">
+   <div class="info" id="pul-info">Pull down ⬇️ → the box goes up ⬆️</div></div>`;
+  const cv = host.querySelector('canvas'), ctx = setupCanvas(cv, W, H), rg = host.querySelector('#pul-range');
+  const cx = 200, cy = 50, R = 34; let pull = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#64748b'; ctx.fillRect(100, 0, 200, 10); ctx.fillRect(cx - 3, 8, 6, cy - 8);
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = '#fde68a'; ctx.fill(); ctx.strokeStyle = '#92400e'; ctx.lineWidth = 4; ctx.stroke();
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(pull / R); ctx.beginPath(); ctx.moveTo(-R, 0); ctx.lineTo(R, 0); ctx.moveTo(0, -R); ctx.lineTo(0, R); ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    const loadY = 230 - pull, handY = 120 + pull;
+    ctx.strokeStyle = '#7c2d12'; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx - R, loadY); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx + R, cy); ctx.lineTo(cx + R, handY); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, R, Math.PI, 0); ctx.stroke();
+    ctx.fillStyle = '#8b5cf6'; ctx.fillRect(cx - R - 30, loadY, 60, 50);
+    ctx.font = '24px sans-serif'; ctx.textAlign = 'center'; ctx.fillText('📦', cx - R, loadY + 34);
+    ctx.beginPath(); ctx.arc(cx + R, handY + 16, 20, 0, Math.PI * 2); ctx.fillStyle = '#ef4444'; ctx.fill();
+    ctx.font = '18px sans-serif'; ctx.fillText('✋', cx + R, handY + 22);
+    ctx.fillStyle = '#4c1d95'; ctx.font = 'bold 14px Nunito, sans-serif';
+    if (pull > 5) { ctx.fillText('⬆️ up!', cx - R - 62, loadY + 30); ctx.fillText('⬇️ pull', cx + R + 60, handY + 22); }
+    ctx.fillStyle = '#16a34a'; ctx.fillRect(0, H - 12, W, 12);
+    const info = $('pul-info'); if (info) info.textContent = `Rope pulled DOWN ${Math.round(pull/14)} steps → box lifted UP ${Math.round(pull/14)} steps. Same amount, opposite direction!`;
+  }
+  const stop = bindDrag(cv, W, H, null, p => { pull = Math.max(0, Math.min(140, p.y - 136)); rg.value = pull; draw(); });
+  rg.oninput = () => { pull = +rg.value; draw(); };
+  draw(); return stop;
+}
+function leverDemo(host) {
+  const W = 400, H = 240;
+  host.innerHTML = `<div class="demo-box"><b>⚖️ See-saw Lever Lab</b> — pick an animal, then tap the board to move it. Drag the orange ▲ fulcrum!<canvas></canvas>
+   <div><button class="practice-button" style="display:inline-block;margin:4px" id="lv-heavy">Move 🐘 (3 kg)</button>
+   <button class="practice-button" style="display:inline-block;margin:4px" id="lv-light">Move 🐭 (1 kg)</button></div>
+   <div class="info" id="lv-info"></div></div>`;
+  const cv = host.querySelector('canvas'), ctx = setupCanvas(cv, W, H);
+  let fx = 200, heavy = -2, light = 5, sel = 'heavy', tilt = 0, dragF = false, raf;
+  const step = 28, by = 150;
+  const b1 = host.querySelector('#lv-heavy'), b2 = host.querySelector('#lv-light');
+  const mark = () => { b1.style.background = sel === 'heavy' ? '#16a34a' : '#64748b'; b2.style.background = sel === 'light' ? '#16a34a' : '#64748b'; };
+  b1.onclick = () => { sel = 'heavy'; mark(); }; b2.onclick = () => { sel = 'light'; mark(); }; mark();
+  const torque = () => 3 * (200 + heavy*step - fx) + 1 * (200 + light*step - fx); // weight × distance; + means right side down
+  function draw() {
+    const t = torque(), target = Math.abs(t) < 1 ? 0 : Math.sign(t) * 0.22;
+    tilt += (target - tilt) * 0.15;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#16a34a'; ctx.fillRect(0, H - 30, W, 30);
+    ctx.beginPath(); ctx.moveTo(fx, by + 4); ctx.lineTo(fx - 26, H - 30); ctx.lineTo(fx + 26, H - 30); ctx.closePath(); ctx.fillStyle = '#f59e0b'; ctx.fill();
+    ctx.save(); ctx.translate(fx, by); ctx.rotate(tilt);
+    const bl = 200 - 6*step - fx, br = 200 + 6*step - fx;
+    ctx.fillStyle = '#92400e'; ctx.fillRect(bl, -6, br - bl, 12);
+    for (let i = -6; i <= 6; i++) { ctx.fillStyle = '#fde68a'; ctx.fillRect(200 + i*step - fx - 1, -6, 2, 12); }
+    ctx.textAlign = 'center'; ctx.font = '30px sans-serif'; ctx.fillText('🐘', 200 + heavy*step - fx, -10);
+    ctx.font = '22px sans-serif'; ctx.fillText('🐭', 200 + light*step - fx, -10);
+    ctx.restore();
+    const info = $('lv-info');
+    if (info) info.textContent = Math.abs(t) < 1 ? '⚖️ Balanced! Weight × distance is equal on both sides.' : t > 0 ? '➡️ Right side goes DOWN, left side lifts UP.' : '⬅️ Left side goes DOWN, right side lifts UP.';
+    raf = requestAnimationFrame(draw);
+  }
+  const stop = bindDrag(cv, W, H, p => {
+    dragF = Math.abs(p.x - fx) < 32 && p.y > by;
+    if (!dragF) { const pos = Math.max(-6, Math.min(6, Math.round((p.x - 200) / step)));
+      if (sel === 'heavy' && pos !== light) heavy = pos; if (sel === 'light' && pos !== heavy) light = pos; }
+  }, p => { if (dragF) fx = Math.max(200 - 5*step, Math.min(200 + 5*step, Math.round((p.x - 200) / step) * step + 200)); }, () => { dragF = false; });
+  draw();
+  return () => { cancelAnimationFrame(raf); stop(); };
+}
+function dayNightDemo(host) {
+  const W = 400, H = 220;
+  host.innerHTML = `<div class="demo-box"><b>🌍 Spin the Earth!</b> — drag left/right to spin it<canvas></canvas><div class="info" id="dn-info"></div></div>`;
+  const cv = host.querySelector('canvas'), ctx = setupCanvas(cv, W, H);
+  let rot = Math.PI, lastX = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f172a'; ctx.fillRect(0, 0, W, H);
+    for (let i = 0; i < 30; i++) { ctx.fillStyle = '#fff'; ctx.fillRect((i*97) % W, (i*53) % H, 2, 2); }
+    ctx.beginPath(); ctx.arc(40, H/2, 34, 0, Math.PI*2); ctx.fillStyle = '#facc15'; ctx.fill();
+    ctx.fillStyle = '#000'; ctx.font = 'bold 12px Nunito, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('SUN', 40, H/2 + 4);
+    const ex = 260, ey = H/2, R = 70;
+    ctx.beginPath(); ctx.arc(ex, ey, R, 0, Math.PI*2); ctx.fillStyle = '#3b82f6'; ctx.fill();
+    ctx.beginPath(); ctx.arc(ex, ey, R, -Math.PI/2, Math.PI/2); ctx.fillStyle = 'rgba(0,0,0,.6)'; ctx.fill(); // night side faces away from Sun
+    ctx.font = '24px sans-serif'; ctx.fillText('🏠', ex + R * 0.7 * Math.cos(rot), ey + R * 0.25 * Math.sin(rot) + 8);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 13px Nunito, sans-serif'; ctx.fillText('day side', ex - 40, 22); ctx.fillText('night side', ex + 45, 22);
+    const info = $('dn-info'); if (info) info.textContent = Math.cos(rot) < 0 ? '☀️ Your house faces the Sun: DAYTIME!' : '🌙 Your house faces away from the Sun: NIGHTTIME!';
+  }
+  const stop = bindDrag(cv, W, H, p => { lastX = p.x; }, p => { rot += (p.x - lastX) * 0.03; lastX = p.x; draw(); });
+  draw(); return stop;
+}
+function magnetDemo(host) {
+  const W = 400, H = 160;
+  host.innerHTML = `<div class="demo-box"><b>🧲 Magnet Lab</b> — drag the right magnet, or <button id="mg-flip" class="practice-button" style="display:inline-block;margin:4px;background:#6366f1">🔄 Flip it</button><canvas></canvas><div class="info" id="mg-info"></div></div>`;
+  const cv = host.querySelector('canvas'), ctx = setupCanvas(cv, W, H);
+  let x = 260, flipped = false, drag = false, raf;
+  function mag(x0, L, R) {
+    ctx.fillStyle = L === 'N' ? '#ef4444' : '#3b82f6'; ctx.fillRect(x0, 60, 50, 40);
+    ctx.fillStyle = R === 'N' ? '#ef4444' : '#3b82f6'; ctx.fillRect(x0 + 50, 60, 50, 40);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 20px Nunito, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(L, x0 + 25, 87); ctx.fillText(R, x0 + 75, 87);
+  }
+  function frame() {
+    const facing = flipped ? 'S' : 'N', attract = facing === 'S'; // left magnet's right end is N
+    if (!drag) { const gap = x - 150;
+      if (attract && gap > 0) x = Math.max(150, x - Math.max(1, 200 / (gap + 20)));
+      if (!attract && gap < 150) x = Math.min(300, x + Math.max(0.5, 300 / (gap + 20))); }
+    ctx.clearRect(0, 0, W, H); mag(50, 'S', 'N'); mag(x, facing, flipped ? 'N' : 'S');
+    const info = $('mg-info'); if (info) info.textContent = attract ? 'N next to S → opposite poles ATTRACT (pull together) 🤝' : 'N next to N → same poles REPEL (push apart) 🙅';
+    raf = requestAnimationFrame(frame);
+  }
+  host.querySelector('#mg-flip').onclick = () => { flipped = !flipped; };
+  const stop = bindDrag(cv, W, H, p => { drag = Math.abs(p.x - (x + 50)) < 70; }, p => { if (drag) x = Math.max(150, Math.min(300, p.x - 50)); }, () => { drag = false; });
+  frame();
+  return () => { cancelAnimationFrame(raf); stop(); };
+}
+
+/* ================= TOPICS ================= */
+const TOPICS = [
+  {id:'counting', cat:'math', name:'🔢 Counting', gen:genCounting, learn:`<h3>🔢 Counting & Number Sense</h3><p>Numbers tell us <b>how many</b>. We can count by 1s, 2s, 5s and 10s!</p><div class="example">2, 4, 6, 8, 10 — counting by 2s!</div><p><b>Even</b> numbers make pairs with none left over (2, 4, 6…). <b>Odd</b> numbers have one left over (1, 3, 5…).</p>`},
+  {id:'compare', cat:'math', name:'🐊 Compare', gen:genCompare, learn:`<h3>🐊 Comparing Numbers</h3><p>The hungry alligator mouth <b>&gt;</b> or <b>&lt;</b> always opens toward the <b>bigger</b> number!</p><div class="example">9 &gt; 4 (9 is greater) · 3 &lt; 7 (3 is less) · 5 = 5 (equal)</div>`},
+  {id:'basicAddition', cat:'math', name:'➕ Addition', gen:genAddition, learn:`<h3>➕ Addition</h3><p>Adding means putting groups <b>together</b> to find how many in all.</p><div class="example">3 🍎 + 2 🍎 = 5 🍎</div><p>Big numbers? Add the tens, then the ones: 23 + 14 → 20 + 10 = 30, 3 + 4 = 7 → <b>37</b>.</p>`},
+  {id:'basicSubtraction', cat:'math', name:'➖ Subtraction', gen:genSubtraction, learn:`<h3>➖ Subtraction</h3><p>Subtracting means <b>taking away</b>. What is left?</p><div class="example">7 🍪 − 3 🍪 = 4 🍪</div><p>Tip: count up from the small number to the big one!</p>`},
+  {id:'placeValue', cat:'math', name:'🏠 Place Value', gen:genPlaceValue, learn:`<h3>🏠 Place Value</h3><p>Each digit lives in a house: <b>hundreds</b>, <b>tens</b>, <b>ones</b>.</p><div class="example">In 352: 3 hundreds (300), 5 tens (50), 2 ones (2).</div>`},
+  {id:'multiplication', cat:'math', name:'✖️ Times Tables', gen:genMultiplication, learn:`<h3>✖️ Multiplication</h3><p>Multiplying is a fast way to add <b>equal groups</b>.</p><div class="example">3 × 4 means 3 groups of 4: 4 + 4 + 4 = 12</div><p>Any number × 1 stays the same. Any number × 10 gets a 0 on the end!</p>`},
+  {id:'division', cat:'math', name:'➗ Sharing', gen:genDivision, learn:`<h3>➗ Division (Fair Sharing)</h3><p>Dividing means sharing into <b>equal groups</b>.</p><div class="example">12 ÷ 3 = 4 → 12 cookies shared by 3 friends = 4 each 🍪</div><p>Tip: use times tables backwards! 3 × 4 = 12, so 12 ÷ 3 = 4.</p>`},
+  {id:'factorsMultiples', cat:'math', name:'🧩 Multiples', gen:genFactors, learn:`<h3>🧩 Factors & Multiples</h3><p><b>Multiples</b> are the numbers you say when you skip count: multiples of 3 are 3, 6, 9, 12…</p><p><b>Factors</b> split a number into equal groups with none left over. 2 is a factor of 8 because 8 = 2 + 2 + 2 + 2.</p>`},
+  {id:'wordProblems', cat:'math', name:'📖 Word Problems', gen:genWordProblem, learn:`<h3>📖 Word Problems</h3><p>Look for clue words!</p><ul><li><b>more, in all, together</b> → add ➕</li><li><b>left, gave away</b> → subtract ➖</li><li><b>each bag has, groups of</b> → multiply ✖️</li><li><b>share equally</b> → divide ➗</li></ul>`},
+  {id:'shapes', cat:'math', name:'🔷 Shapes', gen:genShapes, learn:`<h3>🔷 Shapes</h3><ul><li>⚪ Circle: round, no corners</li><li>🔺 Triangle: 3 sides, 3 corners</li><li>🟥 Square: 4 equal sides</li><li>▭ Rectangle: 4 sides, 2 long + 2 short</li><li>Pentagon: 5 sides · Hexagon: 6 sides (like a honeycomb 🐝)</li></ul>`},
+  {id:'equivalentFractions', cat:'math', name:'🍕 Same Fractions', gen:genEqFractions, learn:`<h3>🍕 Equivalent Fractions</h3><p>Different fractions can show the <b>same amount</b>!</p><div class="example">${frac(1,2)} = ${frac(2,4)} — half a pizza is the same as 2 out of 4 slices.</div><p>Multiply the top and the bottom by the <b>same</b> number.</p>`},
+  {id:'addFractions', cat:'math', name:'🍰 Add Fractions', gen:genAddFractions, learn:`<h3>🍰 Adding Fractions (same bottom)</h3><p>If the bottoms match, <b>keep the bottom</b> and <b>add the tops</b>.</p><div class="example">${frac(1,5)} + ${frac(2,5)} = ${frac(3,5)}</div>`},
+  {id:'angles', cat:'math', name:'📐 Angles', gen:genAngles, learn:`<h3>📐 Angles</h3><ul><li><b>Right</b> angle = 90°, a square corner (like a book corner)</li><li><b>Acute</b> = smaller than a right angle (a-CUTE little angle!)</li><li><b>Obtuse</b> = bigger than a right angle, but less than a straight line</li></ul><div class="visual">${angleSVG(40)}${angleSVG(90)}${angleSVG(140)}</div>`},
+  {id:'perimeter', cat:'math', name:'📏 Perimeter', gen:genPerimeter, learn:`<h3>📏 Perimeter</h3><p>Perimeter is the distance <b>all the way around</b> a shape. Add every side!</p><div class="example">A rectangle 5 cm by 3 cm: 5 + 3 + 5 + 3 = 16 cm</div>`},
+  {id:'triangleArea', cat:'math', name:'🔺 Triangle Area', gen:genTriangleArea, learn:`<h3>🔺 Triangle Area (bonus!)</h3><p>A triangle is <b>half</b> of a rectangle! Area = (base × height) ÷ 2.</p><div class="example">Base 6, height 4: 6 × 4 = 24, half of 24 is 12 square cm.</div>`},
+  {id:'livingThings', cat:'science', name:'🌱 Living Things', gen:genLiving, learn:`<h3>🌱 Living Things</h3><p>Living things <b>grow</b>, need <b>food/energy</b>, <b>water</b> and <b>air</b>, and make new living things.</p><ul><li>🌻 Plants need sunlight, water, air and (usually) soil. They make their own food using sunlight!</li><li>🐶 Animals eat food, drink water and breathe air.</li><li>🪨 Rocks are NOT living — they don't grow or eat.</li></ul>`},
+  {id:'matter', cat:'science', name:'🧊 Solid Liquid Gas', gen:genMatter, learn:`<h3>🧊 States of Matter</h3><ul><li><b>Solid</b> 🧊 keeps its own shape (ice, rock, spoon)</li><li><b>Liquid</b> 💧 pours and takes the shape of its cup (water, milk)</li><li><b>Gas</b> 💨 spreads out to fill space (air, steam)</li></ul><div class="example">Ice 🧊 → melts → water 💧 → boils → steam 💨</div>`},
+  {id:'magnets', cat:'science', name:'🧲 Magnets', gen:genMagnets, demo:magnetDemo, learn:`<h3>🧲 Magnets</h3><p>Magnets pull (<b>attract</b>) things made of <b>iron</b> or <b>steel</b> — like paperclips and nails. Not plastic, wood or glass.</p><p>Every magnet has a <b>North</b> and a <b>South</b> pole. <b>Opposite poles attract</b>; <b>the same poles repel</b> (push apart)!</p>`},
+  {id:'waterCycle', cat:'science', name:'💧 Water Cycle', gen:genWaterCycle, learn:`<h3>💧 The Water Cycle</h3><ol><li>☀️ <b>Evaporation</b>: the Sun warms water and it rises as invisible vapor.</li><li>☁️ <b>Condensation</b>: vapor cools and makes clouds.</li><li>🌧️ <b>Precipitation</b>: rain or snow falls.</li><li>🌊 <b>Collection</b>: water gathers in oceans, lakes and rivers… and it starts again!</li></ol>`},
+  {id:'planets', cat:'space', name:'🪐 Planets', gen:genPlanets, learn:`<h3>🪐 The 8 Planets</h3><p>In order from the Sun:</p><div class="example">1 Mercury · 2 Venus · 3 Earth 🌍 · 4 Mars · 5 Jupiter · 6 Saturn 🪐 · 7 Uranus · 8 Neptune</div><p>Memory trick: "<b>M</b>y <b>V</b>ery <b>E</b>ducated <b>M</b>other <b>J</b>ust <b>S</b>erved <b>U</b>s <b>N</b>oodles!" 🍜</p><p>Jupiter is the biggest. Saturn has the biggest, brightest rings. Mars looks red.</p>`},
+  {id:'sunMoonStars', cat:'space', name:'☀️ Sun, Moon & Stars', gen:genSky, learn:`<h3>☀️ Sun, Moon & Stars</h3><ul><li>The <b>Sun is a star</b> — the closest star to us. It gives us light and heat.</li><li>The <b>Moon</b> goes around Earth. It doesn't make light — it <b>reflects sunlight</b>, like a mirror.</li><li><b>Stars</b> are giant balls of hot glowing gas, super far away.</li><li><b>Earth</b> goes around the Sun once a <b>year</b>.</li></ul>`},
+  {id:'dayNight', cat:'space', name:'🌗 Day & Night', gen:genDayNight, demo:dayNightDemo, learn:`<h3>🌗 Day & Night</h3><p>Earth <b>spins</b> like a top, once about every <b>24 hours</b>. The side facing the Sun has <b>day</b>; the side facing away has <b>night</b>.</p><p>The Sun seems to rise in the <b>east</b> and set in the <b>west</b> — but really, it's Earth turning!</p>`},
+  {id:'moonPhases', cat:'space', name:'🌙 Moon Phases', gen:genMoonPhases, demo:moonDemo, learn:`<h3>🌙 Moon Phases</h3><p>The Moon has <b>no light of its own</b>. The <b>Sun</b> always lights up the half of the Moon that faces it — like a ball next to a lamp.</p><p>The Moon travels around Earth about once a month. As it moves, we see <b>more or less</b> of its sunny half. These changing shapes are called <b>phases</b>.</p><div class="example">🌑 New → 🌒 Waxing Crescent → 🌓 First Quarter → 🌔 Waxing Gibbous → 🌕 Full → 🌖 Waning Gibbous → 🌗 Last Quarter → 🌘 Waning Crescent → 🌑 New again</div><p><b>Waxing</b> = the lit part grows. <b>Waning</b> = it shrinks. One whole cycle takes about <b>29½ days</b>. (Emoji show the view from the northern half of Earth.)</p>`},
+  {id:'gears', cat:'physics', name:'⚙️ Gears', gen:genGears, demo:gearDemo, learn:`<h3>⚙️ Gears</h3><p>Gears are wheels with <b>teeth</b>. When gears touch, turning one turns the other — the <b>opposite way</b>!</p><p>A <b>small</b> gear spins <b>faster</b> than a big gear. If the big gear has 24 teeth and the small one has 12, the small gear turns <b>2 times</b> for each big turn.</p><p>Gears are in bikes 🚲, clocks ⏰ and toys!</p>`},
+  {id:'pulleys', cat:'physics', name:'🪢 Pulleys', gen:genPulleys, demo:pulleyDemo, learn:`<h3>🪢 Pulleys</h3><p>A pulley is a wheel with a rope in its groove. With a <b>fixed pulley</b>, you pull the rope <b>down</b> and the load goes <b>up</b>! It changes the <b>direction</b> of your pull.</p><p>Flagpoles 🏳️ and cranes 🏗️ use pulleys.</p>`},
+  {id:'levers', cat:'physics', name:'⚖️ Levers', gen:genLevers, demo:leverDemo, learn:`<h3>⚖️ Levers</h3><p>A lever is a strong bar that turns on a point called the <b>fulcrum</b>. A see-saw is a lever!</p><p>Push one side down → the other side goes up. A heavy thing balances a light thing when the heavy one is <b>closer</b> to the fulcrum.</p><div class="example">Balance rule: weight × distance (left) = weight × distance (right). 3 kg × 1 step = 1 kg × 3 steps ✔️</div>`},
+  {id:'gravity', cat:'physics', name:'🍎 Gravity', gen:genGravity, learn:`<h3>🍎 Gravity</h3><p>Gravity is an invisible <b>pull</b>. Earth's gravity pulls things <b>down</b> toward the ground — that's why a dropped apple falls!</p><p>Gravity also keeps the Moon going around Earth. On the Moon, gravity is weaker, so astronauts can bounce high! 🧑‍🚀</p>`},
+  {id:'forces', cat:'physics', name:'💪 Push & Pull', gen:genForces, learn:`<h3>💪 Push & Pull Forces</h3><p>A <b>force</b> is a push or a pull. Forces can make things start, stop, speed up, or change direction.</p><ul><li><b>Push</b> = away from you (kicking a ball ⚽)</li><li><b>Pull</b> = toward you (opening a drawer)</li><li><b>Friction</b> is rubbing that slows things down (carpet slows a toy car more than ice).</li></ul>`},
+  {id:'simpleMachines', cat:'physics', name:'🛠️ Simple Machines', gen:genMachines, learn:`<h3>🛠️ Simple Machines</h3><p>Simple machines make work <b>easier</b>!</p><ul><li>⚖️ <b>Lever</b> – see-saw</li><li>🪢 <b>Pulley</b> – flagpole</li><li>🛞 <b>Wheel & axle</b> – wagon wheel</li><li>⛰️ <b>Inclined plane</b> – ramp</li><li>🪓 <b>Wedge</b> – axe head</li><li>🔩 <b>Screw</b> – jar lid</li></ul><p>Try the Gears, Pulleys and Levers labs! ⚙️</p>`},
+];
+const CATS = [['math','🧮 Math'],['science','🔬 Science'],['space','🔭 Astronomy'],['physics','⚙️ Physics']];
+const TOPIC_MAP = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+const ALL_TOPIC_IDS = TOPICS.map(t => t.id);
+const TARGET_COMPLETIONS_PER_TOPIC = 5;
+const MATH_TOPICS = new Set(TOPICS.filter(t => t.cat === 'math').map(t => t.id));
+function hasMedal(id) { return state.medals.includes(id) || (state.progress[id] || 0) >= TARGET_COMPLETIONS_PER_TOPIC; }
+function syncMedals() { ALL_TOPIC_IDS.forEach(id => { if ((state.progress[id] || 0) >= TARGET_COMPLETIONS_PER_TOPIC && !state.medals.includes(id)) state.medals.push(id); }); }
+
+/* ================= STATE + STORAGE (durable; schema v2; never resets by date, reload or fireworks) ================= */
+const KEY = 'sciMathAdventureV2';
+const APP_VERSION = '2.2.3';
+const SCHEMA_V = 2;
+const toInt = x => { const n = Math.floor(Number(x)); return Number.isFinite(n) && n > 0 ? n : 0; };
+let storageOK = true;
+function readStore(k) { try { return localStorage.getItem(k); } catch (e) { storageOK = false; return null; } }
+/* Player name (local only): trim, collapse spaces, max 20, letters/digits/spaces/simple punctuation. Returns '' if invalid. */
+const NAME_MAX = 20;
+function cleanName(x) {
+  if (typeof x !== 'string') return '';
+  const t = x.replace(/\s+/g, ' ').trim();
+  if (!t || t.length > NAME_MAX) return '';
+  if (!/^[\p{L}\p{M}0-9 .'\-!]+$/u.test(t)) return '';
+  if (!/[\p{L}0-9]/u.test(t)) return '';
+  return t;
+}
+function nameError(x) {
+  const t = String(x || '').replace(/\s+/g, ' ').trim();
+  if (!t) return 'Please type your name ✏️';
+  if (t.length > NAME_MAX) return 'That name is a bit long — 20 letters max 😊';
+  if (!cleanName(t)) return 'Letters, numbers, spaces and . \' - ! only please 🙂';
+  return '';
+}
+function normalizeState(s) {
+  if (!s || typeof s !== 'object' || Array.isArray(s)) s = {};
+  ['best','bestStreak','totalCorrect','mixCorrect','score','streak'].forEach(k => { s[k] = toInt(s[k]); });
+  const prog = (s.progress && typeof s.progress === 'object' && !Array.isArray(s.progress)) ? s.progress : {};
+  s.progress = {}; Object.keys(prog).forEach(k => { const n = toInt(prog[k]); if (n) s.progress[k] = n; });
+  s.badges = Array.isArray(s.badges) ? [...new Set(s.badges.filter(b => typeof b === 'string'))] : [];
+  s.medals = Array.isArray(s.medals) ? [...new Set(s.medals.filter(b => typeof b === 'string'))] : [];
+  const seen = (s.seen && typeof s.seen === 'object' && !Array.isArray(s.seen)) ? s.seen : {};
+  s.seen = {}; Object.keys(seen).forEach(k => { if (Array.isArray(seen[k])) s.seen[k] = seen[k].filter(x => typeof x === 'string').slice(-SEEN_CAP_MAX); });
+  s.cycles = (s.cycles && typeof s.cycles === 'object' && !Array.isArray(s.cycles)) ? s.cycles : {};
+  const dm = (x, ok) => { const o = {}; if (x && typeof x === 'object' && !Array.isArray(x)) Object.keys(x).forEach(k => { const v = ok(x[k]); if (v !== null) o[k] = v; }); return o; };
+  s.difficulty = dm(s.difficulty, v => { const n = Math.floor(Number(v)); return n >= 1 ? Math.min(3, n) : null; });
+  s.diffStreak = dm(s.diffStreak, v => toInt(v) || null);
+  s.diffWrong = dm(s.diffWrong, v => toInt(v) || null);
+  s.fireworksWon = !!s.fireworksWon; s.fireworksShownAt100 = !!s.fireworksShownAt100;
+  if (s.bestStreak < s.streak) s.bestStreak = s.streak;
+  if (s.best < s.score) s.best = s.score;
+  s.playerName = cleanName(s.playerName) || '';
+  s.soundOn = s.soundOn !== false;
+  s.v = SCHEMA_V;
+  return s;
+}
+function loadState() {
+  let s = {};
+  try { s = JSON.parse(readStore(KEY) || '{}') || {}; } catch (e) { s = {}; }
+  s = normalizeState(s);
+  if (!s.migrated) { const old = parseInt(readStore('mathAdventureBestScore') || '0', 10); if (old > s.best) s.best = old; s.migrated = true; }
+  return s;
+}
+const SEEN_CAP_MAX = 400;
+const state = loadState();
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); storageOK = true; } catch (e) { storageOK = false; } }
+let currentTopic = null, current = null, answered = false, hintStep = 0, mixMode = false, picked = null, wrongTries = 0;
+
+/* ================= ANTI-REPEAT =================
+   fingerprint = type | question text | answer. Options are NOT part of it on purpose: distractors are re-shuffled /
+   re-picked randomly, so including them would let the same question count as "new". Stored as a short hash to keep
+   localStorage small. Each topic keeps a ring buffer of recent fingerprints (state.seen). When a topic's finite bank
+   is exhausted (no unseen item found), that topic's seen list is cleared and a new cycle starts — scores untouched. */
+function hash36(str) { let h = 0x811c9dc5; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
+function fingerprintRaw(p) { return [p.lvl || '', p.type, String(p.q).replace(/\s+/g, ' ').trim(), String(p.a)].join('|'); }
+function fingerprint(p) { return hash36(fingerprintRaw(p)) + hash36('x' + fingerprintRaw(p)); }
+/* ===== ADAPTIVE DIFFICULTY (per topic, 1–3, stored forever; fireworks never touch it) =====
+   3 correct in a row on a topic (at its current level) → level up (max 3), counter resets.
+   2 wrong questions on a topic with no correct in between → level down (min 1). One wrong question counts once. */
+function getLevel(id) { return state.difficulty[id] || 1; }
+function recordDifficulty(id, ok) {
+  const before = getLevel(id); let lvl = before;
+  if (ok) { state.diffWrong[id] = 0; state.diffStreak[id] = (state.diffStreak[id] || 0) + 1;
+    if (state.diffStreak[id] >= 3) { state.diffStreak[id] = 0; lvl = Math.min(3, lvl + 1); } }
+  else { state.diffStreak[id] = 0; state.diffWrong[id] = (state.diffWrong[id] || 0) + 1;
+    if (state.diffWrong[id] >= 2) { state.diffWrong[id] = 0; lvl = Math.max(1, lvl - 1); } }
+  state.difficulty[id] = lvl; return lvl - before;
+}
+const stars = l => '★'.repeat(l) + '☆'.repeat(3 - l);
+function generateUnique(topicId, genFn, tries) {
+  GEN_LEVEL = getLevel(topicId); const rawGen = genFn; genFn = () => { const c = rawGen(); c.lvl = GEN_LEVEL; return c; };
+  const isMath = MATH_TOPICS.has(topicId);
+  tries = tries || (isMath ? 40 : 300);
+  const seen = state.seen[topicId] || (state.seen[topicId] = []);
+  const last = seen.length ? seen[seen.length - 1] : null;
+  const set = new Set(seen);
+  let p = null, fp = null, fallback = null, fallbackFp = null;
+  for (let i = 0; i < tries; i++) {
+    const c = genFn(), f = fingerprint(c);
+    if (!set.has(f)) { p = c; fp = f; break; }
+    if (f !== last && !fallback) { fallback = c; fallbackFp = f; }
+  }
+  if (!p) { // whole bank (or buffer) seen: start a new cycle for this topic only, never touching scores
+    state.cycles[topicId] = (state.cycles[topicId] || 0) + 1;
+    seen.length = 0; if (last) seen.push(last);
+    for (let i = 0; i < 60 && !p; i++) { const c = genFn(), f = fingerprint(c); if (f !== last) { p = c; fp = f; } }
+    if (!p) { p = fallback || genFn(); fp = fallbackFp || fingerprint(p); }
+    if (last && seen[0] === last && fp !== last) seen.length = 0;
+  }
+  seen.push(fp);
+  if (seen.length > SEEN_CAP_MAX) seen.splice(0, seen.length - SEEN_CAP_MAX);
+  return p;
+}
+
+/* ================= BADGES / STICKERS ================= */
+const BADGES = [
+  {id:'first', e:'🌟', n:'First Star', d:'Get your first answer right', test:s => s.totalCorrect >= 1},
+  {id:'streak5', e:'⭐', n:'Explorer', d:'5 right in a row', test:s => s.bestStreak >= 5},
+  {id:'streak10', e:'🚀', n:'Rocket Kid', d:'10 right in a row', test:s => s.bestStreak >= 10},
+  {id:'streak20', e:'🦸', n:'Super Brain', d:'20 right in a row', test:s => s.bestStreak >= 20},
+  {id:'total25', e:'🎒', n:'Busy Learner', d:'25 right answers in total', test:s => s.totalCorrect >= 25},
+  {id:'total100', e:'💯', n:'Hundred Club', d:'100 right answers in total', test:s => s.totalCorrect >= 100},
+  {id:'mix10', e:'🎲', n:'Mix Master', d:'10 right in Smart Mix', test:s => s.mixCorrect >= 10},
+  {id:'cat-math', e:'🧮', n:'Math Medal', d:'Finish every Math topic', test:s => catDone(s, 'math')},
+  {id:'cat-science', e:'🔬', n:'Science Medal', d:'Finish every Science topic', test:s => catDone(s, 'science')},
+  {id:'cat-space', e:'🔭', n:'Space Medal', d:'Finish every Astronomy topic', test:s => catDone(s, 'space')},
+  {id:'cat-physics', e:'⚙️', n:'Physics Medal', d:'Finish every Physics topic', test:s => catDone(s, 'physics')},
+  {id:'fireworks', e:'🎆', n:'Fireworks Champ', d:'Win the fireworks challenge', test:s => !!s.fireworksWon},
+];
+function catDone(s, c) { return TOPICS.filter(t => t.cat === c).every(t => (s.medals || []).includes(t.id) || (s.progress[t.id] || 0) >= TARGET_COMPLETIONS_PER_TOPIC); }
+function checkBadges() {
+  syncMedals();
+  BADGES.forEach(b => { if (!state.badges.includes(b.id) && b.test(state)) { state.badges.push(b.id); toast(`New sticker: ${b.e} ${b.n}!`); burst(b.e, 24); } });
+  save(); renderShelf();
+}
+function renderShelf() {
+  const got = BADGES.filter(b => state.badges.includes(b.id)).map(b => b.e).join('');
+  const medals = ALL_TOPIC_IDS.filter(hasMedal).length;
+  if (!got && !medals) { $('badge-shelf').innerHTML = '<small style="font-size:.6em;color:#6b7280">Win stickers by answering in a row! 🌟</small>'; return; }
+  $('badge-shelf').textContent = got + (medals ? ' 🏅×' + medals : '');
+}
+function renderBadgeGrid() {
+  $('badge-grid').innerHTML = BADGES.map(b => `<div class="badge ${state.badges.includes(b.id) ? 'got' : ''}"><div class="e">${b.e}</div><div class="n">${esc(b.n)}</div><div class="d">${esc(b.d)}</div></div>`).join('')
+   + TOPICS.map(t => { const p = state.progress[t.id] || 0, done = hasMedal(t.id);
+       return `<div class="badge ${done ? 'got' : ''}"><div class="e">🏅</div><div class="n">${esc(t.name)}</div><div class="d">${Math.min(p, TARGET_COMPLETIONS_PER_TOPIC)}/${TARGET_COMPLETIONS_PER_TOPIC}</div></div>`; }).join('');
+}
+
+/* ================= FX: toast, emoji confetti burst, cat run ================= */
+let toastT;
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.style.display = 'block'; clearTimeout(toastT); toastT = setTimeout(() => { t.style.display = 'none'; }, 2600); }
+function burst(em = '🎉', n = 18) {
+  const layer = $('fx-layer'), set = Array.isArray(em) ? em : [em, '✨', '⭐', '🎊'];
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement('span'); s.className = 'fx'; s.textContent = set[i % set.length];
+    s.style.left = (innerWidth / 2) + 'px'; s.style.top = (innerHeight / 2) + 'px';
+    s.style.setProperty('--dx', rnd(-innerWidth/2, innerWidth/2) + 'px');
+    s.style.setProperty('--dy', rnd(-innerHeight/2, innerHeight/3) + 'px');
+    s.style.setProperty('--r', rnd(-360, 360) + 'deg');
+    layer.appendChild(s); setTimeout(() => s.remove(), 1500);
+  }
+}
+function catRun() {
+  const c = $('cat-icon'); c.style.transition = 'none'; c.style.left = '-60px'; c.style.display = 'block';
+  void c.offsetWidth; c.style.transition = 'left 3s ease-in-out'; c.style.left = (innerWidth + 60) + 'px';
+  setTimeout(() => { c.style.display = 'none'; }, 3100);
+}
+
+/* ================= NAV + RENDER ================= */
+function buildNav() {
+  $('topic-nav').innerHTML = CATS.map(([c, label]) => `<div class="nav-group"><h4>${label}</h4><div class="nav-row">${
+    TOPICS.filter(t => t.cat === c).map(t => `<button data-topic="${t.id}">${t.name}<span class="done" id="done-${t.id}"></span></button>`).join('')}</div></div>`).join('');
+  $('topic-nav').querySelectorAll('button[data-topic]').forEach(b => b.addEventListener('click', () => showLearn(b.dataset.topic)));
+  updateNavMarks();
+}
+function updateNavMarks() { TOPICS.forEach(t => { const el = $('done-' + t.id); if (el) el.textContent = hasMedal(t.id) ? '✅' : ''; }); }
+function setActive(id) { document.querySelectorAll('#topic-nav button').forEach(b => b.classList.toggle('active', b.dataset.topic === id)); }
+function cleanupDemo() { if (demoCleanup) { try { demoCleanup(); } catch (e) {} demoCleanup = null; } }
+function showWelcome() {
+  cancelAutoNext(); cleanupDemo();
+  $('app-content').innerHTML = `<div class="learn-section"><h3>👋 Welcome, ${escHtml(state.playerName || 'Explorer')}!</h3><p>Pick a topic above to <b>learn</b>, then <b>practice</b>. Quizzes never run out, and the game remembers what you saw so questions don't repeat soon!</p>
+  <ul><li>🔥 Get answers right in a row for a <b>streak</b> and win stickers.</li><li>🎲 Try the <b>Smart Mix Quiz</b> for surprise questions from every subject.</li><li>⭐ Each topic has a <b>Level ★☆☆</b> that grows as you get answers right.</li><li>🌙 New! Try the <b>Moon Phases</b> lab in Astronomy.</li><li>⚙️ Play with the <b>Gears</b>, <b>Pulleys</b> and <b>Levers</b> labs in Physics!</li><li>🎆 Fill the progress bar (or beat the 🎆 challenge) for <b>fireworks</b>!</li><li>📱 Best in <b>Safari</b> or <b>Chrome</b> (not inside WhatsApp or Drive preview).</li></ul></div>`;
+  $('next-problem').style.display = 'none';
+}
+function showLearn(id) {
+  cancelAutoNext(); cleanupDemo(); mixMode = false; currentTopic = id; setActive(id);
+  const t = TOPIC_MAP[id];
+  $('app-content').innerHTML = `<div class="learn-section">${t.learn}</div><div id="demo-host"></div><button class="practice-button" id="go-practice">Let's Practice! 🎯</button>`;
+  if (t.demo) demoCleanup = t.demo($('demo-host'));
+  $('go-practice').onclick = newProblem;
+  $('next-problem').style.display = 'none';
+}
+function newProblem() {
+  cancelAutoNext();
+  cleanupDemo();
+  if (mixMode) { currentTopic = pick(ALL_TOPIC_IDS); setActive(null); }
+  if (!currentTopic) return;
+  const t = TOPIC_MAP[currentTopic];
+  current = generateUnique(currentTopic, t.gen); save(); answered = false; hintStep = 0; picked = null; wrongTries = 0;
+  const input = current.type === 'num'
+    ? `<input type="text" inputmode="numeric" pattern="[0-9]*" id="answer-input" autocomplete="off" aria-label="Your answer" placeholder="?">`
+    : `<div class="choices">${current.options.map((o, i) => `<button data-i="${i}">${esc(o)}</button>`).join('')}</div>`;
+  $('app-content').innerHTML = `<div class="problem-area"><div class="topic-tag">${mixMode ? '🎲 Smart Mix · ' : ''}${esc(t.name)} · Endless Quiz <span class="lvl-chip" id="lvl-chip" title="Gets harder as you get answers right">Level ${stars(getLevel(currentTopic))}</span></div>
+    <p class="q">${current.q}</p>${current.visual ? `<div class="visual">${current.visual}</div>` : ''}${input}
+    <div class="action-buttons">${current.type === 'num' ? '<button class="check-btn" id="check-btn">Check ✔️</button>' : ''}<button class="help-btn" id="hint-btn">Hint 💡</button></div>
+    <div id="hint-area"></div><div id="feedback"></div></div>`;
+  if (current.type === 'num') {
+    const inp = $('answer-input');
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkAnswer(); });
+    if (window.matchMedia && window.matchMedia('(pointer:fine)').matches) inp.focus();
+    $('check-btn').onclick = checkAnswer;
+  } else {
+    document.querySelectorAll('.choices button').forEach(b => b.addEventListener('click', () => {
+      if (answered || b.disabled) return;
+      picked = current.options[+b.dataset.i];
+      document.querySelectorAll('.choices button').forEach(x => x.classList.remove('picked')); b.classList.add('picked');
+      checkAnswer();
+    }));
+  }
+  $('hint-btn').onclick = showHint;
+  $('next-problem').style.display = 'none';
+}
+function showHint() {
+  if (!current) return;
+  const h = current.hints || [];
+  if (hintStep < h.length) { $('hint-area').textContent = '💡 ' + h[hintStep]; hintStep++; }
+  if (hintStep >= h.length) $('hint-btn').disabled = true;
+}
+function checkAnswer() {
+  if (!current || answered) return;
+  let given;
+  if (current.type === 'num') {
+    const v = ($('answer-input').value || '').trim();
+    if (v === '') { setFb('Type a number first! ✏️', false); return; }
+    if (!/^-?\d+$/.test(v)) { setFb('Numbers only please! 🔢', false); return; }
+    given = Number(v);
+  } else { if (picked === null) { setFb('Tap an answer! 👆', false); return; } given = picked; }
+  const ok = current.type === 'num' ? given === current.a : String(given) === String(current.a);
+  if (ok) {
+    answered = true; state.score++; state.streak++; state.totalCorrect++;
+    if (mixMode) state.mixCorrect++;
+    if (state.score > state.best) state.best = state.score;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+    state.progress[currentTopic] = (state.progress[currentTopic] || 0) + 1;
+    if (wrongTries === 0) { const d = recordDifficulty(currentTopic, true); if (d > 0) sfx('levelup'); toast(`⬆️ Level up! ${TOPIC_MAP[currentTopic].name} is now ${stars(getLevel(currentTopic))}`); }
+    else state.diffStreak[currentTopic] = 0;
+    setFb(pick(['Awesome! 🎉','Great job! ⭐','You got it! 🙌','Super smart! 🧠','Woohoo! 🚀','Brilliant! 🌈']) + (current.explain ? ' ' + current.explain : ''), true);
+    markChoices(); catRun();
+    if (state.streak % 5 === 0) { toast(`🔥 ${state.streak} in a row! Amazing!`); burst(['🎉','⭐','🌟','🎊','✨'], 26); }
+    save(); updateScores(); updateProgress(); updateNavMarks(); checkBadges();
+    $('next-problem').style.display = 'inline-block';
+    sfx('correct'); scheduleAutoNext();
+    if (overallProgress() >= 100 && !state.fireworksShownAt100) { state.fireworksShownAt100 = true; save(); setTimeout(startFireworks, 1200); }
+  } else {
+    wrongTries++; state.streak = 0; sfx('wrong');
+    if (wrongTries === 1) recordDifficulty(currentTopic, false);
+    save(); updateScores();
+    // 2–3 choice questions reveal after 1 miss; 4-choice and number questions get 2 tries
+    const maxTries = (current.type === 'mc' && current.options.length <= 3) ? 1 : 2;
+    if (wrongTries >= maxTries) {
+      answered = true;
+      setFb(`Good try! The answer is ${current.a}.` + (current.explain ? ' ' + current.explain : ''), false);
+      markChoices(); $('next-problem').style.display = 'inline-block';
+    } else {
+      setFb('Not quite — try again! You can do it 💪', false);
+      if (hintStep === 0) showHint();
+      if (current.type === 'mc') document.querySelectorAll('.choices button').forEach(b => { if (current.options[+b.dataset.i] === picked) { b.classList.add('wrong'); b.disabled = true; } });
+      picked = null;
+    }
+  }
+}
+function markChoices() {
+  if (current.type !== 'mc') return;
+  document.querySelectorAll('.choices button').forEach(b => { const o = current.options[+b.dataset.i];
+    if (String(o) === String(current.a)) b.classList.add('right'); else if (o === picked) b.classList.add('wrong'); });
+}
+function setFb(msg, ok) { const f = $('feedback'); f.textContent = msg; f.className = ok ? 'correct' : 'incorrect'; }
+function updateScores() { $('score-value').textContent = state.score; $('best-score-value').textContent = state.best; $('streak-value').textContent = state.streak; $('best-streak-value').textContent = state.bestStreak; }
+function overallProgress() {
+  const sum = ALL_TOPIC_IDS.reduce((a, id) => a + Math.min(state.progress[id] || 0, TARGET_COMPLETIONS_PER_TOPIC), 0);
+  return Math.round(100 * sum / (ALL_TOPIC_IDS.length * TARGET_COMPLETIONS_PER_TOPIC));
+}
+function updateProgress() { const p = overallProgress(), f = $('progress-bar-fill'); f.style.width = Math.max(p, 8) + '%'; f.textContent = p + '%'; }
+
+/* ================= FIREWORKS + CHALLENGE ================= */
+let fwRaf = null;
+function startFireworks() {
+  cancelAutoNext();
+  const cv = $('fireworks-canvas');
+  if (cv.style.display === 'block') return;
+  cv.style.display = 'block'; $('fireworks-message-overlay').style.display = 'flex';
+  const dpr = window.devicePixelRatio || 1; cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+  const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  let parts = [], tick = 0;
+  const boom = () => { const x = rnd(50, innerWidth - 50), y = rnd(50, innerHeight / 2), hue = rnd(0, 360);
+    for (let i = 0; i < 60; i++) { const a = Math.random() * Math.PI * 2, sp = Math.random() * 5 + 1; parts.push({x, y, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp, life:70, hue:hue + rnd(-20, 20)}); } };
+  (function loop() {
+    ctx.fillStyle = 'rgba(0,0,0,0.18)'; ctx.fillRect(0, 0, innerWidth, innerHeight);
+    if (tick++ % 30 === 0) boom();
+    parts = parts.filter(p => p.life > 0);
+    parts.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.life--; ctx.fillStyle = `hsla(${p.hue},100%,60%,${p.life/70})`; ctx.fillRect(p.x, p.y, 3, 3); });
+    fwRaf = requestAnimationFrame(loop);
+  })();
+  burst(['🎆','🎇','🌟','🔬','🚀','🧮'], 30);
+}
+function closeFireworks() { // only closes the celebration — lifetime progress, medals, score and badges are never wiped
+  cancelAnimationFrame(fwRaf); $('fireworks-canvas').style.display = 'none'; $('fireworks-message-overlay').style.display = 'none';
+  save(); updateProgress(); updateNavMarks(); renderShelf();
+}
+let challenge = null;
+function makeChallenge() { // a little harder, still kid-level; answers computed
+  const t = pick(['missing','mult','twostep','missingMul']);
+  if (t === 'missing') { const a = rnd(10, 60), b = rnd(5, 40); return { q:`${a} + ? = ${a + b}`, a:b }; }
+  if (t === 'mult') { const a = rnd(3, 12), b = rnd(3, 12); return { q:`${a} × ${b} = ?`, a:a * b }; }
+  if (t === 'missingMul') { const a = rnd(2, 10), b = rnd(2, 10); return { q:`${a} × ? = ${a * b}`, a:b }; }
+  const a = rnd(2, 9), b = rnd(2, 9), c = rnd(1, 20); return { q:`(${a} × ${b}) + ${c} = ?`, a:a * b + c };
+}
+function openChallenge() { cancelAutoNext(); challenge = makeChallenge(); $('challenge-question-text').textContent = challenge.q; $('challenge-answer-input').value = ''; $('challenge-feedback').textContent = ''; $('challenge-modal').style.display = 'block'; }
+function checkChallengeAnswer() {
+  const raw = ($('challenge-answer-input').value || '').trim();
+  if (/^-?\d+$/.test(raw) && Number(raw) === challenge.a) {
+    $('challenge-feedback').textContent = '🎉 Correct! Fireworks time!'; $('challenge-feedback').className = 'correct';
+    state.fireworksWon = true; save(); checkBadges();
+    setTimeout(() => { $('challenge-modal').style.display = 'none'; startFireworks(); }, 800);
+  } else { $('challenge-feedback').textContent = 'Not yet — try again! 💪'; $('challenge-feedback').className = 'incorrect'; }
+}
+
+
+/* ================= OPEN-IN-BROWSER TIP (WhatsApp / in-app only) ================= */
+function needsOpenInBrowserTip() {
+  try {
+    const ua = navigator.userAgent || '';
+    // Known in-app browsers (WhatsApp, social apps, etc.)
+    if (/WhatsApp|FBAN|FBAV|Facebook|Instagram|Line\/|Twitter|LinkedInApp|Snapchat|Pinterest|TikTok|ByteLocale|BytedanceWebview|Messenger/i.test(ua)) return true;
+    // Android WebView
+    if (/; wv\)|\bwv\b/i.test(ua)) return true;
+    // Embedded preview (Drive viewer, etc.)
+    try { if (window.top !== window.self) return true; } catch (e) { return true; }
+    // iOS WKWebView: AppleWebKit without Safari / CriOS / FxiOS / EdgiOS
+    const apple = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (apple && /AppleWebKit/i.test(ua) && !/Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS/i.test(ua)) return true;
+    return false;
+  } catch (e) { return true; }
+}
+function browserTipStepsHtml() {
+  const ua = navigator.userAgent || '';
+  const apple = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const android = /Android/i.test(ua);
+  if (apple) {
+    return '<li>Tap <b>Share</b> (□↑).</li><li>Choose <b>Open in Safari</b>.</li><li>Or save to <b>Files</b>, then open the file with Safari.</li>';
+  }
+  if (android) {
+    return '<li>Tap the <b>⋮</b> menu (three dots).</li><li>Choose <b>Open in Chrome</b> or <b>Open in browser</b>.</li><li>If you only have a file: open it with <b>Chrome</b>, not the preview.</li>';
+  }
+  return '<li>Open this file in <b>Chrome</b>, <b>Safari</b>, or <b>Firefox</b> (not an app preview).</li>';
+}
+function setupOpenTips() {
+  const tip = $('browser-tip');
+  if (!tip) return;
+  const show = needsOpenInBrowserTip();
+  tip.classList.toggle('hidden', !show);
+  if (!show) return;
+  const body = $('browser-tip-body');
+  const steps = $('browser-tip-steps');
+  if (body) body.textContent = 'This app preview may not run the quizzes or save stickers. Open the game in your real browser.';
+  if (steps) steps.innerHTML = browserTipStepsHtml();
+}
+
+/* ================= AUTO-NEXT (correct answers only) ================= */
+const AUTO_NEXT_MS = 1100;
+let autoNextTimer = null;
+function cancelAutoNext() { if (autoNextTimer) { clearTimeout(autoNextTimer); autoNextTimer = null; } }
+function anyModalOpen() { return ['challenge-modal','rewards-modal','name-modal'].some(id => { const m = $(id); return m && m.style.display === 'block'; }) || ($('fireworks-canvas') && $('fireworks-canvas').style.display === 'block'); }
+function scheduleAutoNext() {
+  cancelAutoNext();
+  const topic = currentTopic, q = current;
+  autoNextTimer = setTimeout(() => { autoNextTimer = null;
+    if (current !== q || currentTopic !== topic || !answered || anyModalOpen()) return;
+    newProblem(); }, AUTO_NEXT_MS);
+}
+
+/* ================= SOUND EFFECTS (Web Audio, no files; short blips only, mute persists) ================= */
+let audioCtx = null;
+function ensureAudio() {
+  if (!state.soundOn) return null;
+  try { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === 'suspended' && audioCtx.resume) audioCtx.resume();
+    return audioCtx; } catch (e) { return null; }
+}
+function tone(ac, freq, start, dur, type, vol) {
+  const o = ac.createOscillator(), g = ac.createGain(), t0 = ac.currentTime + start;
+  o.type = type || 'sine'; o.frequency.setValueAtTime(freq, t0);
+  g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol || 0.12, t0 + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  o.connect(g); g.connect(ac.destination); o.start(t0); o.stop(t0 + dur + 0.02);
+}
+const SFX = {
+  correct: ac => { tone(ac, 660, 0, 0.12, 'triangle'); tone(ac, 880, 0.1, 0.12, 'triangle'); tone(ac, 1175, 0.2, 0.18, 'triangle'); },
+  wrong: ac => { tone(ac, 330, 0, 0.16, 'sine', 0.08); tone(ac, 262, 0.14, 0.22, 'sine', 0.08); },
+  levelup: ac => { [523, 659, 784, 1047].forEach((f, i) => tone(ac, f, 0.35 + i * 0.08, 0.14, 'square', 0.05)); },
+  tap: ac => { tone(ac, 900, 0, 0.04, 'sine', 0.05); }
+};
+function sfx(name) { if (!state.soundOn || !SFX[name]) return; const ac = ensureAudio(); if (!ac) return; try { SFX[name](ac); } catch (e) {} }
+function renderSoundBtn() { const b = $('sound-btn'); if (!b) return; b.textContent = state.soundOn ? '🔊 Sound' : '🔇 Muted'; b.setAttribute && b.setAttribute('aria-pressed', String(!state.soundOn)); }
+function toggleSound() { state.soundOn = !state.soundOn; save(); renderSoundBtn(); if (state.soundOn) sfx('tap'); }
+
+/* ================= PLAYER NAME ================= */
+function escHtml(x) { return String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function renderPlayer() { const t = $('player-hi-text'); if (t) t.textContent = state.playerName ? `Hi, ${state.playerName}! 👋` : 'Hi, Explorer! 👋'; }
+function setPlayerName(raw) { const n = cleanName(raw); if (!n) return false; state.playerName = n; save(); renderPlayer(); return true; }
+function openNameModal() { cancelAutoNext(); const i = $('name-input'); i.value = state.playerName || ''; $('name-error').textContent = ''; $('name-modal').style.display = 'block'; try { i.focus(); } catch (e) {} }
+function submitName() {
+  const raw = $('name-input').value; const err = nameError(raw);
+  if (err) { $('name-error').textContent = err; return; }
+  setPlayerName(raw); $('name-modal').style.display = 'none'; ensureAudio(); sfx('tap');
+  if (!currentTopic) showWelcome();
+}
+
+/* ================= INIT ================= */
+function initializeApp() {
+  syncMedals(); save();
+  setupOpenTips();
+  buildNav(); updateScores(); updateProgress(); renderShelf(); showWelcome();
+  $('next-problem').onclick = newProblem;
+  $('smart-mix-btn').onclick = () => { mixMode = true; newProblem(); };
+  $('rewards-btn').onclick = () => { renderBadgeGrid(); $('rewards-modal').style.display = 'block'; };
+  $('rewards-close').onclick = () => { $('rewards-modal').style.display = 'none'; };
+  $('challenge-fireworks-btn').onclick = openChallenge;
+  $('challenge-submit').onclick = checkChallengeAnswer;
+  $('challenge-close').onclick = () => { $('challenge-modal').style.display = 'none'; };
+  $('challenge-answer-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkChallengeAnswer(); });
+  $('claim-btn').onclick = closeFireworks;
+  $('sound-btn').onclick = toggleSound; renderSoundBtn();
+  $('change-name-btn').onclick = openNameModal;
+  $('name-start').onclick = submitName;
+  $('name-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitName(); });
+  // iOS: unlock audio on the first user gesture
+  document.addEventListener('pointerdown', function unlock() { ensureAudio(); document.removeEventListener('pointerdown', unlock); });
+  renderPlayer();
+  if (!state.playerName) openNameModal();
+}
+document.addEventListener('DOMContentLoaded', initializeApp);
+</script>
+</body>
+</html>
