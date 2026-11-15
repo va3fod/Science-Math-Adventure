@@ -21,7 +21,7 @@ Science & Math Adventure is an interactive science and math learning game for ki
 - Open it in your browser on a phone, tablet, or computer: [https://va3fod.github.io/Science-Math-Adventure/](https://va3fod.github.io/Science-Math-Adventure/)
 - Or download [`index.html`](./index.html) and open it locally — no install, and it works offline once downloaded.
 
-A copy of the v2.2.3 build is also attached to the [v2.2.3 release](https://github.com/va3fod/Science-Math-Adventure/releases/tag/v2.2.3) as `Science_Math_Adventure_V2.2.3.html`.
+A copy of the v2.2.4 build is also attached to the [v2.2.4 release](https://github.com/va3fod/Science-Math-Adventure/releases/tag/v2.2.4) as `Science_Math_Adventure_V2.2.4.html`.
 
 ## Screenshots
 
