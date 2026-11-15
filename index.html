@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#7c3aed">
-<title>Science &amp; Math Adventure! V2.2.5 · Ages 6–10</title>
+<title>Science &amp; Math Adventure! V2.3.0 · Ages 6–10</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
@@ -103,6 +103,63 @@ footer{margin-top:10px;font-size:1em;color:#4b5563;text-align:center}.app-credit
 #browser-tip ol{margin:8px 0 0;padding-left:1.3em}
 #browser-tip.hidden{display:none!important}
 #browser-tip .tip-note{margin-top:8px;font-size:.9em;opacity:.95}
+/* ===== Chain Reaction Lab (V2.3.0) ===== */
+.lab [hidden]{display:none!important}
+#lab-btn{background:linear-gradient(90deg,#f97316,#14b8a6)}
+nav button[data-lab]{background:linear-gradient(90deg,#f97316,#0d9488)}
+nav button[data-lab].active{background:#16a34a}
+.lab-head{text-align:center}.lab-head h3{margin-bottom:6px}.lab-head p{margin:4px 0 8px}
+.lab-total{display:inline-block;background:#fef3c7;color:#92400e;border:2px solid #f59e0b;border-radius:999px;padding:3px 14px;font-weight:800}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.lab-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border:2px solid #c4b5fd;border-radius:16px;padding:10px 8px 8px;cursor:pointer;font-family:inherit;color:#3b0764;box-shadow:0 3px 6px rgba(0,0,0,.08);transition:transform .15s}
+.lab-card:hover:not(:disabled){transform:translateY(-2px);border-color:#7c3aed}
+.lab-card.done{border-color:#22c55e;background:#f0fdf4}
+.lab-card.locked{opacity:.55;cursor:not-allowed;background:#f1f5f9}
+.lab-card b{font-size:1em}.lab-card small{color:#6b7280;font-weight:600;font-size:.78em;line-height:1.2;text-align:center}
+.lab-n{position:absolute;top:6px;left:9px;font-weight:800;color:#a78bfa;font-size:.85em}
+.lab-em{font-size:1.9em;line-height:1.2}
+.lab-st{color:#f59e0b;font-size:1.15em;letter-spacing:2px}
+.lab-brain{position:absolute;top:5px;right:8px;font-size:.95em}
+.lab-diagram{background:#fff;border-radius:12px;padding:6px;margin:6px auto;max-width:260px}
+.lab-diagram svg{width:100%;height:auto;display:block}
+.lab-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin-top:8px}
+.practice-button.lab-inline{display:inline-block;margin:6px 0 0}
+.practice-button.lab-alt{background:#7c3aed}.practice-button.lab-alt:hover{background:#6d28d9}
+.lab-link{background:none;border:none;color:#6d28d9;text-decoration:underline;font-weight:700;cursor:pointer;font-size:.95em}
+.lab-dots{display:flex;gap:6px;justify-content:center;margin:4px 0}
+.lab-dots span{width:12px;height:12px;border-radius:50%;background:#e2e8f0;border:2px solid #c4b5fd}
+.lab-dots span.ok{background:#22c55e;border-color:#16a34a}.lab-dots span.cur{background:#a78bfa;border-color:#7c3aed}
+.lab-choices button:disabled{cursor:default}
+.lab-hint{margin:10px auto 0;max-width:520px;padding:8px;background:#fffbeb;border:1px dashed #fcd34d;border-radius:8px;font-style:italic;color:#713f12}
+.lab-fb{font-size:1.08em;font-weight:700;margin-top:10px;min-height:24px;text-align:center}
+.lab-bonus{background:#ecfdf5;border:2px dashed #34d399;border-radius:10px;padding:6px 10px;color:#065f46;font-weight:700}
+.lab-unlock{text-align:center}
+.lab-build{text-align:center}
+.lab-title{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 10px;align-items:baseline;margin:2px 0 6px;color:#3b0764}
+.lab-title b{font-size:1.15em}.lab-title span{color:#475569;font-weight:600;font-size:.92em}
+.lab-stage{position:relative;border:3px solid #c4b5fd;border-radius:14px;overflow:hidden;background:#e0f2fe;max-width:640px;margin:0 auto}
+.lab-stage canvas{display:block;width:100%;height:auto;touch-action:none;cursor:pointer}
+.lab-tools{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;min-height:46px;margin:6px 0 2px}
+.lab-tools button{background:#ede9fe;border:2px solid #a78bfa;color:#4c1d95;border-radius:12px;font-size:1.25em;font-weight:800;min-width:48px;cursor:pointer}
+.lab-tools-tip{color:#6b7280;font-size:.88em;font-weight:600}
+.lab-sel{font-weight:800;color:#4c1d95}
+.lab-deg{display:inline-block;min-width:64px;font-weight:800;font-size:1.15em;color:#7c3aed;background:#fff;border-radius:10px;padding:4px 8px;border:2px solid #ddd6fe}
+.lab-tray{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;background:#faf5ff;border-radius:12px;padding:6px;margin:4px 0}
+.lab-tray-label{font-weight:800;color:#6d28d9;font-size:.9em}
+.lab-part{background:#fff;border:2px solid #f59e0b;color:#78350f;border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer;font-size:.95em}
+.lab-part:disabled{opacity:.45;cursor:default}
+.lab-ctrl{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:6px}
+.lab-ctrl button{border:none;color:#fff;border-radius:12px;padding:8px 14px;font-weight:800;font-size:1em;cursor:pointer;box-shadow:0 3px 5px rgba(0,0,0,.12)}
+.lab-play{background:#16a34a}.lab-play:disabled{background:#86efac}.lab-reset{background:#3b82f6}.lab-hintb{background:#f59e0b}.lab-menu{background:#64748b}
+.lab-msg{margin-top:6px;min-height:22px;font-weight:700;color:#4c1d95;font-size:.98em}
+.lab-msg.warn{color:#b45309}.lab-msg.ok{color:#15803d}.lab-msg.hint{color:#713f12;background:#fffbeb;border:1px dashed #fcd34d;border-radius:8px;padding:6px}
+.lab-win{margin-top:10px;background:linear-gradient(135deg,#fef9c3,#dcfce7);border:3px solid #22c55e;border-radius:16px;padding:10px 12px;animation:labpop .35s ease-out}
+.lab-win h3{margin:2px 0 6px;color:#15803d}
+.lab-win-stars{font-size:2.2em;color:#f59e0b;letter-spacing:6px;line-height:1.1}
+.lab-reflect{font-size:1.05em;color:#1e293b;margin:6px 0}
+.lab-win-sub{color:#475569;font-weight:600;font-size:.9em;margin:4px 0}
+@keyframes labpop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+@media(max-width:420px){.lab-ctrl button{padding:8px 10px;font-size:.95em}.lab-grid{grid-template-columns:1fr 1fr;gap:8px}.lab-card{padding:8px 4px 6px}.lab-part{padding:5px 9px;font-size:.9em}}
 </style>
 </head>
 <body>
@@ -176,13 +233,14 @@ footer{margin-top:10px;font-size:1em;color:#4b5563;text-align:center}.app-credit
 <div class="container">
   <header>
     <h1>Science &amp; Math Adventure! 🚀 <button id="challenge-fireworks-btn" title="Unlock Fireworks with a Challenge!" aria-label="Fireworks challenge">🎆</button></h1>
-    <p class="subtitle">V2.2.5 · Ages 6–10 · Learn, play, and collect stickers!</p>
+    <p class="subtitle">V2.3.0 · Ages 6–10 · Learn, play, and collect stickers!</p>
     <p class="app-credit">Made by Val, VA3FOD</p>
     <p id="visit-count" class="visit-count" hidden></p>
   </header>
   <div id="player-hi"><span id="player-hi-text"></span><button id="change-name-btn" type="button">Change name</button></div>
   <div class="top-actions">
     <button id="smart-mix-btn">🎲 Smart Mix Quiz</button>
+    <button id="lab-btn">🧪 Chain Reaction Lab</button>
     <button id="rewards-btn">🏆 My Stickers</button>
     <button id="sound-btn" aria-label="Sound on/off" style="background:#64748b">🔊</button>
   </div>
@@ -1219,9 +1277,535 @@ const MATH_TOPICS = new Set(TOPICS.filter(t => t.cat === 'math').map(t => t.id))
 function hasMedal(id) { return state.medals.includes(id) || (state.progress[id] || 0) >= TARGET_COMPLETIONS_PER_TOPIC; }
 function syncMedals() { ALL_TOPIC_IDS.forEach(id => { if ((state.progress[id] || 0) >= TARGET_COMPLETIONS_PER_TOPIC && !state.medals.includes(id)) state.medals.push(id); }); }
 
+/* ================= CHAIN REACTION LAB (V2.3.0) — tiny deterministic 2D physics =================
+   World is 480×360 "lab units", y points down. Fixed timestep 1/120 s, so the same parts always give the same run. */
+const LAB = { W:480, H:360, DT:1/120, G:980, MAXT:14, FLOOR:340, VMAX:1300, ITER:10 };
+const D2R = Math.PI / 180;
+function labEnds(r) { const c = Math.cos(r.ang), s = Math.sin(r.ang); r.c = c; r.s = s;
+  r.x1 = r.px - c * r.a; r.y1 = r.py - s * r.a; r.x2 = r.px + c * r.b; r.y2 = r.py + s * r.b; }
+function labRod(o) {
+  const r = { isRod:true, kind:o.kind || 'plank', px:o.x, py:o.y, a:o.a || 0, b:o.b || 0, ang:o.ang || 0, w:0, th:o.th || 4,
+    e:o.e == null ? 0.2 : o.e, mu:o.mu == null ? 0.08 : o.mu, dyn:!!o.dyn, m:o.m || 1, com:o.com || 0,
+    lo:o.lo == null ? -1e9 : o.lo, hi:o.hi == null ? 1e9 : o.hi, invI:0, speed:o.speed || 0, wd:o.wd || 0, ref:o.ref || null };
+  if (r.dyn) { const L = r.a + r.b; r.invI = 1 / (r.m * (r.a * r.a * r.a + r.b * r.b * r.b) / (3 * L)); }
+  labEnds(r); return r;
+}
+function labBall(o) { return { isBall:true, x:o.x, y:o.y, vx:o.vx || 0, vy:o.vy || 0, r:o.r || 10, m:o.m || 1, invM:1 / (o.m || 1),
+  out:false, cd:0, roll:0, color:o.color || 'red', held:!!o.held }; }
+function labClosest(r, x, y) {
+  const dx = r.x2 - r.x1, dy = r.y2 - r.y1, L2 = dx * dx + dy * dy;
+  let t = L2 > 0 ? ((x - r.x1) * dx + (y - r.y1) * dy) / L2 : 0; t = t < 0 ? 0 : t > 1 ? 1 : t;
+  return [r.x1 + dx * t, r.y1 + dy * t];
+}
+function labVelAt(b, x, y) { if (b.isBall) return [b.vx, b.vy]; if (!b.dyn) return [0, 0]; return [-b.w * (y - b.py), b.w * (x - b.px)]; }
+function labInvMass(b, nx, ny, x, y) { if (b.isBall) return b.invM; if (!b.dyn) return 0; const rn = (x - b.px) * ny - (y - b.py) * nx; return rn * rn * b.invI; }
+function labImpulse(b, jx, jy, x, y) { if (b.isBall) { b.vx += jx * b.invM; b.vy += jy * b.invM; } else if (b.dyn) b.w += ((x - b.px) * jy - (y - b.py) * jx) * b.invI; }
+/* Parts the player can place. len = plank length; spring.speed = launch speed. */
+const PART_DEFS = {
+  ramp:   { name:'Ramp', icon:'📏', len:120, rot:true, tip:'A plank. Tilt it to make a slope.' },
+  short:  { name:'Short ramp', icon:'➖', len:70, rot:true, tip:'A small plank.' },
+  bouncy: { name:'Bouncy pad', icon:'🟣', len:64, rot:true, tip:'Stretchy rubber: gives back almost all the energy.' },
+  spring: { name:'Spring', icon:'🌀', len:46, rot:true, speed:600, tip:'Squashes, then pushes back hard!' },
+  domino: { name:'Domino', icon:'🎳', h:40, rot:false, tip:'Push it and it tips over.' },
+  seesaw: { name:'Seesaw', icon:'⚖️', len:150, rot:false, tip:'A lever on a pivot.' }
+};
+function labPartRod(p) {
+  const d = PART_DEFS[p.t], ang = (p.a || 0) * D2R;
+  if (p.t === 'ramp' || p.t === 'short') return labRod({ kind:'plank', x:p.x, y:p.y, a:d.len / 2, b:d.len / 2, ang, th:4, e:0.15, mu:0.06, ref:p });
+  if (p.t === 'bouncy') return labRod({ kind:'bouncy', x:p.x, y:p.y, a:d.len / 2, b:d.len / 2, ang, th:5, e:0.9, mu:0.05, ref:p });
+  if (p.t === 'spring') return labRod({ kind:'spring', x:p.x, y:p.y, a:d.len / 2, b:d.len / 2, ang, th:5, e:0.3, speed:d.speed, ref:p });
+  if (p.t === 'domino') return labDomino(p.x, p.y, p);
+  if (p.t === 'seesaw') return labSeesaw(p.x, p.y, d.len, p);
+}
+function labDomino(x, baseY, ref) { return labRod({ kind:'domino', x, y:baseY, a:0, b:40, ang:-Math.PI / 2, th:4, wd:9, dyn:true, m:0.6, e:0.05, mu:0.3, lo:-Math.PI / 2 - 1.5, hi:-Math.PI / 2 + 1.5, ref }); }
+function labSeesaw(x, y, len, ref, tilt) { const L = len / 2, t = (tilt == null ? 20 : tilt) * D2R;
+  return labRod({ kind:'seesaw', x, y, a:L, b:L, ang:t, th:5, dyn:true, m:1.2, e:0.1, mu:0.3, lo:-0.38, hi:0.38, ref }); }
+/* Build a fresh world from a level + the parts placed by the player. */
+function labWorld(lv, placed) {
+  const W = { lv, t:0, steps:0, balls:[], rods:[], won:false, winT:0, done:false, rest:0, events:[], hits:{} };
+  W.rods.push(labRod({ kind:'floor', x:LAB.W / 2, y:LAB.FLOOR + 6, a:400, b:400, th:6, e:0.3, mu:0.15 }));
+  (lv.walls || []).forEach(s => { const dx = s[2] - s[0], dy = s[3] - s[1], L = Math.hypot(dx, dy);
+    W.rods.push(labRod({ kind:s[4] || 'wall', x:(s[0] + s[2]) / 2, y:(s[1] + s[3]) / 2, a:L / 2, b:L / 2, ang:Math.atan2(dy, dx), th:s[5] || 5, e:s[4] === 'bouncy' ? 0.9 : 0.2, mu:0.08 })); });
+  const g = lv.goal; if (g.type === 'basket') { const x0 = g.x - g.w / 2, x1 = g.x + g.w / 2, yb = g.y + g.h;
+    [[x0, g.y, x0, yb], [x0, yb, x1, yb], [x1, g.y, x1, yb]].forEach(s => { const dx = s[2] - s[0], dy = s[3] - s[1], L = Math.hypot(dx, dy);
+      W.rods.push(labRod({ kind:'basket', x:(s[0] + s[2]) / 2, y:(s[1] + s[3]) / 2, a:L / 2, b:L / 2, ang:Math.atan2(dy, dx), th:3, e:0.1, mu:0.3 })); }); }
+  (lv.dominoes || []).forEach(d => W.rods.push(labDomino(d[0], d[1])));
+  (lv.seesaws || []).forEach(s => W.rods.push(labSeesaw(s[0], s[1], s[2], null, s[3])));
+  (lv.balls || []).forEach(b => W.balls.push(labBall(b)));
+  (placed || []).forEach(p => { const r = labPartRod(p); if (r) W.rods.push(r); });
+  return W;
+}
+function labDetect(W) {
+  const C = [], B = W.balls, R = W.rods;
+  for (let i = 0; i < B.length; i++) { const a = B[i]; if (a.out) continue;
+    for (let j = i + 1; j < B.length; j++) { const b = B[j]; if (b.out) continue;
+      const dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy), rr = a.r + b.r;
+      if (d < rr && d > 1e-9) C.push({ A:a, B:b, nx:dx / d, ny:dy / d, px:b.x + dx / d * b.r, py:b.y + dy / d * b.r, pen:rr - d, e:0.85, mu:0.05 }); }
+    for (let k = 0; k < R.length; k++) { const r = R[k];
+      const q = labClosest(r, a.x, a.y), dx = a.x - q[0], dy = a.y - q[1], d = Math.hypot(dx, dy), rr = a.r + r.th;
+      if (d >= rr || d < 1e-9) continue;
+      const nx = dx / d, ny = dy / d;
+      if (r.kind === 'spring') { const fx = r.s, fy = -r.c; // face normal of the pad
+        if (nx * fx + ny * fy > 0.35) { if (a.cd <= 0) { const vn = a.vx * fx + a.vy * fy; a.vx += (r.speed - vn) * fx; a.vy += (r.speed - vn) * fy; a.cd = 0.12; a.x += nx * (rr - d); a.y += ny * (rr - d); W.events.push({ type:'spring', x:a.x, y:a.y }); r.boing = W.t; }
+          continue; } }
+      C.push({ A:a, B:r, nx, ny, px:q[0] + nx * r.th, py:q[1] + ny * r.th, pen:rr - d, e:r.e, mu:r.mu, kind:r.kind }); } }
+  for (let i = 0; i < R.length; i++) for (let j = 0; j < R.length; j++) { if (i === j) continue; const A = R[i], Bq = R[j];
+    if (!A.dyn) continue; // endpoints of a moving rod against any other rod
+    for (let e = 0; e < 2; e++) { const ex = e ? A.x2 : A.x1, ey = e ? A.y2 : A.y1;
+      const q = labClosest(Bq, ex, ey), dx = ex - q[0], dy = ey - q[1], d = Math.hypot(dx, dy), rr = A.th + Bq.th;
+      if (d >= rr || d < 1e-9) continue;
+      if (Math.abs((ex - A.px) * dy / d - (ey - A.py) * dx / d) < 1e-6) continue; // touching at the pivot: nothing to turn
+      C.push({ A, B:Bq, nx:dx / d, ny:dy / d, px:q[0] + dx / d * Bq.th, py:q[1] + dy / d * Bq.th, pen:rr - d, e:0.05, mu:0.2 }); } }
+  return C;
+}
+function labStep(W) {
+  const dt = LAB.DT, G = LAB.G;
+  for (const b of W.balls) { if (b.out) continue; b.vy += G * dt; if (b.cd > 0) b.cd -= dt; }
+  for (const r of W.rods) { if (!r.dyn) continue; let tau = 0;
+    if (r.kind === 'domino') { const t = r.ang + Math.PI / 2, h = r.b, w = r.wd / 2, st = Math.sin(t), ct = Math.cos(t);
+      if (Math.abs(t) > 1e-9) tau = r.m * G * ((h / 2) * st - Math.sign(t) * w * ct);
+      if (Math.abs(t) < Math.atan2(w, h / 2)) r.w *= 0.96; }
+    else tau = r.m * G * r.com * Math.cos(r.ang);
+    r.w += tau * r.invI * dt; r.w *= 0.9995; }
+  const C = labDetect(W);
+  for (const c of C) {
+    c.kA = labInvMass(c.A, c.nx, c.ny, c.px, c.py) + labInvMass(c.B, c.nx, c.ny, c.px, c.py);
+    c.tx = -c.ny; c.ty = c.nx;
+    c.kT = labInvMass(c.A, c.tx, c.ty, c.px, c.py) + labInvMass(c.B, c.tx, c.ty, c.px, c.py);
+    const va = labVelAt(c.A, c.px, c.py), vb = labVelAt(c.B, c.px, c.py), vn = (va[0] - vb[0]) * c.nx + (va[1] - vb[1]) * c.ny;
+    const thr = c.kind === 'bouncy' ? 15 : 45; c.bias = vn < -thr ? -c.e * vn : 0; c.jn = 0; c.jt = 0;
+    if (vn < -140) { W.events.push({ type:'hit', v:-vn, kind:c.kind || 'ball', x:c.px, y:c.py }); }
+  }
+  for (let it = 0; it < LAB.ITER; it++) for (const c of C) { if (c.kA < 1e-12) continue;
+    const va = labVelAt(c.A, c.px, c.py), vb = labVelAt(c.B, c.px, c.py), rx = va[0] - vb[0], ry = va[1] - vb[1];
+    const vn = rx * c.nx + ry * c.ny; let nj = c.jn + (c.bias - vn) / c.kA; if (nj < 0) nj = 0; const dj = nj - c.jn; c.jn = nj;
+    labImpulse(c.A, dj * c.nx, dj * c.ny, c.px, c.py); labImpulse(c.B, -dj * c.nx, -dj * c.ny, c.px, c.py);
+    if (c.kT > 1e-12) { const va2 = labVelAt(c.A, c.px, c.py), vb2 = labVelAt(c.B, c.px, c.py);
+      const vt = (va2[0] - vb2[0]) * c.tx + (va2[1] - vb2[1]) * c.ty, mx = c.mu * c.jn;
+      let nt = c.jt - vt / c.kT; nt = nt < -mx ? -mx : nt > mx ? mx : nt; const dt2 = nt - c.jt; c.jt = nt;
+      labImpulse(c.A, dt2 * c.tx, dt2 * c.ty, c.px, c.py); labImpulse(c.B, -dt2 * c.tx, -dt2 * c.ty, c.px, c.py); } }
+  for (const b of W.balls) { if (b.out) continue; const v = Math.hypot(b.vx, b.vy); if (v > LAB.VMAX) { b.vx *= LAB.VMAX / v; b.vy *= LAB.VMAX / v; }
+    b.x += b.vx * dt; b.y += b.vy * dt; b.roll += b.vx * dt / b.r;
+    if (b.y > LAB.H + 60 || b.x < -60 || b.x > LAB.W + 60) b.out = true; }
+  for (const r of W.rods) { if (!r.dyn) continue; r.ang += r.w * dt;
+    if (r.ang < r.lo) { r.ang = r.lo; if (r.w < 0) r.w = -r.w * 0.1; } if (r.ang > r.hi) { r.ang = r.hi; if (r.w > 0) r.w = -r.w * 0.1; } labEnds(r); }
+  for (const c of C) { const corr = Math.max(c.pen - 0.3, 0) * 0.7; if (!corr) continue;
+    if (c.A.isBall && c.B.isBall) { const s = c.A.invM + c.B.invM; c.A.x += c.nx * corr * c.A.invM / s; c.A.y += c.ny * corr * c.A.invM / s; c.B.x -= c.nx * corr * c.B.invM / s; c.B.y -= c.ny * corr * c.B.invM / s; }
+    else if (c.A.isBall) { c.A.x += c.nx * corr; c.A.y += c.ny * corr; }
+    else if (c.kA > 1e-12) { [[c.A, 1], [c.B, -1]].forEach(([r, sg]) => { if (!r.dyn) return; const rn = (c.px - r.px) * c.ny - (c.py - r.py) * c.nx;
+      r.ang += sg * corr * rn * r.invI / c.kA; r.ang = Math.min(r.hi, Math.max(r.lo, r.ang)); labEnds(r); }); } }
+  W.t += dt; W.steps++;
+  if (!W.won && labGoalHit(W)) { W.won = true; W.winT = W.t; W.events.push({ type:'goal' }); }
+  let moving = false;
+  for (const b of W.balls) if (!b.out && Math.hypot(b.vx, b.vy) > 6) moving = true;
+  for (const r of W.rods) if (r.dyn && Math.abs(r.w) > 0.05) moving = true;
+  W.rest = moving ? 0 : W.rest + 1;
+  if (W.t >= LAB.MAXT || W.rest > 90 || W.balls.every(b => b.out)) W.done = true;
+}
+function labGoalHit(W) {
+  const g = W.lv.goal;
+  if (g.type === 'basket') return W.balls.some(b => !b.out && b.x > g.x - g.w / 2 + 2 && b.x < g.x + g.w / 2 - 2 && b.y > g.y + 4 && b.y < g.y + g.h);
+  const hitR = g.r + 2;
+  if (W.balls.some(b => !b.out && Math.hypot(b.x - g.x, b.y - g.y) < hitR + b.r)) return true;
+  return W.rods.some(r => r.dyn && (q => Math.hypot(q[0] - g.x, q[1] - g.y) < hitR + r.th)(labClosest(r, g.x, g.y)));
+}
+/* Headless run: used by tests and by the level checker. */
+function labSimulate(lv, placed, maxT) {
+  const W = labWorld(lv, placed), lim = Math.round((maxT || LAB.MAXT) / LAB.DT);
+  while (!W.won && !W.done && W.steps < lim) labStep(W);
+  return { won:W.won, t:+W.t.toFixed(3), steps:W.steps, world:W };
+}
+
+/* ---- Lab levels: learn → quiz → build → reflect. Geometry is original; every level has a stored, test-verified reference solution. ---- */
+const LAB_LEVELS = [
+ { id:'drop', emoji:'🍎', name:'Drop It!', concept:'Gravity',
+   balls:[{x:80,y:50}], goal:{type:'basket', x:300, y:285, w:76, h:55}, parts:{ramp:1},
+   ref:[{t:'ramp',x:120,y:110,a:30}],
+   lesson:'<b>Gravity</b> is an invisible pull toward the Earth. Let go of a ball and gravity pulls it <b>straight down</b>, faster and faster. A slope can steer it sideways!',
+   diagram:'drop',
+   quiz:[
+    { q:'You let go of a ball. Which way does gravity pull it?', a:'Straight down', w:['Straight up','Sideways','It floats'], ex:'Earth’s gravity always pulls things down, toward the middle of the Earth.', hint:'Think of an apple falling from a tree 🍎' },
+    { q:'A falling ball goes…', a:'Faster and faster', w:['Slower and slower','The same speed the whole time'], ex:'Gravity keeps pulling, so a falling ball keeps speeding up.', hint:'Is a ball dropped from very high gentle or hard to catch?' },
+    { q:'How can you make a falling ball move sideways?', a:'Put a slope under it', w:['Shout at it','Switch off gravity'], ex:'A slope pushes the ball sideways while gravity pulls it down.', hint:'What do skateboarders roll down?' } ],
+   hint:'Put the ramp just under the ball and tilt it down toward the basket.',
+   reflect:'Gravity pulled the ball down, and your ramp steered it sideways into the basket!' },
+ { id:'road', emoji:'🛝', name:'Ramp Road', concept:'Height → speed (energy)',
+   balls:[{x:30,y:42}], walls:[[0,48,70,72],[250,225,250,340,'wall',6],[405,245,405,340,'pillar',8]], goal:{type:'basket', x:405, y:200, w:72, h:45}, parts:{ramp:2},
+   ref:[{t:'ramp',x:120,y:100,a:15},{t:'ramp',x:270,y:160,a:0}],
+   lesson:'A ball up high has <b>stored energy</b> (potential energy). Rolling down a ramp turns it into <b>motion energy</b> (kinetic energy). But a rolling ball can never climb <b>higher</b> than where it started!',
+   diagram:'energy',
+   quiz:[
+    { q:'Where does a ball have the most stored energy?', a:'At the top of the ramp', w:['At the bottom','In the middle','Never'], ex:'The higher it is, the more stored (potential) energy it has.', hint:'Stored energy comes from being high up.' },
+    { q:'As a ball rolls down a ramp, it…', a:'Speeds up', w:['Slows down','Stops','Gets heavier'], ex:'Its stored energy turns into motion energy, so it goes faster.', hint:'Think of riding your bike down a hill 🚲' },
+    { q:'Can a ball with no push roll higher than where it started?', a:'No', w:['Yes'], ex:'It can’t make new energy, so it can’t go higher than its start.', hint:'Where would the extra energy come from?' } ],
+   hint:'Make a zig-zag road: the first ramp catches the ball, the second keeps it high enough to reach the basket.',
+   reflect:'Your ramps turned height into speed: the ball’s stored energy became motion energy!' },
+ { id:'domino', emoji:'🎳', name:'Domino Dash', concept:'Momentum & collisions',
+   balls:[{x:70,y:50}], dominoes:[[200,340],[228,340],[256,340],[284,340],[312,340]], goal:{type:'bell', x:350, y:318, r:12}, parts:{ramp:1},
+   ref:[{t:'ramp',x:110,y:220,a:30}],
+   lesson:'A moving thing has <b>momentum</b>: its “oomph” from mass and speed. When it bumps something, it <b>passes the push along</b>. In a domino line, each domino knocks over the next!',
+   diagram:'domino',
+   quiz:[
+    { q:'Which has more momentum?', a:'A fast bowling ball', w:['A slow ping-pong ball','A ball sitting still'], ex:'Heavy and fast means lots of momentum.', hint:'Which one would knock over more pins? 🎳' },
+    { q:'The first domino falls. What happens next?', a:'It pushes the next domino', w:['Nothing else moves','The last one falls first'], ex:'Each domino passes its push along the line: a chain reaction!', hint:'Dominoes are standing close together…' },
+    { q:'How much momentum does a ball sitting still have?', a:'None', w:['Lots','A little'], ex:'Momentum needs motion. No speed, no momentum.', hint:'Momentum = mass × speed.' } ],
+   hint:'Build a slide from the ball down to the floor so it rolls into the first domino.',
+   reflect:'The ball’s momentum knocked the first domino, and each domino passed the push along to ring the bell!' },
+ { id:'bounce', emoji:'🏀', name:'Super Bounce', concept:'Bounce & elasticity',
+   balls:[{x:90,y:50}], walls:[[250,175,250,340,'wall',6]], goal:{type:'basket', x:375, y:285, w:80, h:55}, parts:{bouncy:1},
+   ref:[{t:'bouncy',x:80,y:280,a:15}],
+   lesson:'<b>Elastic</b> things squash and then spring back, like rubber. A bouncy pad gives back almost all the ball’s energy, so it bounces high. Soft things like clay soak the energy up.',
+   diagram:'bounce',
+   quiz:[
+    { q:'Which ball bounces highest?', a:'A rubber ball', w:['A ball of clay','A bean bag'], ex:'Rubber is elastic: it squashes and springs back.', hint:'Which one feels stretchy?' },
+    { q:'A ball drops onto a bouncy pad. It bounces back up…', a:'Almost as high as it started', w:['Higher than it started','Not at all'], ex:'A little energy always turns into sound and heat, so it never goes higher than the start.', hint:'Can a bounce make new energy?' },
+    { q:'If you tilt a bouncy pad, the ball bounces…', a:'Off to one side', w:['Straight up anyway','Into the ground'], ex:'The ball bounces away from the face of the pad, like light off a mirror.', hint:'Try bouncing a ball off a slanted wall.' } ],
+   hint:'Put the bouncy pad low, under the ball, and tilt it a little toward the wall (about 15°).',
+   reflect:'The elastic pad gave the ball its energy back, so it bounced high over the wall!' },
+ { id:'seesaw', emoji:'⚖️', name:'Seesaw Bell', concept:'Levers',
+   balls:[{x:80,y:50}], walls:[[290,238,350,238,'wall',4]], seesaws:[[240,300,160,20]], goal:{type:'bell', x:318, y:262, r:12}, parts:{ramp:1},
+   ref:[{t:'ramp',x:105,y:200,a:45}],
+   lesson:'A <b>lever</b> is a bar that turns on a point called the <b>fulcrum</b>. A seesaw is a lever! Push one end <b>down</b> and the other end goes <b>up</b>.',
+   diagram:'lever',
+   quiz:[
+    { q:'The point a seesaw turns on is called the…', a:'Fulcrum', w:['Handle','Wheel','Spring'], ex:'The fulcrum is the pivot point of a lever.', hint:'It starts with F.' },
+    { q:'The left end of a seesaw goes DOWN. The right end goes…', a:'Up', w:['Down too','Nowhere'], ex:'A lever turns, so when one end goes down the other goes up.', hint:'Picture two friends on a playground seesaw.' },
+    { q:'Which of these is a lever?', a:'A bottle opener', w:['A pillow','A marble'], ex:'Seesaws, bottle openers and crowbars are all levers.', hint:'Which one turns on a point to lift something?' } ],
+   hint:'Guide the ball onto the HIGH left end of the seesaw. When it pushes down, the other end swings up to the bell.',
+   reflect:'The ball pushed one end of the lever down, so the other end swung up and rang the bell!' },
+ { id:'angle', emoji:'📐', name:'Angle Ace', concept:'Angles in degrees (math)',
+   balls:[{x:100,y:50}], pinned:[{t:'ramp',x:100,y:170,a:0}], goal:{type:'basket', x:182, y:290, w:54, h:50}, parts:{},
+   ref:[{t:'ramp',x:100,y:170,a:60,pinned:true}],
+   lesson:'We measure turning in <b>degrees (°)</b>. Flat is <b>0°</b> and a square corner is <b>90°</b>. Here the ramp is pinned in place: you can only <b>turn</b> it. Gentle slopes throw the ball far; steep slopes drop it close.',
+   diagram:'angle',
+   quiz:[
+    { q:'A flat, level plank is tilted…', a:'0°', w:['90°','45°','180°'], ex:'No tilt at all means 0 degrees.', hint:'Flat means no turning.' },
+    { q:'Which slope is the steepest?', a:'60°', w:['15°','30°'], ex:'The bigger the angle, the steeper the slope.', hint:'90° would be straight up and down.' },
+    { q:'A square corner, like the corner of a book, is…', a:'90°', w:['30°','60°','180°'], ex:'A square corner is a right angle: 90°.', hint:'It’s called a RIGHT angle.' } ],
+   hint:'The basket is close to the ramp, so try a STEEP angle. Turn it with ⟳ in 15° steps.',
+   reflect:'At 60° the steep ramp dropped the ball right into the basket. Angles change where things go!' },
+ { id:'spring', emoji:'🌀', name:'Spring Shot', concept:'Springs & stored energy',
+   balls:[{x:30,y:196}], walls:[[0,206,80,228],[400,175,400,340,'pillar',8]], goal:{type:'basket', x:400, y:130, w:76, h:45}, parts:{spring:1, ramp:1},
+   ref:[{t:'spring',x:110,y:250,a:15}],
+   lesson:'Squash a <b>spring</b> and it <b>stores energy</b>. Let go and it <b>pushes back</b> hard! Our launcher spring is wound up, so it can throw the ball higher than where it started.',
+   diagram:'spring',
+   quiz:[
+    { q:'When you squash a spring, it…', a:'Stores energy', w:['Loses all its energy','Turns into water'], ex:'A squashed spring holds energy, ready to push back.', hint:'It wants to get back to its normal shape.' },
+    { q:'What does a squashed spring do when you let go?', a:'Pushes back out', w:['Stays squashed forever','Disappears'], ex:'It springs back and pushes whatever is on it.', hint:'Think of a jack-in-the-box!' },
+    { q:'Which of these uses springs?', a:'A trampoline', w:['A rock','A spoon'], ex:'Trampolines, pogo sticks and mattresses all use springs.', hint:'Which one makes you bounce?' } ],
+   hint:'Put the spring where the ball lands after it rolls off the shelf, tilted a little toward the basket (try 15°).',
+   reflect:'The spring stored energy and pushed back, launching the ball up into the high basket!' },
+ { id:'relay', emoji:'🏃', name:'Domino Relay', concept:'Chain reactions',
+   balls:[{x:70,y:50},{x:314,y:185,r:9,m:0.7,color:'blue'}], walls:[[180,200,330,200,'wall',5]], dominoes:[[230,195],[256,195],[282,195]], goal:{type:'basket', x:375, y:285, w:80, h:55}, parts:{ramp:1, short:1},
+   ref:[{t:'ramp',x:80,y:100,a:15}],
+   lesson:'In a <b>chain reaction</b>, one thing makes the next thing happen. Energy gets passed along like a baton in a relay race: <b>ball → dominoes → another ball</b>!',
+   diagram:'relay',
+   quiz:[
+    { q:'In a chain reaction, each part passes along…', a:'Energy', w:['Homework','Nothing at all'], ex:'Each part gives energy to the next part.', hint:'Runners pass a baton; machines pass a push.' },
+    { q:'If one domino in the middle is missing, the chain…', a:'Stops at the gap', w:['Goes faster','Jumps the gap by magic'], ex:'Every part has to touch the next one to pass the push.', hint:'Can a domino reach one that is far away?' } ],
+   hint:'Help the red ball reach the shelf so it rolls into the first domino. The blue ball will do the rest!',
+   reflect:'The red ball’s push travelled through the dominoes to the blue ball — a real chain reaction!' },
+ { id:'machine', emoji:'🏆', name:'Grand Machine', concept:'Everything together',
+   balls:[{x:30,y:232},{x:284,y:135,r:9,m:0.7,color:'blue'}], walls:[[0,242,70,264],[150,150,300,150,'wall',5],[425,236,480,236,'wall',4]], dominoes:[[200,145],[226,145],[252,145]], seesaws:[[380,300,150,20]], goal:{type:'bell', x:452, y:258, r:12}, parts:{spring:1, ramp:1},
+   ref:[{t:'spring',x:90,y:280,a:0}],
+   lesson:'Inventors love <b>chain-reaction machines</b> that do one simple job in lots of fun steps. Use everything you learned: <b>spring → dominoes → ball → lever → bell!</b>',
+   diagram:'machine',
+   quiz:[
+    { q:'Which part stores energy and pushes back?', a:'Spring', w:['Seesaw','Bell'], ex:'Springs store energy when squashed and push back.', hint:'Boing! 🌀' },
+    { q:'Which part is a lever?', a:'Seesaw', w:['Domino','Spring'], ex:'A seesaw turns on its fulcrum: that makes it a lever.', hint:'It has a fulcrum.' },
+    { q:'A ball rolls down a ramp. Its height turns into…', a:'Speed', w:['Colour','Weight'], ex:'Stored energy from height becomes motion energy.', hint:'Remember Ramp Road!' } ],
+   hint:'The red ball needs a boost up to the high shelf. Put the spring where the ball lands.',
+   reflect:'Spring energy, domino momentum and a lever all worked together. You built a chain-reaction machine!' }
+];
+const LAB_MAP = Object.fromEntries(LAB_LEVELS.map((l, i) => [l.id, Object.assign(l, { n:i + 1 })]));
+function labPar(lv) { return lv.ref.filter(p => !p.pinned).length; }
+function labTrayTotal(lv) { return Object.values(lv.parts).reduce((a, b) => a + b, 0); }
+/* Stars: solved = ★; parts used ≤ par+1 = ★★; ≤ par = ★★★. Levels with no tray parts score by number of tries instead. */
+function labStars(lv, used, plays) {
+  if (!labTrayTotal(lv)) return plays <= 2 ? 3 : plays <= 4 ? 2 : 1;
+  const par = labPar(lv); return used <= par ? 3 : used <= par + 1 ? 2 : 1;
+}
+
+/* ---- Lab progress lives in state.lab (inside the existing sciMathAdventureV2 save; old saves simply start empty) ---- */
+function normalizeLab(x) {
+  const out = { v:1, lv:{} };
+  const src = (x && typeof x === 'object' && !Array.isArray(x) && x.lv && typeof x.lv === 'object' && !Array.isArray(x.lv)) ? x.lv : {};
+  Object.keys(src).forEach(id => { if (!LAB_MAP[id]) return; const r = src[id]; if (!r || typeof r !== 'object') return;
+    const st = Math.floor(Number(r.stars)); out.lv[id] = { stars:st >= 1 ? Math.min(3, st) : 0, quiz:!!r.quiz, perfect:!!r.perfect, best:toInt(r.best), plays:toInt(r.plays) }; });
+  return out;
+}
+function labRec(id) { if (!state.lab || !state.lab.lv) state.lab = normalizeLab(state.lab); return state.lab.lv[id] || (state.lab.lv[id] = { stars:0, quiz:false, perfect:false, best:0, plays:0 }); }
+function labUnlocked(i) { return i === 0 || ((state.lab.lv[LAB_LEVELS[i - 1].id] || {}).stars || 0) > 0; }
+function labTotalStars() { return LAB_LEVELS.reduce((s, l) => s + ((state.lab.lv[l.id] || {}).stars || 0), 0); }
+const labStarStr = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+/* ---- UI state ---- */
+const labUI = { lv:null, mode:'menu', qi:0, qWrong:0, qPerfect:true, placed:[], sel:-1, world:null, raf:0, acc:0, last:0, hint:0, ghost:false, drag:null, unbind:null, plays:0, winShown:false, lastHitSfx:0, bonus:false };
+function labStop() { if (labUI.raf) { cancelAnimationFrame(labUI.raf); labUI.raf = 0; } if (labUI.unbind) { try { labUI.unbind(); } catch (e) {} labUI.unbind = null; } labUI.world = null; }
+function labEnter(fn) { cancelAutoNext(); cleanupDemo(); mixMode = false; currentTopic = null; current = null; setActive(null);
+  document.querySelectorAll('#topic-nav button[data-lab]').forEach(b => b.classList.add('active'));
+  $('next-problem').style.display = 'none'; demoCleanup = labStop; fn(); }
+function showLabMenu() { labEnter(() => {
+  labUI.mode = 'menu'; const tot = labTotalStars();
+  $('app-content').innerHTML = `<div class="lab"><div class="learn-section lab-head"><h3>🧪 Chain Reaction Lab</h3>
+   <p>Each level: <b>learn</b> a science idea, answer a quick <b>quiz</b>, then <b>build</b> a crazy machine that gets the ball to the goal!</p>
+   <div class="lab-total" id="lab-total">⭐ ${tot} / ${LAB_LEVELS.length * 3} stars</div></div>
+   <div class="lab-grid">${LAB_LEVELS.map((l, i) => { const r = state.lab.lv[l.id] || {}, open = labUnlocked(i);
+     return `<button class="lab-card${open ? '' : ' locked'}${r.stars ? ' done' : ''}" data-lv="${l.id}" ${open ? '' : 'disabled aria-disabled="true"'}>
+      <span class="lab-n">${l.n}</span><span class="lab-em">${open ? l.emoji : '🔒'}</span><b>${esc(l.name)}</b><small>${esc(l.concept)}</small>
+      <span class="lab-st" aria-label="${r.stars || 0} of 3 stars">${labStarStr(r.stars || 0)}</span>${r.perfect ? '<span class="lab-brain" title="Perfect quiz">🧠</span>' : ''}</button>`; }).join('')}</div></div>`;
+  document.querySelectorAll('.lab-card[data-lv]').forEach(b => b.addEventListener('click', () => { if (!b.disabled) { sfx('tap'); showLabLesson(b.dataset.lv); } }));
+}); }
+const LAB_DIAGRAMS = {
+  drop:'<svg viewBox="0 0 160 90"><circle cx="40" cy="18" r="9" fill="#ef4444"/><path d="M40 32v34" stroke="#7c3aed" stroke-width="3" marker-end="url(#ar)"/><line x1="70" y1="40" x2="140" y2="70" stroke="#b45309" stroke-width="6" stroke-linecap="round"/><circle cx="82" cy="34" r="8" fill="#ef4444"/><path d="M95 44l25 11" stroke="#16a34a" stroke-width="3" marker-end="url(#ar2)"/><line x1="0" y1="86" x2="160" y2="86" stroke="#94a3b8" stroke-width="4"/></svg>',
+  energy:'<svg viewBox="0 0 160 90"><path d="M10 20 Q60 25 80 70 L150 74" fill="none" stroke="#b45309" stroke-width="6" stroke-linecap="round"/><circle cx="16" cy="11" r="8" fill="#ef4444"/><text x="4" y="40" font-size="10" fill="#7c3aed">high = stored</text><circle cx="120" cy="64" r="8" fill="#ef4444"/><text x="96" y="52" font-size="10" fill="#16a34a">low = fast</text><path d="M128 64h18" stroke="#16a34a" stroke-width="3" marker-end="url(#ar2)"/></svg>',
+  domino:'<svg viewBox="0 0 160 90"><circle cx="16" cy="76" r="8" fill="#ef4444"/><path d="M27 76h12" stroke="#16a34a" stroke-width="3" marker-end="url(#ar2)"/><g fill="#fef3c7" stroke="#334155" stroke-width="2"><rect x="50" y="46" width="8" height="38" transform="rotate(35 58 84)"/><rect x="76" y="46" width="8" height="38" transform="rotate(15 84 84)"/><rect x="102" y="46" width="8" height="38"/><rect x="128" y="46" width="8" height="38"/></g><line x1="0" y1="86" x2="160" y2="86" stroke="#94a3b8" stroke-width="4"/></svg>',
+  bounce:'<svg viewBox="0 0 160 90"><path d="M30 10 L70 74 L110 18" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4 4"/><circle cx="30" cy="10" r="8" fill="#ef4444"/><line x1="48" y1="80" x2="92" y2="80" stroke="#db2777" stroke-width="8" stroke-linecap="round"/><text x="118" y="22" font-size="11" fill="#16a34a">boing!</text></svg>',
+  lever:'<svg viewBox="0 0 160 90"><line x1="20" y1="62" x2="140" y2="34" stroke="#0d9488" stroke-width="7" stroke-linecap="round"/><path d="M80 48 L66 84 L94 84Z" fill="#94a3b8"/><path d="M30 20v28" stroke="#ef4444" stroke-width="3" marker-end="url(#ar3)"/><path d="M134 50v-26" stroke="#16a34a" stroke-width="3" marker-end="url(#ar2)"/><text x="60" y="80" font-size="9" fill="#334155">fulcrum</text></svg>',
+  angle:'<svg viewBox="0 0 160 90"><line x1="30" y1="80" x2="150" y2="80" stroke="#94a3b8" stroke-width="3"/><line x1="30" y1="80" x2="140" y2="16" stroke="#b45309" stroke-width="5" stroke-linecap="round"/><path d="M70 80 A40 40 0 0 0 64 60" fill="none" stroke="#7c3aed" stroke-width="2"/><text x="76" y="72" font-size="13" font-weight="700" fill="#7c3aed">30°</text><line x1="30" y1="80" x2="30" y2="10" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3 3"/><text x="34" y="18" font-size="10" fill="#64748b">90°</text></svg>',
+  spring:'<svg viewBox="0 0 160 90"><path d="M70 82 l-10 -6 l20 -6 l-20 -6 l20 -6 l-20 -6 l10 -4" fill="none" stroke="#475569" stroke-width="3"/><line x1="55" y1="48" x2="95" y2="48" stroke="#f97316" stroke-width="7" stroke-linecap="round"/><circle cx="75" cy="36" r="8" fill="#ef4444"/><path d="M75 26V6" stroke="#16a34a" stroke-width="3" marker-end="url(#ar2)"/><line x1="0" y1="86" x2="160" y2="86" stroke="#94a3b8" stroke-width="4"/></svg>',
+  relay:'<svg viewBox="0 0 160 90"><circle cx="14" cy="50" r="8" fill="#ef4444"/><path d="M25 50h10" stroke="#16a34a" stroke-width="3" marker-end="url(#ar2)"/><g fill="#fef3c7" stroke="#334155" stroke-width="2"><rect x="48" y="24" width="7" height="34"/><rect x="72" y="24" width="7" height="34"/><rect x="96" y="24" width="7" height="34"/></g><line x1="40" y1="60" x2="128" y2="60" stroke="#64748b" stroke-width="5"/><circle cx="120" cy="50" r="7" fill="#3b82f6"/><path d="M132 56 q12 6 14 26" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="3 3"/></svg>',
+  machine:'<svg viewBox="0 0 160 90"><text x="4" y="30" font-size="22">🌀</text><text x="30" y="30" font-size="12">→</text><text x="44" y="30" font-size="22">🎳</text><text x="68" y="30" font-size="12">→</text><text x="82" y="30" font-size="22">⚽</text><text x="106" y="30" font-size="12">→</text><text x="118" y="30" font-size="22">⚖️</text><text x="62" y="70" font-size="26">🔔</text></svg>'
+};
+const LAB_SVG_DEFS = '<svg width="0" height="0" style="position:absolute"><defs><marker id="ar" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#7c3aed"/></marker><marker id="ar2" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#16a34a"/></marker><marker id="ar3" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#ef4444"/></marker></defs></svg>';
+function labTag(lv) { return `<div class="topic-tag">🧪 Level ${lv.n} of ${LAB_LEVELS.length} · ${esc(lv.concept)}</div>`; }
+function showLabLesson(id) { labEnter(() => {
+  const lv = LAB_MAP[id]; labUI.lv = lv; labUI.mode = 'lesson'; const r = labRec(id);
+  $('app-content').innerHTML = `<div class="lab">${LAB_SVG_DEFS}<div class="learn-section lab-lesson">${labTag(lv)}<h3>${lv.emoji} ${esc(lv.name)}</h3>
+    <div class="lab-diagram">${LAB_DIAGRAMS[lv.diagram] || ''}</div><p>${lv.lesson}</p></div>
+    <div class="lab-row"><button class="practice-button lab-inline" id="lab-go-quiz">Quiz time! 🎯</button>${r.quiz ? '<button class="practice-button lab-inline lab-alt" id="lab-skip">Go build 🔧</button>' : ''}</div>
+    <div class="lab-row"><button class="lab-link" id="lab-back">← All levels</button></div></div>`;
+  $('lab-go-quiz').onclick = () => { sfx('tap'); showLabQuiz(id, 0); };
+  if ($('lab-skip')) $('lab-skip').onclick = () => { sfx('tap'); showLabBuild(id); };
+  $('lab-back').onclick = showLabMenu;
+}); }
+function showLabQuiz(id, qi) { labEnter(() => {
+  const lv = LAB_MAP[id], q = lv.quiz[qi]; labUI.lv = lv; labUI.mode = 'quiz'; labUI.qi = qi; labUI.qWrong = 0;
+  if (qi === 0) labUI.qPerfect = true;
+  labUI.qOpts = shuffle([q.a, ...q.w]);
+  $('app-content').innerHTML = `<div class="lab"><div class="problem-area">${labTag(lv)}
+    <div class="lab-dots">${lv.quiz.map((_, i) => `<span class="${i < qi ? 'ok' : i === qi ? 'cur' : ''}"></span>`).join('')}</div>
+    <p class="q">${esc(q.q)}</p><div class="choices lab-choices">${labUI.qOpts.map((o, i) => `<button data-i="${i}">${esc(o)}</button>`).join('')}</div>
+    <div id="lab-hint" class="lab-hint" hidden></div><div id="lab-fb" class="lab-fb"></div>
+    <div class="lab-row"><button class="practice-button lab-inline" id="lab-qnext" hidden>Next ➡️</button></div>
+    <div class="lab-row"><button class="lab-link" id="lab-back">← Lesson</button></div></div></div>`;
+  document.querySelectorAll('.lab-choices button').forEach(b => b.addEventListener('click', () => labAnswer(+b.dataset.i)));
+  $('lab-back').onclick = () => showLabLesson(id);
+}); }
+function labAnswer(i) {
+  const lv = labUI.lv, q = lv.quiz[labUI.qi], pickd = labUI.qOpts[i], btns = document.querySelectorAll('.lab-choices button'), btn = btns[i];
+  if (!btn || btn.disabled || labUI.mode !== 'quiz') return false;
+  const fb = $('lab-fb'), hint = $('lab-hint');
+  if (pickd === q.a) {
+    btns.forEach(b => { b.disabled = true; }); btn.classList.add('right'); labUI.mode = 'quiz-done';
+    fb.className = 'lab-fb correct'; fb.textContent = pick(['Correct! 🎉','Yes! ⭐','You got it! 🙌']) + ' ' + q.ex; sfx('correct');
+    const nx = $('lab-qnext'); nx.hidden = false; nx.textContent = labUI.qi + 1 < lv.quiz.length ? 'Next question ➡️' : 'Unlock the build! 🔓';
+    nx.onclick = () => { if (labUI.qi + 1 < lv.quiz.length) showLabQuiz(lv.id, labUI.qi + 1); else labQuizPassed(); };
+    return true;
+  }
+  labUI.qWrong++; labUI.qPerfect = false; btn.classList.add('wrong'); btn.disabled = true; sfx('wrong');
+  fb.className = 'lab-fb incorrect'; fb.textContent = 'Not quite — try again! 💪'; hint.hidden = false; hint.textContent = '💡 ' + q.hint;
+  return false;
+}
+function labQuizPassed() {
+  const lv = labUI.lv, r = labRec(lv.id), first = !r.quiz; r.quiz = true;
+  const bonus = labUI.qPerfect && labTrayTotal(lv) > 0; if (labUI.qPerfect) r.perfect = true; save();
+  labUI.bonus = bonus;
+  labEnter(() => { labUI.mode = 'unlocked';
+    const bt = bonus ? Object.keys(lv.parts)[0] : null;
+    $('app-content').innerHTML = `<div class="lab"><div class="learn-section lab-unlock">${labTag(lv)}<h3>🔓 Build stage unlocked!</h3>
+      <p>${labUI.qPerfect ? '🧠 Perfect quiz — every answer right the first time!' : 'Great thinking — you worked them all out!'}</p>
+      ${bonus ? `<p class="lab-bonus">🎁 Bonus: +1 spare <b>${esc(PART_DEFS[bt].name)}</b> in your parts tray.</p>` : ''}
+      <p>Now build a machine to reach the goal. Fewer parts = more stars ⭐</p></div>
+      <div class="lab-row"><button class="practice-button lab-inline" id="lab-build-go">Start building 🔧</button></div></div>`;
+    $('lab-build-go').onclick = () => showLabBuild(lv.id);
+    if (first) burst(['🔓','⭐','✨','🧪'], 16); sfx('levelup');
+  });
+}
+function labTray(lv) { const t = Object.assign({}, lv.parts); if ((state.lab.lv[lv.id] || {}).perfect) { const k = Object.keys(t)[0]; if (k) t[k]++; } return t; }
+function labLeft(type) { return (labTray(labUI.lv)[type] || 0) - labUI.placed.filter(p => p.t === type && !p.pinned).length; }
+function labUsed() { return labUI.placed.filter(p => !p.pinned).length; }
+function showLabBuild(id) { labEnter(() => {
+  const lv = LAB_MAP[id]; labUI.lv = lv;
+  if (!labRec(id).quiz) { showLabLessonDirect(id); return; }
+  labUI.mode = 'build'; labUI.placed = (lv.pinned || []).map(p => Object.assign({ pinned:true }, p)); labUI.sel = labUI.placed.length ? 0 : -1;
+  labUI.hint = 0; labUI.ghost = false; labUI.plays = 0; labUI.winShown = false; labUI.world = null;
+  const goalTxt = lv.goal.type === 'bell' ? 'ring the bell 🔔' : 'get the ball into the basket 🧺';
+  $('app-content').innerHTML = `<div class="lab lab-build">${labTag(lv)}<div class="lab-title"><b>${lv.emoji} ${esc(lv.name)}</b> <span>Goal: ${goalTxt}</span></div>
+    <div class="lab-stage"><canvas id="lab-cv" aria-label="Chain reaction build area"></canvas></div>
+    <div class="lab-msg" id="lab-msg" role="status"></div>
+    <div class="lab-tools" id="lab-tools"></div>
+    <div class="lab-tray" id="lab-tray"></div>
+    <div class="lab-ctrl"><button id="lab-play" class="lab-play">▶ Play</button><button id="lab-reset" class="lab-reset">↺ Reset</button><button id="lab-hintb" class="lab-hintb">💡 Hint</button><button id="lab-menu" class="lab-menu">☰ Levels</button></div>
+    <div id="lab-win" class="lab-win" hidden></div></div>`;
+  const cv = $('lab-cv'); labUI.ctx = setupCanvas(cv, LAB.W, LAB.H); labUI.cv = cv;
+  $('lab-play').onclick = labPlay; $('lab-reset').onclick = labReset; $('lab-hintb').onclick = labHint; $('lab-menu').onclick = showLabMenu;
+  labBindCanvas(cv); labRenderTray(); labRenderTools();
+  labMsg(lv.pinned ? 'This ramp is pinned. Turn it with ⟲ ⟳, then press ▶ Play.' : 'Tap a part below to add it, drag it into place, then press ▶ Play.');
+  labDraw();
+}); }
+function showLabLessonDirect(id) { showLabLesson(id); }
+function labMsg(t, cls) { const m = $('lab-msg'); if (m) { m.textContent = t; m.className = 'lab-msg' + (cls ? ' ' + cls : ''); } }
+function labRenderTray() {
+  const lv = labUI.lv, tray = labTray(lv), el = $('lab-tray'); if (!el) return;
+  const keys = Object.keys(tray);
+  el.innerHTML = keys.length ? '<span class="lab-tray-label">Parts:</span>' + keys.map(k => { const left = labLeft(k);
+    return `<button class="lab-part" data-part="${k}" ${left > 0 && labUI.mode === 'build' ? '' : 'disabled'} title="${esc(PART_DEFS[k].tip)}">${PART_DEFS[k].icon} ${esc(PART_DEFS[k].name)} <b>×${left}</b></button>`; }).join('')
+    : '<span class="lab-tray-label">No extra parts this time — just turn the pinned ramp!</span>';
+  el.querySelectorAll('.lab-part').forEach(b => b.addEventListener('click', () => labAddPart(b.dataset.part)));
+}
+function labRenderTools() {
+  const el = $('lab-tools'); if (!el) return; const p = labUI.placed[labUI.sel];
+  el.hidden = labUI.mode !== 'build';
+  if (!p || labUI.mode !== 'build') { el.innerHTML = labUI.mode === 'build' ? '<span class="lab-tools-tip">Tip: tap a part on the board to select it.</span>' : ''; return; }
+  const rot = PART_DEFS[p.t].rot;
+  el.innerHTML = `<span class="lab-sel">${PART_DEFS[p.t].icon} ${esc(PART_DEFS[p.t].name)}${p.pinned ? ' 📌' : ''}</span>
+    ${rot ? `<button id="lab-rl" aria-label="Turn left 15 degrees">⟲</button><span class="lab-deg" id="lab-deg">${Math.abs(p.a)}°${p.a > 0 ? ' ↘' : p.a < 0 ? ' ↙' : ''}</span><button id="lab-rr" aria-label="Turn right 15 degrees">⟳</button>` : ''}
+    ${p.pinned ? '' : '<button id="lab-del" aria-label="Remove part">🗑</button>'}`;
+  if (rot) { $('lab-rl').onclick = () => labRotate(-15); $('lab-rr').onclick = () => labRotate(15); }
+  if ($('lab-del')) $('lab-del').onclick = labRemove;
+}
+const LAB_AMAX = 75;
+function labRotate(d) { const p = labUI.placed[labUI.sel]; if (!p || labUI.mode !== 'build' || !PART_DEFS[p.t].rot) return;
+  p.a = Math.max(-LAB_AMAX, Math.min(LAB_AMAX, p.a + d)); sfx('tap'); labRenderTools(); labDraw(); }
+function labRemove() { const p = labUI.placed[labUI.sel]; if (!p || p.pinned || labUI.mode !== 'build') return;
+  labUI.placed.splice(labUI.sel, 1); labUI.sel = -1; sfx('tap'); labRenderTray(); labRenderTools(); labDraw(); }
+function labClamp(p) { p.x = Math.max(15, Math.min(LAB.W - 15, Math.round(p.x / 5) * 5)); p.y = Math.max(15, Math.min(LAB.FLOOR - 8, Math.round(p.y / 5) * 5)); }
+function labAddPart(t, x, y) {
+  if (labUI.mode !== 'build' || labLeft(t) <= 0) return null;
+  const n = labUsed(), p = { t, x:x == null ? 240 + (n % 3) * 30 - 30 : x, y:y == null ? 110 + n * 25 : y, a:0 };
+  if (t === 'domino') p.y = LAB.FLOOR; labClamp(p); labUI.placed.push(p); labUI.sel = labUI.placed.length - 1;
+  sfx('tap'); labRenderTray(); labRenderTools(); labDraw(); labMsg('Drag it into place. Use ⟲ ⟳ to tilt it.'); return p;
+}
+function labHitPart(x, y) { const sc = labUI.cv ? LAB.W / Math.max(1, labUI.cv.getBoundingClientRect().width) : 1, tol = Math.max(14, 20 * sc);
+  let best = -1, bd = 1e9;
+  labUI.placed.forEach((p, i) => { const r = labPartRod(p); const q = labClosest(r, x, y), d = Math.hypot(q[0] - x, q[1] - y); if (d < tol && d < bd) { bd = d; best = i; } });
+  return best; }
+function labBindCanvas(cv) {
+  const pos = e => { const r = cv.getBoundingClientRect(); return { x:(e.clientX - r.left) * LAB.W / r.width, y:(e.clientY - r.top) * LAB.H / r.height }; };
+  const down = e => { if (labUI.mode !== 'build') return; const p = pos(e), i = labHitPart(p.x, p.y);
+    labUI.sel = i; labRenderTools();
+    if (i >= 0 && !labUI.placed[i].pinned) { labUI.drag = { i, dx:labUI.placed[i].x - p.x, dy:labUI.placed[i].y - p.y }; try { cv.setPointerCapture(e.pointerId); } catch (er) {} e.preventDefault(); }
+    labDraw(); };
+  const move = e => { if (!labUI.drag) return; const p = pos(e), q = labUI.placed[labUI.drag.i]; q.x = p.x + labUI.drag.dx; q.y = p.y + labUI.drag.dy;
+    if (q.t === 'domino') q.y = LAB.FLOOR; labClamp(q); e.preventDefault(); labDraw(); };
+  const up = () => { labUI.drag = null; };
+  cv.addEventListener('pointerdown', down); cv.addEventListener('pointermove', move); cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  labUI.unbind = () => { cv.removeEventListener('pointerdown', down); cv.removeEventListener('pointermove', move); cv.removeEventListener('pointerup', up); cv.removeEventListener('pointercancel', up); };
+}
+function labPlay() {
+  if (labUI.mode === 'run') return; if (labUI.mode === 'fail' || labUI.mode === 'won') labReset();
+  labUI.mode = 'run'; labUI.plays++; labUI.ghost = false; labUI.world = labWorld(labUI.lv, labUI.placed); labUI.acc = 0; labUI.last = 0; labUI.winShown = false;
+  const r = labRec(labUI.lv.id); r.plays++; save();
+  $('lab-play').disabled = true; labRenderTray(); labRenderTools(); labMsg('Running… watch the chain reaction! 👀'); sfx('tap');
+  const tick = ts => { const W = labUI.world; if (!W || labUI.mode !== 'run') return;
+    if (!labUI.last) labUI.last = ts; labUI.acc += Math.min(0.1, (ts - labUI.last) / 1000); labUI.last = ts;
+    let n = 0; while (labUI.acc >= LAB.DT && n < 12) { labStep(W); labUI.acc -= LAB.DT; n++; if (W.won || W.done) break; }
+    labSounds(W); labDraw();
+    if (W.won && !labUI.winShown && W.t - W.winT > 0.5) { labWin(); return; }
+    if (W.done && !W.won) { labFail(); return; }
+    labUI.raf = requestAnimationFrame(tick); };
+  labUI.raf = requestAnimationFrame(tick);
+}
+function labSounds(W) { for (const ev of W.events) { if (ev.type === 'goal') sfx(W.lv.goal.type === 'bell' ? 'bell' : 'goal');
+    else if (ev.type === 'spring') sfx('boing');
+    else if (ev.type === 'hit' && W.t - labUI.lastHitSfx > 0.07) { labUI.lastHitSfx = W.t; sfx(ev.kind === 'domino' ? 'clack' : 'thud'); } }
+  W.events.length = 0; }
+function labReset() { if (labUI.raf) { cancelAnimationFrame(labUI.raf); labUI.raf = 0; } labUI.world = null; labUI.mode = 'build';
+  const pb = $('lab-play'); if (pb) { pb.disabled = false; pb.textContent = '▶ Play'; } const w = $('lab-win'); if (w) { w.hidden = true; w.innerHTML = ''; }
+  labRenderTray(); labRenderTools(); labMsg('Edit mode: move or turn parts, then press ▶ Play.'); labDraw(); }
+function labFail() { labUI.mode = 'fail'; labUI.raf = 0; const pb = $('lab-play'); pb.disabled = false; pb.textContent = '↻ Try again';
+  labMsg(labUI.plays >= 2 ? 'So close! Tap 💡 Hint if you’d like a clue, then try again.' : 'Not yet! Press ↺ Reset, move your parts and try again 💪', 'warn'); }
+function labHint() {
+  const lv = labUI.lv; labUI.hint++; sfx('tap');
+  if (labUI.hint === 1) { labMsg('💡 ' + lv.hint, 'hint'); return; }
+  if (labUI.mode !== 'build') labReset();
+  labUI.ghost = true; labMsg('💡 The dashed green outline shows one place that works. Try matching it!', 'hint'); labDraw();
+}
+function labWin() {
+  const lv = labUI.lv, r = labRec(lv.id), used = labUsed(), st = labStars(lv, used, labUI.plays), firstWin = !r.stars;
+  labUI.mode = 'won'; labUI.winShown = true; labUI.raf = 0;
+  if (st > r.stars) r.stars = st; if (!r.best || used < r.best) r.best = used; save();
+  const next = LAB_LEVELS[lv.n]; const pb = $('lab-play'); pb.disabled = false; pb.textContent = '↻ Replay';
+  labMsg('🎉 Goal! Your machine worked!', 'ok');
+  const w = $('lab-win'); w.hidden = false;
+  w.innerHTML = `<div class="lab-win-stars" aria-label="${st} of 3 stars">${labStarStr(st)}</div><h3>🎉 Goal! You did it${state.playerName ? ', ' + escHtml(state.playerName) : ''}!</h3>
+    <p class="lab-reflect">🔬 <b>What happened?</b> ${esc(lv.reflect)}</p>
+    <p class="lab-win-sub">${labTrayTotal(lv) ? `Parts used: ${used} · Best possible: ${labPar(lv)}` : `Tries: ${labUI.plays}`}${st < 3 ? ' — can you get ★★★?' : ' — perfect!'}</p>
+    <div class="lab-row">${next ? '<button class="practice-button lab-inline" id="lab-next">Next level ➡️</button>' : '<button class="practice-button lab-inline" id="lab-next">🏆 All levels</button>'}
+    <button class="practice-button lab-inline lab-alt" id="lab-again">↻ Replay</button><button class="lab-link" id="lab-levels">☰ Levels</button></div>`;
+  $('lab-next').onclick = () => next ? showLabLesson(next.id) : showLabMenu(); $('lab-again').onclick = labReset; $('lab-levels').onclick = showLabMenu;
+  sfx('levelup'); burst(['⭐','🎉','✨', lv.emoji], 22);
+  if (firstWin && !next) { toast('🏆 You finished the Chain Reaction Lab!'); }
+  try { w.scrollIntoView({ block:'nearest', behavior:'smooth' }); } catch (e) {}
+}
+/* ---- Drawing (original procedural art) ---- */
+function labCap(ctx, x1, y1, x2, y2, w, col) { ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+function labDrawRod(ctx, r, t, opts) {
+  const k = r.kind, o = opts || {};
+  if (k === 'floor') return;
+  if (k === 'wall' || k === 'pillar') { labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2, '#64748b'); labCap(ctx, r.x1, r.y1, r.x2, r.y2, Math.max(2, r.th * 2 - 5), '#94a3b8'); return; }
+  if (k === 'basket') { labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2, '#ea580c'); return; }
+  if (k === 'plank') { labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 + 1, '#92400e'); labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 - 3, '#d97706');
+    ctx.strokeStyle = 'rgba(120,53,15,.45)'; ctx.lineWidth = 1; for (let f = 0.2; f < 0.9; f += 0.25) { const x = r.x1 + (r.x2 - r.x1) * f, y = r.y1 + (r.y2 - r.y1) * f; ctx.beginPath(); ctx.moveTo(x - r.c * 6, y - r.s * 6); ctx.lineTo(x + r.c * 6, y + r.s * 6); ctx.stroke(); } return; }
+  if (k === 'bouncy') { labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 + 1, '#9d174d'); labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 - 3, '#ec4899');
+    ctx.fillStyle = '#fbcfe8'; for (let f = 0.15; f < 0.95; f += 0.175) { ctx.beginPath(); ctx.arc(r.x1 + (r.x2 - r.x1) * f, r.y1 + (r.y2 - r.y1) * f, 1.6, 0, 7); ctx.fill(); } return; }
+  if (k === 'spring') { const fx = r.s, fy = -r.c, since = r.boing != null && t != null ? t - r.boing : 9, ext = since < 0.25 ? 1.4 - since * 1.6 : 1, L = 16 * ext;
+    ctx.strokeStyle = '#475569'; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (let i = 0; i <= 8; i++) { const d = 5 + (L * i) / 8, side = i === 0 || i === 8 ? 0 : (i % 2 ? 8 : -8); ctx.lineTo(r.px - fx * d + r.c * side, r.py - fy * d + r.s * side); } ctx.stroke();
+    labCap(ctx, r.px - fx * (L + 6) - r.c * 14, r.py - fy * (L + 6) - r.s * 14, r.px - fx * (L + 6) + r.c * 14, r.py - fy * (L + 6) + r.s * 14, 4, '#334155');
+    labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 + 1, '#c2410c'); labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 - 3, '#fb923c'); return; }
+  if (k === 'domino') { ctx.save(); ctx.translate(r.px, r.py); ctx.rotate(r.ang + Math.PI / 2); ctx.fillStyle = '#fffbeb'; ctx.strokeStyle = '#1f2937'; ctx.lineWidth = 2;
+    ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(-r.wd / 2, -r.b, r.wd, r.b, 2); else ctx.rect(-r.wd / 2, -r.b, r.wd, r.b); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-r.wd / 2 + 1, -r.b / 2); ctx.lineTo(r.wd / 2 - 1, -r.b / 2); ctx.stroke(); ctx.fillStyle = '#1f2937';
+    [[-r.b * 0.75], [-r.b * 0.25]].forEach(([y]) => { ctx.beginPath(); ctx.arc(0, y, 1.6, 0, 7); ctx.fill(); }); ctx.restore(); return; }
+  if (k === 'seesaw') { ctx.fillStyle = '#94a3b8'; ctx.strokeStyle = '#475569'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(r.px, r.py); ctx.lineTo(r.px - 18, LAB.FLOOR); ctx.lineTo(r.px + 18, LAB.FLOOR); ctx.closePath(); ctx.fill(); ctx.stroke();
+    labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 + 1, '#115e59'); labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 - 3, '#14b8a6');
+    ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(r.px, r.py, 3, 0, 7); ctx.fill(); }
+}
+function labDrawBall(ctx, b) { const g = ctx.createRadialGradient(b.x - b.r * 0.35, b.y - b.r * 0.4, 1, b.x, b.y, b.r);
+  if (b.color === 'blue') { g.addColorStop(0, '#bfdbfe'); g.addColorStop(1, '#1d4ed8'); } else { g.addColorStop(0, '#fecaca'); g.addColorStop(1, '#dc2626'); }
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, 7); ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(b.x, b.y, b.r * 0.62, b.roll, b.roll + 1.6); ctx.stroke(); }
+function labDrawGoal(ctx, g, won, t) {
+  if (g.type === 'basket') { const x0 = g.x - g.w / 2, x1 = g.x + g.w / 2, y1 = g.y + g.h;
+    ctx.fillStyle = won ? 'rgba(34,197,94,.28)' : 'rgba(251,191,36,.16)'; ctx.fillRect(x0, g.y, g.w, g.h);
+    ctx.strokeStyle = 'rgba(234,88,12,.45)'; ctx.lineWidth = 1;
+    for (let x = x0 + 9; x < x1; x += 9) { ctx.beginPath(); ctx.moveTo(x, g.y); ctx.lineTo(x - 5, y1); ctx.stroke(); }
+    for (let y = g.y + 11; y < y1; y += 11) { ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); }
+    ctx.fillStyle = won ? '#16a34a' : '#c2410c'; ctx.font = '800 11px Nunito, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(won ? '✔ GOAL' : 'GOAL', g.x, g.y - 8); return; }
+  const sw = won ? Math.sin(t * 30) * 0.35 * Math.max(0, 1 - (t % 2)) : 0;
+  ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(g.x, g.y - g.r - 12); ctx.lineTo(g.x, g.y - g.r); ctx.stroke();
+  ctx.save(); ctx.translate(g.x, g.y - g.r); ctx.rotate(sw);
+  const gr = ctx.createLinearGradient(-g.r, 0, g.r, 0); gr.addColorStop(0, '#b45309'); gr.addColorStop(0.5, '#fde047'); gr.addColorStop(1, '#b45309');
+  ctx.fillStyle = gr; ctx.beginPath(); ctx.moveTo(-g.r * 0.55, 2); ctx.quadraticCurveTo(-g.r * 0.7, g.r * 1.2, -g.r * 1.1, g.r * 1.75); ctx.lineTo(g.r * 1.1, g.r * 1.75); ctx.quadraticCurveTo(g.r * 0.7, g.r * 1.2, g.r * 0.55, 2); ctx.quadraticCurveTo(0, -g.r * 0.5, -g.r * 0.55, 2); ctx.fill();
+  ctx.fillStyle = '#92400e'; ctx.beginPath(); ctx.arc(0, g.r * 1.85, 3, 0, 7); ctx.fill(); ctx.restore();
+  if (won) { ctx.strokeStyle = 'rgba(234,179,8,.8)'; ctx.lineWidth = 2; [1, 2].forEach(i => { ctx.beginPath(); ctx.arc(g.x, g.y, g.r + 6 * i + (t * 20) % 6, -0.9, 0.9); ctx.stroke(); ctx.beginPath(); ctx.arc(g.x, g.y, g.r + 6 * i + (t * 20) % 6, Math.PI - 0.9, Math.PI + 0.9); ctx.stroke(); }); }
+  ctx.fillStyle = won ? '#16a34a' : '#a16207'; ctx.font = '800 11px Nunito, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(won ? '✔ DING!' : 'GOAL', g.x, g.y - g.r - 30);
+}
+function labDraw() {
+  const ctx = labUI.ctx, lv = labUI.lv; if (!ctx || !lv) return;
+  const W = labUI.world, edit = !W, scene = W || labWorld(lv, labUI.placed), t = W ? W.t : 0;
+  const bg = ctx.createLinearGradient(0, 0, 0, LAB.H); bg.addColorStop(0, '#e0f2fe'); bg.addColorStop(1, '#f5f3ff'); ctx.fillStyle = bg; ctx.fillRect(0, 0, LAB.W, LAB.H);
+  if (edit) { ctx.fillStyle = 'rgba(124,58,237,.13)'; for (let x = 20; x < LAB.W; x += 20) for (let y = 20; y < LAB.FLOOR; y += 20) ctx.fillRect(x - 1, y - 1, 2, 2); }
+  ctx.fillStyle = '#d6c3a5'; ctx.fillRect(0, LAB.FLOOR, LAB.W, LAB.H - LAB.FLOOR); ctx.fillStyle = '#a8906b'; ctx.fillRect(0, LAB.FLOOR, LAB.W, 3);
+  ctx.fillStyle = 'rgba(120,90,50,.25)'; for (let x = 0; x < LAB.W; x += 32) ctx.fillRect(x, LAB.FLOOR + 3, 2, LAB.H - LAB.FLOOR);
+  labDrawGoal(ctx, lv.goal, W && W.won, t);
+  if (edit) lv.balls.forEach(b => { ctx.setLineDash([4, 4]); ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(b.x, b.y, (b.r || 10) + 5, 0, 7); ctx.stroke(); ctx.setLineDash([]); });
+  scene.rods.forEach(r => labDrawRod(ctx, r, t));
+  if (edit && labUI.ghost) { ctx.save(); ctx.globalAlpha = 0.55; ctx.setLineDash([6, 5]);
+    lv.ref.slice(0, 1).forEach(p => { const r = labPartRod(p); ctx.strokeStyle = '#16a34a'; ctx.lineWidth = r.th * 2 + 4; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(r.x1, r.y1); ctx.lineTo(r.x2, r.y2); ctx.stroke(); });
+    ctx.restore(); }
+  if (edit && labUI.sel >= 0 && labUI.placed[labUI.sel]) { const r = labPartRod(labUI.placed[labUI.sel]); ctx.save(); ctx.globalAlpha = 0.35;
+    labCap(ctx, r.x1, r.y1, r.x2, r.y2, r.th * 2 + 12, '#a855f7'); ctx.restore(); labDrawRod(ctx, r, 0);
+    ctx.fillStyle = '#7c3aed'; ctx.beginPath(); ctx.arc(r.px, r.py, 4, 0, 7); ctx.fill(); }
+  scene.balls.forEach(b => { if (!b.out) labDrawBall(ctx, b); });
+  if (edit) { ctx.fillStyle = '#6d28d9'; ctx.font = '800 10px Nunito, sans-serif'; ctx.textAlign = 'center'; lv.balls.forEach((b, i) => { if (i === 0) ctx.fillText('START', b.x, b.y - (b.r || 10) - 9); }); }
+  if (W && W.won && t - W.winT > 0.15) { ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.fillRect(LAB.W / 2 - 92, 14, 184, 40); ctx.fillStyle = '#16a34a'; ctx.font = '800 26px Nunito, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('🎉 GOAL!', LAB.W / 2, 44); }
+}
+
 /* ================= STATE + STORAGE (durable; schema v2; never resets by date, reload or fireworks) ================= */
 const KEY = 'sciMathAdventureV2';
-const APP_VERSION = '2.2.5';
+const APP_VERSION = '2.3.0';
 const SCHEMA_V = 2;
 const toInt = x => { const n = Math.floor(Number(x)); return Number.isFinite(n) && n > 0 ? n : 0; };
 let storageOK = true;
@@ -1262,6 +1846,7 @@ function normalizeState(s) {
   if (s.best < s.score) s.best = s.score;
   s.playerName = cleanName(s.playerName) || '';
   s.soundOn = s.soundOn !== false;
+  s.lab = normalizeLab(s.lab);
   s.v = SCHEMA_V;
   return s;
 }
@@ -1380,16 +1965,19 @@ function catRun() {
 function buildNav() {
   $('topic-nav').innerHTML = CATS.map(([c, label]) => `<div class="nav-group"><h4>${label}</h4><div class="nav-row">${
     TOPICS.filter(t => t.cat === c).map(t => `<button data-topic="${t.id}">${t.name}<span class="done" id="done-${t.id}"></span></button>`).join('')}</div></div>`).join('');
+  const phys = $('topic-nav').querySelectorAll('.nav-group .nav-row'); const pr = phys && phys[phys.length - 1];
+  if (pr && pr.insertAdjacentHTML) pr.insertAdjacentHTML('beforeend', '<button data-lab="1">🧪 Chain Reaction Lab</button>');
+  $('topic-nav').querySelectorAll('button[data-lab]').forEach(b => b.addEventListener('click', showLabMenu));
   $('topic-nav').querySelectorAll('button[data-topic]').forEach(b => b.addEventListener('click', () => showLearn(b.dataset.topic)));
   updateNavMarks();
 }
 function updateNavMarks() { TOPICS.forEach(t => { const el = $('done-' + t.id); if (el) el.textContent = hasMedal(t.id) ? '✅' : ''; }); }
-function setActive(id) { document.querySelectorAll('#topic-nav button').forEach(b => b.classList.toggle('active', b.dataset.topic === id)); }
+function setActive(id) { document.querySelectorAll('#topic-nav button').forEach(b => b.classList.toggle('active', !!id && b.dataset.topic === id)); }
 function cleanupDemo() { if (demoCleanup) { try { demoCleanup(); } catch (e) {} demoCleanup = null; } }
 function showWelcome() {
   cancelAutoNext(); cleanupDemo();
   $('app-content').innerHTML = `<div class="learn-section"><h3>👋 Welcome, ${escHtml(state.playerName || 'Explorer')}!</h3><p>Pick a topic above to <b>learn</b>, then <b>practice</b>. Quizzes never run out, and the game remembers what you saw so questions don't repeat soon!</p>
-  <ul><li>🔥 Get answers right in a row for a <b>streak</b> and win stickers.</li><li>🎲 Try the <b>Smart Mix Quiz</b> for surprise questions from every subject.</li><li>⭐ Each topic has a <b>Level ★☆☆</b> that grows as you get answers right.</li><li>🌙 New! Try the <b>Moon Phases</b> lab in Astronomy.</li><li>⚙️ Play with the <b>Gears</b>, <b>Pulleys</b> and <b>Levers</b> labs in Physics!</li><li>🎆 Fill the progress bar (or beat the 🎆 challenge) for <b>fireworks</b>!</li><li>📱 Best in <b>Safari</b> or <b>Chrome</b> (not inside WhatsApp or Drive preview).</li></ul></div>`;
+  <ul><li>🔥 Get answers right in a row for a <b>streak</b> and win stickers.</li><li>🎲 Try the <b>Smart Mix Quiz</b> for surprise questions from every subject.</li><li>⭐ Each topic has a <b>Level ★☆☆</b> that grows as you get answers right.</li><li>🧪 New! Build crazy chain-reaction machines in the <b>Chain Reaction Lab</b>.</li><li>🌙 Try the <b>Moon Phases</b> lab in Astronomy.</li><li>⚙️ Play with the <b>Gears</b>, <b>Pulleys</b> and <b>Levers</b> labs in Physics!</li><li>🎆 Fill the progress bar (or beat the 🎆 challenge) for <b>fireworks</b>!</li><li>📱 Best in <b>Safari</b> or <b>Chrome</b> (not inside WhatsApp or Drive preview).</li></ul></div>`;
   $('next-problem').style.display = 'none';
 }
 function showLearn(id) {
@@ -1608,7 +2196,12 @@ const SFX = {
   correct: ac => { tone(ac, 660, 0, 0.12, 'triangle'); tone(ac, 880, 0.1, 0.12, 'triangle'); tone(ac, 1175, 0.2, 0.18, 'triangle'); },
   wrong: ac => { tone(ac, 330, 0, 0.16, 'sine', 0.08); tone(ac, 262, 0.14, 0.22, 'sine', 0.08); },
   levelup: ac => { [523, 659, 784, 1047].forEach((f, i) => tone(ac, f, 0.35 + i * 0.08, 0.14, 'square', 0.05)); },
-  tap: ac => { tone(ac, 900, 0, 0.04, 'sine', 0.05); }
+  tap: ac => { tone(ac, 900, 0, 0.04, 'sine', 0.05); },
+  clack: ac => { tone(ac, 1400, 0, 0.03, 'square', 0.03); },
+  thud: ac => { tone(ac, 180, 0, 0.06, 'sine', 0.06); },
+  boing: ac => { const o = ac.createOscillator(), g = ac.createGain(), t0 = ac.currentTime; o.type = 'sine'; o.frequency.setValueAtTime(220, t0); o.frequency.exponentialRampToValueAtTime(660, t0 + 0.18); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.1, t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.25); o.connect(g); g.connect(ac.destination); o.start(t0); o.stop(t0 + 0.27); },
+  bell: ac => { [1318, 1976, 2637].forEach((f, i) => tone(ac, f, 0, 0.9 - i * 0.2, 'sine', 0.07 / (i + 1))); },
+  goal: ac => { tone(ac, 784, 0, 0.1, 'triangle'); tone(ac, 1047, 0.09, 0.2, 'triangle'); }
 };
 function sfx(name) { if (!state.soundOn || !SFX[name]) return; const ac = ensureAudio(); if (!ac) return; try { SFX[name](ac); } catch (e) {} }
 function renderSoundBtn() { const b = $('sound-btn'); if (!b) return; b.textContent = state.soundOn ? '🔊 Sound' : '🔇 Muted'; b.setAttribute && b.setAttribute('aria-pressed', String(!state.soundOn)); }
@@ -1633,6 +2226,7 @@ function initializeApp() {
   buildNav(); updateScores(); updateProgress(); renderShelf(); showWelcome();
   $('next-problem').onclick = newProblem;
   $('smart-mix-btn').onclick = () => { mixMode = true; newProblem(); };
+  $('lab-btn').onclick = () => { sfx('tap'); showLabMenu(); };
   $('rewards-btn').onclick = () => { renderBadgeGrid(); $('rewards-modal').style.display = 'block'; };
   $('rewards-close').onclick = () => { $('rewards-modal').style.display = 'none'; };
   $('challenge-fireworks-btn').onclick = openChallenge;
