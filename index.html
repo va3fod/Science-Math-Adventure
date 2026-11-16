@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#7c3aed">
-<title>Science &amp; Math Adventure! V2.3.0 · Ages 6–10</title>
+<title>Science &amp; Math Adventure! V2.3.1 · Ages 6–10</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
@@ -158,6 +158,7 @@ nav button[data-lab].active{background:#16a34a}
 .lab-win-stars{font-size:2.2em;color:#f59e0b;letter-spacing:6px;line-height:1.1}
 .lab-reflect{font-size:1.05em;color:#1e293b;margin:6px 0}
 .lab-win-sub{color:#475569;font-weight:600;font-size:.9em;margin:4px 0}
+.lab-win-pts{color:#5b21b6;font-weight:800;margin:4px 0}
 @keyframes labpop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
 @media(max-width:420px){.lab-ctrl button{padding:8px 10px;font-size:.95em}.lab-grid{grid-template-columns:1fr 1fr;gap:8px}.lab-card{padding:8px 4px 6px}.lab-part{padding:5px 9px;font-size:.9em}}
 </style>
@@ -233,7 +234,7 @@ nav button[data-lab].active{background:#16a34a}
 <div class="container">
   <header>
     <h1>Science &amp; Math Adventure! 🚀 <button id="challenge-fireworks-btn" title="Unlock Fireworks with a Challenge!" aria-label="Fireworks challenge">🎆</button></h1>
-    <p class="subtitle">V2.3.0 · Ages 6–10 · Learn, play, and collect stickers!</p>
+    <p class="subtitle">V2.3.1 · Ages 6–10 · Learn, play, and collect stickers!</p>
     <p class="app-credit">Made by Val, VA3FOD</p>
     <p id="visit-count" class="visit-count" hidden></p>
   </header>
@@ -1597,14 +1598,29 @@ function labAnswer(i) {
   const fb = $('lab-fb'), hint = $('lab-hint');
   if (pickd === q.a) {
     btns.forEach(b => { b.disabled = true; }); btn.classList.add('right'); labUI.mode = 'quiz-done';
+    labScoreAnswer(true);
     fb.className = 'lab-fb correct'; fb.textContent = pick(['Correct! 🎉','Yes! ⭐','You got it! 🙌']) + ' ' + q.ex; sfx('correct');
     const nx = $('lab-qnext'); nx.hidden = false; nx.textContent = labUI.qi + 1 < lv.quiz.length ? 'Next question ➡️' : 'Unlock the build! 🔓';
     nx.onclick = () => { if (labUI.qi + 1 < lv.quiz.length) showLabQuiz(lv.id, labUI.qi + 1); else labQuizPassed(); };
     return true;
   }
-  labUI.qWrong++; labUI.qPerfect = false; btn.classList.add('wrong'); btn.disabled = true; sfx('wrong');
+  labUI.qWrong++; labUI.qPerfect = false; btn.classList.add('wrong'); btn.disabled = true; sfx('wrong'); labScoreAnswer(false);
   fb.className = 'lab-fb incorrect'; fb.textContent = 'Not quite — try again! 💪'; hint.hidden = false; hint.textContent = '💡 ' + q.hint;
   return false;
+}
+/* V2.3.1: the lab feeds the shared score bar. Quiz answers follow the main-quiz rules (right: +1 Score, +1 Streak; wrong: Streak back to 0).
+   A finished build adds LAB_STAR_PTS per star, paid once per level: a replay only pays for stars better than the saved best. */
+const LAB_STAR_PTS = 3;
+function labScoreAnswer(ok) {
+  if (ok) { state.score++; state.streak++; state.totalCorrect++;
+    if (state.score > state.best) state.best = state.score; if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+    if (state.streak % 5 === 0) { toast(`🔥 ${state.streak} in a row! Amazing!`); burst(['🎉','⭐','🌟','🎊','✨'], 26); } }
+  else state.streak = 0;
+  save(); updateScores(); if (ok) checkBadges();
+}
+function labScoreBuild(prevStars, st) {
+  const gain = Math.max(0, st - (prevStars || 0)) * LAB_STAR_PTS; if (!gain) return 0;
+  state.score += gain; if (state.score > state.best) state.best = state.score; return gain;
 }
 function labQuizPassed() {
   const lv = labUI.lv, r = labRec(lv.id), first = !r.quiz; r.quiz = true;
@@ -1724,18 +1740,19 @@ function labHint() {
 function labWin() {
   const lv = labUI.lv, r = labRec(lv.id), used = labUsed(), st = labStars(lv, used, labUI.plays), firstWin = !r.stars;
   labUI.mode = 'won'; labUI.winShown = true; labUI.raf = 0;
-  if (st > r.stars) r.stars = st; if (!r.best || used < r.best) r.best = used; save();
+  const gain = labScoreBuild(r.stars, st);
+  if (st > r.stars) r.stars = st; if (!r.best || used < r.best) r.best = used; save(); updateScores();
   const next = LAB_LEVELS[lv.n]; const pb = $('lab-play'); pb.disabled = false; pb.textContent = '↻ Replay';
   labMsg('🎉 Goal! Your machine worked!', 'ok');
   const w = $('lab-win'); w.hidden = false;
   w.innerHTML = `<div class="lab-win-stars" aria-label="${st} of 3 stars">${labStarStr(st)}</div><h3>🎉 Goal! You did it${state.playerName ? ', ' + escHtml(state.playerName) : ''}!</h3>
     <p class="lab-reflect">🔬 <b>What happened?</b> ${esc(lv.reflect)}</p>
-    <p class="lab-win-sub">${labTrayTotal(lv) ? `Parts used: ${used} · Best possible: ${labPar(lv)}` : `Tries: ${labUI.plays}`}${st < 3 ? ' — can you get ★★★?' : ' — perfect!'}</p>
+    ${gain ? `<p class="lab-win-pts">+${gain} points ⭐</p>` : ''}<p class="lab-win-sub">${labTrayTotal(lv) ? `Parts used: ${used} · Best possible: ${labPar(lv)}` : `Tries: ${labUI.plays}`}${st < 3 ? ' — can you get ★★★?' : ' — perfect!'}</p>
     <div class="lab-row">${next ? '<button class="practice-button lab-inline" id="lab-next">Next level ➡️</button>' : '<button class="practice-button lab-inline" id="lab-next">🏆 All levels</button>'}
     <button class="practice-button lab-inline lab-alt" id="lab-again">↻ Replay</button><button class="lab-link" id="lab-levels">☰ Levels</button></div>`;
   $('lab-next').onclick = () => next ? showLabLesson(next.id) : showLabMenu(); $('lab-again').onclick = labReset; $('lab-levels').onclick = showLabMenu;
   sfx('levelup'); burst(['⭐','🎉','✨', lv.emoji], 22);
-  if (firstWin && !next) { toast('🏆 You finished the Chain Reaction Lab!'); }
+  if (firstWin && !next) { toast('🏆 You finished the Chain Reaction Lab!'); } else if (gain) toast(`⭐ +${gain} points!`);
   try { w.scrollIntoView({ block:'nearest', behavior:'smooth' }); } catch (e) {}
 }
 /* ---- Drawing (original procedural art) ---- */
@@ -1805,7 +1822,7 @@ function labDraw() {
 
 /* ================= STATE + STORAGE (durable; schema v2; never resets by date, reload or fireworks) ================= */
 const KEY = 'sciMathAdventureV2';
-const APP_VERSION = '2.3.0';
+const APP_VERSION = '2.3.1';
 const SCHEMA_V = 2;
 const toInt = x => { const n = Math.floor(Number(x)); return Number.isFinite(n) && n > 0 ? n : 0; };
 let storageOK = true;
