@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#7c3aed">
-<title>Science &amp; Math Adventure! V2.3.2 · Ages 6–10</title>
+<title>Science &amp; Math Adventure! V2.3.3 · Ages 6–10</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
@@ -161,7 +161,7 @@ nav button[data-lab].active{background:#16a34a}
 .lab-win-pts{color:#5b21b6;font-weight:800;margin:4px 0}
 @keyframes labpop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
 @media(max-width:420px){.lab-ctrl button{padding:8px 10px;font-size:.95em}.lab-grid{grid-template-columns:1fr 1fr;gap:8px}.lab-card{padding:8px 4px 6px}.lab-part{padding:5px 9px;font-size:.9em}}
-/* ===== About / Support (V2.3.2) ===== */
+/* ===== About / Support (V2.3.3) ===== */
 .about-row{margin:12px 0 2px;padding:0;text-align:center}
 .about-btn{background:#fff;border:1.5px solid #c4b5fd;color:#5b21b6;padding:6px 14px;min-height:40px;border-radius:999px;font-size:.85em;font-weight:700;cursor:pointer;box-shadow:none}
 .about-btn:hover,.about-btn:focus{background:#f5f3ff;border-color:#7c3aed;outline:none}
@@ -223,7 +223,7 @@ nav button[data-lab].active{background:#16a34a}
 <div id="about-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true">
   <div class="modal-content" role="document" tabindex="-1">
     <h3 id="about-title">Science &amp; Math Adventure</h3>
-    <p id="about-version" class="about-ver">Version 2.3.2</p>
+    <p id="about-version" class="about-ver">Version 2.3.3</p>
     <p class="about-lead">A free science and math learning game for kids. It works offline, has no ads and no sign-up, and your progress is saved only on this device.</p>
     <p class="about-made">Made by Val, VA3FOD</p>
     <div class="about-support">
@@ -272,7 +272,7 @@ nav button[data-lab].active{background:#16a34a}
 <div class="container">
   <header>
     <h1>Science &amp; Math Adventure! 🚀 <button id="challenge-fireworks-btn" title="Unlock Fireworks with a Challenge!" aria-label="Fireworks challenge">🎆</button></h1>
-    <p class="subtitle">V2.3.2 · Ages 6–10 · Learn, play, and collect stickers!</p>
+    <p class="subtitle">V2.3.3 · Ages 6–10 · Learn, play, and collect stickers!</p>
     <p class="app-credit">Made by Val, VA3FOD</p>
     <p id="visit-count" class="visit-count" hidden></p>
   </header>
@@ -1782,7 +1782,7 @@ function labWin() {
   const lv = labUI.lv, r = labRec(lv.id), used = labUsed(), st = labStars(lv, used, labUI.plays), firstWin = !r.stars;
   labUI.mode = 'won'; labUI.winShown = true; labUI.raf = 0;
   const gain = labScoreBuild(r.stars, st);
-  if (st > r.stars) r.stars = st; if (!r.best || used < r.best) r.best = used; save(); updateScores();
+  if (st > r.stars) r.stars = st; if (!r.best || used < r.best) r.best = used; save(); updateScores(); updateProgress();
   const next = LAB_LEVELS[lv.n]; const pb = $('lab-play'); pb.disabled = false; pb.textContent = '↻ Replay';
   labMsg('🎉 Goal! Your machine worked!', 'ok');
   const w = $('lab-win'); w.hidden = false;
@@ -1794,6 +1794,7 @@ function labWin() {
   $('lab-next').onclick = () => next ? showLabLesson(next.id) : showLabMenu(); $('lab-again').onclick = labReset; $('lab-levels').onclick = showLabMenu;
   sfx('levelup'); burst(['⭐','🎉','✨', lv.emoji], 22);
   if (firstWin && !next) { toast('🏆 You finished the Chain Reaction Lab!'); } else if (gain) toast(`⭐ +${gain} points!`);
+  if (overallProgress() >= 100 && !state.fireworksShownAt100) { state.fireworksShownAt100 = true; save(); setTimeout(startFireworks, 1200); }
   try { w.scrollIntoView({ block:'nearest', behavior:'smooth' }); } catch (e) {}
 }
 /* ---- Drawing (original procedural art) ---- */
@@ -1863,7 +1864,7 @@ function labDraw() {
 
 /* ================= STATE + STORAGE (durable; schema v2; never resets by date, reload or fireworks) ================= */
 const KEY = 'sciMathAdventureV2';
-const APP_VERSION = '2.3.2';
+const APP_VERSION = '2.3.3';
 const DEV_EMAIL = 'aschiuta@gmail.com';
 const SCHEMA_V = 2;
 const toInt = x => { const n = Math.floor(Number(x)); return Number.isFinite(n) && n > 0 ? n : 0; };
@@ -2036,7 +2037,7 @@ function cleanupDemo() { if (demoCleanup) { try { demoCleanup(); } catch (e) {} 
 function showWelcome() {
   cancelAutoNext(); cleanupDemo();
   $('app-content').innerHTML = `<div class="learn-section"><h3>👋 Welcome, ${escHtml(state.playerName || 'Explorer')}!</h3><p>Pick a topic above to <b>learn</b>, then <b>practice</b>. Quizzes never run out, and the game remembers what you saw so questions don't repeat soon!</p>
-  <ul><li>🔥 Get answers right in a row for a <b>streak</b> and win stickers.</li><li>🎲 Try the <b>Smart Mix Quiz</b> for surprise questions from every subject.</li><li>⭐ Each topic has a <b>Level ★☆☆</b> that grows as you get answers right.</li><li>🧪 New! Build crazy chain-reaction machines in the <b>Chain Reaction Lab</b>.</li><li>🌙 Try the <b>Moon Phases</b> lab in Astronomy.</li><li>⚙️ Play with the <b>Gears</b>, <b>Pulleys</b> and <b>Levers</b> labs in Physics!</li><li>🎆 Fill the progress bar (or beat the 🎆 challenge) for <b>fireworks</b>!</li><li>📱 Best in <b>Safari</b> or <b>Chrome</b> (not inside WhatsApp or Drive preview).</li></ul></div>`;
+  <ul><li>🔥 Get answers right in a row for a <b>streak</b> and win stickers.</li><li>🎲 Try the <b>Smart Mix Quiz</b> for surprise questions from every subject.</li><li>⭐ Each topic has a <b>Level ★☆☆</b> that grows as you get answers right.</li><li>🧪 New! Build crazy chain-reaction machines in the <b>Chain Reaction Lab</b>.</li><li>🌙 Try the <b>Moon Phases</b> lab in Astronomy.</li><li>⚙️ Play with the <b>Gears</b>, <b>Pulleys</b> and <b>Levers</b> labs in Physics!</li><li>🎆 Fill the progress bar by finishing topics and Chain Reaction Lab levels (or beat the 🎆 challenge) for <b>fireworks</b>!</li><li>📱 Best in <b>Safari</b> or <b>Chrome</b> (not inside WhatsApp or Drive preview).</li></ul></div>`;
   $('next-problem').style.display = 'none';
 }
 function showLearn(id) {
@@ -2134,8 +2135,10 @@ function markChoices() {
 function setFb(msg, ok) { const f = $('feedback'); f.textContent = msg; f.className = ok ? 'correct' : 'incorrect'; }
 function updateScores() { $('score-value').textContent = state.score; $('best-score-value').textContent = state.best; $('streak-value').textContent = state.streak; $('best-streak-value').textContent = state.bestStreak; }
 function overallProgress() {
-  const sum = ALL_TOPIC_IDS.reduce((a, id) => a + Math.min(state.progress[id] || 0, TARGET_COMPLETIONS_PER_TOPIC), 0);
-  return Math.round(100 * sum / (ALL_TOPIC_IDS.length * TARGET_COMPLETIONS_PER_TOPIC));
+  const topicSum = ALL_TOPIC_IDS.reduce((a, id) => a + Math.min(state.progress[id] || 0, TARGET_COMPLETIONS_PER_TOPIC), 0);
+  const lv = (state.lab && state.lab.lv) || {};
+  const labSum = LAB_LEVELS.reduce((a, l) => a + (((lv[l.id] || {}).stars || 0) >= 1 ? TARGET_COMPLETIONS_PER_TOPIC : 0), 0);
+  return Math.round(100 * (topicSum + labSum) / ((ALL_TOPIC_IDS.length + LAB_LEVELS.length) * TARGET_COMPLETIONS_PER_TOPIC));
 }
 function updateProgress() { const p = overallProgress(), f = $('progress-bar-fill'); f.style.width = Math.max(p, 8) + '%'; f.textContent = p + '%'; }
 
