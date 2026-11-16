@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#7c3aed">
-<title>Science &amp; Math Adventure! V2.3.1 · Ages 6–10</title>
+<title>Science &amp; Math Adventure! V2.3.2 · Ages 6–10</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
@@ -161,6 +161,25 @@ nav button[data-lab].active{background:#16a34a}
 .lab-win-pts{color:#5b21b6;font-weight:800;margin:4px 0}
 @keyframes labpop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
 @media(max-width:420px){.lab-ctrl button{padding:8px 10px;font-size:.95em}.lab-grid{grid-template-columns:1fr 1fr;gap:8px}.lab-card{padding:8px 4px 6px}.lab-part{padding:5px 9px;font-size:.9em}}
+/* ===== About / Support (V2.3.2) ===== */
+.about-row{margin:12px 0 2px;padding:0;text-align:center}
+.about-btn{background:#fff;border:1.5px solid #c4b5fd;color:#5b21b6;padding:6px 14px;min-height:40px;border-radius:999px;font-size:.85em;font-weight:700;cursor:pointer;box-shadow:none}
+.about-btn:hover,.about-btn:focus{background:#f5f3ff;border-color:#7c3aed;outline:none}
+#about-modal .modal-content{max-width:440px;text-align:center}
+#about-modal .about-ver{color:#6b7280;font-weight:700;margin:0 0 8px;font-size:.95em}
+#about-modal .about-lead{color:#334155;font-size:1em;line-height:1.5;margin:0 0 10px}
+#about-modal .about-made{color:#6d28d9;font-weight:800;margin:0 0 14px}
+#about-modal .about-support{background:#faf5ff;border:1px solid #ddd6fe;border-radius:14px;padding:12px 14px;text-align:center;margin:0 0 8px}
+#about-modal .about-support h4{margin:0 0 8px;color:#5b21b6;font-size:1.05em}
+#about-modal .about-support p{margin:0 0 8px;color:#334155;font-size:.95em;line-height:1.45}
+#about-modal .about-email-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:8px 0}
+#about-modal .about-email{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:800;font-size:.98em;color:#4c1d95;background:#fff;border:1px solid #ddd6fe;border-radius:10px;padding:8px 12px;user-select:text;-webkit-user-select:text;flex:0 1 auto;max-width:100%;overflow-wrap:anywhere;white-space:normal}
+#about-modal #about-copy{background:#7c3aed;margin:0}
+#about-modal #about-copy:hover,#about-modal #about-copy:focus{background:#6d28d9}
+#about-modal .about-note{margin:8px 0 0;color:#64748b;font-size:.85em;font-weight:600}
+#about-modal #about-close{background:#64748b}
+#about-modal #about-close:hover,#about-modal #about-close:focus{background:#475569}
+@media(max-width:420px){#about-modal .modal-content{padding:16px 14px;margin:6vh auto}#about-modal .about-email-row{flex-direction:column}#about-modal .about-email{font-size:.9em}}
 </style>
 </head>
 <body>
@@ -201,6 +220,25 @@ nav button[data-lab].active{background:#16a34a}
   </div>
 </div>
 
+<div id="about-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true">
+  <div class="modal-content" role="document" tabindex="-1">
+    <h3 id="about-title">Science &amp; Math Adventure</h3>
+    <p id="about-version" class="about-ver">Version 2.3.2</p>
+    <p class="about-lead">A free science and math learning game for kids. It works offline, has no ads and no sign-up, and your progress is saved only on this device.</p>
+    <p class="about-made">Made by Val, VA3FOD</p>
+    <div class="about-support">
+      <h4>Support the developer</h4>
+      <p>If you enjoy it, you can send a tip by Interac e-Transfer to aschiuta@gmail.com</p>
+      <div class="about-email-row">
+        <code id="about-email" class="about-email">aschiuta@gmail.com</code>
+        <button type="button" id="about-copy">Copy email</button>
+      </div>
+      <p class="about-note">Tips are optional — the app stays free.</p>
+    </div>
+    <button type="button" id="about-close">Close</button>
+  </div>
+</div>
+
 
 <!-- Shown only in WhatsApp / in-app / preview (JS decides). Visible by default if JS never runs. -->
 <div id="browser-tip" role="note">
@@ -234,7 +272,7 @@ nav button[data-lab].active{background:#16a34a}
 <div class="container">
   <header>
     <h1>Science &amp; Math Adventure! 🚀 <button id="challenge-fireworks-btn" title="Unlock Fireworks with a Challenge!" aria-label="Fireworks challenge">🎆</button></h1>
-    <p class="subtitle">V2.3.1 · Ages 6–10 · Learn, play, and collect stickers!</p>
+    <p class="subtitle">V2.3.2 · Ages 6–10 · Learn, play, and collect stickers!</p>
     <p class="app-credit">Made by Val, VA3FOD</p>
     <p id="visit-count" class="visit-count" hidden></p>
   </header>
@@ -259,6 +297,9 @@ nav button[data-lab].active{background:#16a34a}
     <button id="next-problem" style="display:none">Next Quest ➡️</button>
     <div id="badge-shelf" title="Your stickers"></div>
   </footer>
+  <p class="about-row">
+    <button type="button" id="about-btn" class="about-btn" aria-haspopup="dialog" aria-controls="about-modal">ℹ️ About</button>
+  </p>
 </div>
 <script>
 'use strict';
@@ -1822,7 +1863,8 @@ function labDraw() {
 
 /* ================= STATE + STORAGE (durable; schema v2; never resets by date, reload or fireworks) ================= */
 const KEY = 'sciMathAdventureV2';
-const APP_VERSION = '2.3.1';
+const APP_VERSION = '2.3.2';
+const DEV_EMAIL = 'aschiuta@gmail.com';
 const SCHEMA_V = 2;
 const toInt = x => { const n = Math.floor(Number(x)); return Number.isFinite(n) && n > 0 ? n : 0; };
 let storageOK = true;
@@ -2185,7 +2227,7 @@ function setupOpenTips() {
 const AUTO_NEXT_MS = 1100;
 let autoNextTimer = null;
 function cancelAutoNext() { if (autoNextTimer) { clearTimeout(autoNextTimer); autoNextTimer = null; } }
-function anyModalOpen() { return ['challenge-modal','rewards-modal','name-modal'].some(id => { const m = $(id); return m && m.style.display === 'block'; }) || ($('fireworks-canvas') && $('fireworks-canvas').style.display === 'block'); }
+function anyModalOpen() { return ['challenge-modal','rewards-modal','name-modal','about-modal'].some(id => { const m = $(id); return m && m.style.display === 'block'; }) || ($('fireworks-canvas') && $('fireworks-canvas').style.display === 'block'); }
 function scheduleAutoNext() {
   cancelAutoNext();
   const topic = currentTopic, q = current;
@@ -2236,6 +2278,95 @@ function submitName() {
   if (!currentTopic) showWelcome();
 }
 
+/* ================= ABOUT / SUPPORT ================= */
+let aboutPrevFocus = null;
+function aboutIsOpen() {
+  const m = $('about-modal');
+  return !!(m && m.style.display === 'block');
+}
+function openAbout() {
+  cancelAutoNext();
+  const m = $('about-modal');
+  if (!m) return;
+  const ver = $('about-version');
+  if (ver) ver.textContent = 'Version ' + APP_VERSION;
+  const copy = $('about-copy');
+  if (copy) copy.textContent = 'Copy email';
+  aboutPrevFocus = document.activeElement;
+  m.style.display = 'block';
+  m.setAttribute('aria-hidden', 'false');
+  const close = $('about-close');
+  try { (close || m).focus(); } catch (e) {}
+}
+function closeAbout() {
+  const m = $('about-modal');
+  if (!m) return;
+  m.style.display = 'none';
+  m.setAttribute('aria-hidden', 'true');
+  const copy = $('about-copy');
+  if (copy) copy.textContent = 'Copy email';
+  const prev = aboutPrevFocus;
+  aboutPrevFocus = null;
+  try { if (prev && prev.focus) prev.focus(); } catch (e) {}
+}
+function copyDevEmail() {
+  const email = DEV_EMAIL;
+  const btn = $('about-copy');
+  let finished = false;
+  const markCopied = () => { if (btn) btn.textContent = 'Copied!'; };
+  const fallback = () => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand && document.execCommand('copy');
+      if (ta.parentNode) ta.parentNode.removeChild(ta);
+      else if (document.body.removeChild) document.body.removeChild(ta);
+      if (ok !== false) markCopied();
+    } catch (e) {}
+  };
+  const finish = useFallback => {
+    if (finished) return;
+    finished = true;
+    if (useFallback) fallback();
+    else markCopied();
+  };
+  try {
+    const proto = (window.location && window.location.protocol) || '';
+    // file:// (and other non-http pages) often expose clipboard.writeText but never resolve it
+    if (proto !== 'file:' && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(email).then(() => finish(false), () => finish(true));
+      setTimeout(() => finish(true), 500);
+      return;
+    }
+  } catch (e) {}
+  fallback();
+}
+function bindAbout() {
+  const btn = $('about-btn'), modal = $('about-modal'), close = $('about-close'), copy = $('about-copy');
+  if (btn) btn.onclick = () => { sfx('tap'); openAbout(); };
+  if (close) close.onclick = closeAbout;
+  if (copy) copy.onclick = () => { copyDevEmail(); };
+  if (modal) {
+    modal.addEventListener('click', e => { if (e.target === modal) closeAbout(); });
+    modal.addEventListener('keydown', e => {
+      if (e.key !== 'Tab' || !aboutIsOpen()) return;
+      const list = Array.prototype.filter.call(modal.querySelectorAll('button'), el => !el.disabled);
+      if (!list.length) return;
+      const first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && aboutIsOpen()) { e.preventDefault(); closeAbout(); }
+  });
+}
+
 /* ================= INIT ================= */
 function initializeApp() {
   syncMedals(); save();
@@ -2255,6 +2386,7 @@ function initializeApp() {
   $('change-name-btn').onclick = openNameModal;
   $('name-start').onclick = submitName;
   $('name-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitName(); });
+  bindAbout();
   // iOS: unlock audio on the first user gesture
   document.addEventListener('pointerdown', function unlock() { ensureAudio(); document.removeEventListener('pointerdown', unlock); });
   renderPlayer();

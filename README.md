@@ -17,13 +17,14 @@ Science & Math Adventure is an interactive science and math learning game for ki
 - Stickers, streaks, a Smart Mix Quiz, and fireworks
 - Progress is saved **locally in the browser only** — nothing is uploaded
 - A tiny, anonymous **visit counter** (no cookies, no personal data) is shown in the credit line
+- A small **About** button at the bottom of the page explains the app and how to send an optional Interac e-Transfer tip
 
 ## How to use
 
 - Open it in your browser on a phone, tablet, or computer: [https://va3fod.github.io/Science-Math-Adventure/](https://va3fod.github.io/Science-Math-Adventure/)
 - Or download [`index.html`](./index.html) and open it locally — no install, and it works offline once downloaded.
 
-The newest build is always attached to the [latest release](https://github.com/va3fod/Science-Math-Adventure/releases/latest) (currently v2.3.1, as `Science_Math_Adventure_V2.3.1.html`).
+The newest build is always attached to the [latest release](https://github.com/va3fod/Science-Math-Adventure/releases/latest) (currently v2.3.2, as `Science_Math_Adventure_V2.3.2.html`).
 
 ## Screenshots
 
